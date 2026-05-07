@@ -224,7 +224,17 @@ function __createMahjongTileNode(SELF: MahjongLiangFengChoiceQuestionComp, nT: n
     }
 
     oNewNode.setPosition(0, 0);
-    cc.find("Val", oNewNode).getComponent(cc.Sprite).spriteFrame = AllMahjongValImg.getSpriteFrame(nT);
+    
+    const oValNode = cc.find("Val", oNewNode);
+    if (oValNode) {
+        const oSprite = oValNode.getComponent(cc.Sprite);
+        if (oSprite) {
+            const oFrame = AllMahjongValImg.getSpriteFrame(nT);
+            if (oFrame) {
+                oSprite.spriteFrame = oFrame;
+            }
+        }
+    }
 
     return oNewNode;
 }

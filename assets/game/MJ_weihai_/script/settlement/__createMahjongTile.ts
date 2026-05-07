@@ -2,15 +2,17 @@
 import ModConfig from "../ModConfig.ver_MJ_weihai_";
 import RoundSettlementWndComp from "./RoundSettlementWndComp";
 import AllMahjongValImg from "../AllMahjongValImg";
+import MahjongTileOpComp from "../table/MahjongTileOpComp";
 
 /**
  * 创建麻将牌
  * 
  * @param SELF this 指针
  * @param nMahjongVal 麻将牌数值
+ * @param nLaiZiTile 赖子牌 (一赖到底玩法)
  * @return Cocos 节点
  */
-export function __createMahjongTile(SELF: RoundSettlementWndComp, nMahjongVal: number): cc.Node {
+export function __createMahjongTile(SELF: RoundSettlementWndComp, nMahjongVal: number, nLaiZiTile: number = -1): cc.Node {
     if (null == SELF) {
         return null;
     }
@@ -28,6 +30,15 @@ export function __createMahjongTile(SELF: RoundSettlementWndComp, nMahjongVal: n
     let oNewNode = cc.instantiate(oPrefab);
 
     cc.find("Val", oNewNode).getComponent(cc.Sprite).spriteFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+
+    // 标记赖子牌（一赖到底玩法）
+    if (nLaiZiTile > 0 && nMahjongVal === nLaiZiTile) {
+        let oTileOpComp = oNewNode.addComponent(MahjongTileOpComp);
+        if (null != oTileOpComp) {
+            oTileOpComp.setIsLaiZi(true);
+            cc.log(`结算页面标记赖子牌: ${nMahjongVal}`);
+        }
+    }
 
     return oNewNode;
 }

@@ -78,21 +78,31 @@ function __updateLiangFeng(SELF: MahjongLiangFengGroupComp, oCounterMap: {[nKey:
             continue;
         }
 
-        if (null == cc.find(`Layout/MahjongTile_${nIndex}_`, SELF.node)) {
-            continue;
+        // 设置图片
+        const oTileNode = cc.find(`Layout/MahjongTile_${nIndex}_`, SELF.node);
+        if (oTileNode) {
+            oTileNode.active = true;
+            const oValNode = cc.find(`Val`, oTileNode);
+            if (oValNode) {
+                const oSprite = oValNode.getComponent(cc.Sprite);
+                if (oSprite) {
+                    const oFrame = AllMahjongValImg.getSpriteFrame(Number.parseInt(strKey));
+                    if (oFrame) {
+                        oSprite.spriteFrame = oFrame;
+                    }
+                }
+            }
         }
 
-        // 设置图片
-        cc.find(`Layout/MahjongTile_${nIndex}_`, SELF.node).active = true;
-        cc.find(`Layout/MahjongTile_${nIndex}_/Val`, SELF.node)
-            .getComponent(cc.Sprite)
-            .spriteFrame = AllMahjongValImg.getSpriteFrame(Number.parseInt(strKey));
-
         // 设置数量
-        cc.find(`Layout/MahjongTile_${nIndex}_/Num`, SELF.node).active = nCount > 1;
-        cc.find(`Layout/MahjongTile_${nIndex}_/Num`, SELF.node)
-            .getComponent(cc.Label)
-            .string = nCount.toString();
+        const oNumNode = cc.find(`Layout/MahjongTile_${nIndex}_/Num`, SELF.node);
+        if (oNumNode) {
+            oNumNode.active = nCount > 1;
+            const oLabel = oNumNode.getComponent(cc.Label);
+            if (oLabel) {
+                oLabel.string = nCount.toString();
+            }
+        }
 
         ++nIndex;
     }

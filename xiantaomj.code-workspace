@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../xiantaomj.java_server-main"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "xiantaomj.cocos2d_client-main",
+		"files.associations": {
+			"*.bat": "bat"
+		}
+	}
+}

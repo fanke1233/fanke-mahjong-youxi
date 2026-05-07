@@ -66,6 +66,16 @@ export default class RuleSetting {
     }
 
     /**
+     * 获取规则值
+     * 
+     * @param nKey 规则关键字
+     * @return 规则值
+     */
+    getRuleValue(nKey: number): number {
+        return this._oInnerMap[nKey];
+    }
+
+    /**
      * 是否乱锚
      * 
      * @return true = 乱锚, false = 不乱锚
@@ -121,6 +131,8 @@ export default class RuleSetting {
             RuleKeyDef.KEY_PLAY_METHOD_LIANG_GANG_DING,
             RuleKeyDef.KEY_PLAY_METHOD_PIAO_FEN,
             RuleKeyDef.KEY_PLAY_METHOD_64_FAN_FENG_DING,
+            RuleKeyDef.KEY_PLAY_METHOD_YI_LAI_DAO_DI,
+            RuleKeyDef.KEY_PLAY_METHOD_ZHI_NENG_ZI_MO,
         ]) ?? []).join("、");
     }
 }

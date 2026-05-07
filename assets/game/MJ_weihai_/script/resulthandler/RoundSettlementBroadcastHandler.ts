@@ -59,34 +59,50 @@ function __createRoundSettlementWndAndShow(oBroadcast: RoundSettlementBroadcast)
 
         let oXArray = [];
 
+        // 获取牌桌组件，用于获取赖子牌信息
+        let oTableComp = cc.find("Canvas/MahjongTableArea").getComponentInChildren(MahjongTableComp);
+
         for (let oSettlementItem of oBroadcast.settlementItem) {
             if (null == oSettlementItem) {
                 continue;
             }
 
+            // 获取用户ID
+            const nUserId = oSettlementItem.userId ?? -1;
+            
             // 获取已缓存的用户
-            let oCachedUser = UserData.getByUserId(oSettlementItem.userId);
+            let oCachedUser = UserData.getByUserId(nUserId);
+
+            // 从牌桌组件中获取赖子牌信息
+            let nLaiZiTile = -1;
+            if (null != oTableComp && nUserId > 0) {
+                let oPlayerData = oTableComp._oPlayerDataMap[nUserId];
+                if (null != oPlayerData && oPlayerData.laiZiTile !== undefined && oPlayerData.laiZiTile > 0) {
+                    nLaiZiTile = oPlayerData.laiZiTile;
+                }
+            }
 
             let oX = {
-                userId:                     oSettlementItem.userId,
+                userId:                     nUserId,
                 userName:                   oCachedUser.getUserName(),
                 headImg:                    oCachedUser.getHeadImg(),
                 sex:                        oCachedUser.getSex(),
-                currScore:                  oSettlementItem.currScore,
-                totalScore:                 oSettlementItem.totalScore,
-                seatIndexAtServer:          oSettlementItem.seatIndex,
-                piaoX:                      oSettlementItem.piaoX,
-                roomOwnerFlag:              oSettlementItem.roomOwnerFlag,
-                zhuangJiaFlag:              oSettlementItem.zhuangJiaFlag,
-                hu:                         oSettlementItem.hu,
-                dianPao:                    oSettlementItem.dianPao,
-                ziMo:                       oSettlementItem.ziMo,
-                huPatternArray:             oSettlementItem.huPattern,
-                gangPatternArray:           oSettlementItem.gangPattern,
-                mahjongChiPengGangArray:    oSettlementItem.mahjongChiPengGang,
-                mahjongInHand:              oSettlementItem.mahjongInHand,
-                mahjongHuOrZiMo:            oSettlementItem.mahjongHuOrZiMo,
+                currScore:                  oSettlementItem.currScore ?? 0,
+                totalScore:                 oSettlementItem.totalScore ?? 0,
+                seatIndexAtServer:          oSettlementItem.seatIndex ?? 0,
+                piaoX:                      oSettlementItem.piaoX ?? -1,
+                roomOwnerFlag:              oSettlementItem.roomOwnerFlag ?? false,
+                zhuangJiaFlag:              oSettlementItem.zhuangJiaFlag ?? false,
+                hu:                         oSettlementItem.hu ?? false,
+                dianPao:                    oSettlementItem.dianPao ?? false,
+                ziMo:                       oSettlementItem.ziMo ?? false,
+                huPatternArray:             oSettlementItem.huPattern ?? [],
+                gangPatternArray:           oSettlementItem.gangPattern ?? [],
+                mahjongChiPengGangArray:    oSettlementItem.mahjongChiPengGang ?? [],
+                mahjongInHand:              oSettlementItem.mahjongInHand ?? [],
+                mahjongHuOrZiMo:            oSettlementItem.mahjongHuOrZiMo ?? 0,
                 mahjongLiangFeng:           oSettlementItem.mahjongLiangFeng,
+                laiZiTile:                  nLaiZiTile,  // 赖子牌信息
             };
 
             oXArray.push(oX);
@@ -104,18 +120,34 @@ function __createRoundSettlementWndAndShow(oBroadcast: RoundSettlementBroadcast)
         oWndComp.renewDisplay();
         oWndComp.onContinueTheGame = () => {
             let oSceneComp = cc.find("Canvas/Script").getComponent(MJ_weihai_Scene);
+            if (!oSceneComp) {
+                cc.error("找不到MJ_weihai_Scene组件");
+                return;
+            }
+            
             oSceneComp.hideChiPengGangHuOpHint();
             oSceneComp.hideInvite();
 
-            // 隐藏可以胡牌的提示
-            cc.find("Canvas/InteractionArea/HintMahjongCanHuArea").active = false;
+            // 安全隐藏可以胡牌的提示
+            const oInteractionArea = cc.find("Canvas/InteractionArea");
+            if (oInteractionArea) {
+                const oHintAreaNode = oInteractionArea.getChildByName("HintMahjongCanHuArea");
+                if (oHintAreaNode) {
+                    oHintAreaNode.active = false;
+                }
+            }
 
             // 清理麻将桌
-            cc.find("Canvas/MahjongTableArea")
-                .getComponentInChildren(MahjongTableComp)
-                .updateMahjongLiangGangDing(-1, -1)
-                .updateAllTotalScore(oXArray)
-                .clearDesktop();
+            const oMahjongTableArea = cc.find("Canvas/MahjongTableArea");
+            if (oMahjongTableArea) {
+                const oTableComp = oMahjongTableArea.getComponentInChildren(MahjongTableComp);
+                if (oTableComp) {
+                    oTableComp
+                        .updateMahjongLiangGangDing(-1, -1)
+                        .updateAllTotalScore(oXArray)
+                        .clearDesktop();
+                }
+            }
 
             TextSpineAnimUtil.clear();
 

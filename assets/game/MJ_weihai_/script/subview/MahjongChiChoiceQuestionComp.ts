@@ -142,9 +142,16 @@ export default class MahjongChiChoiceQuestionComp extends cc.Component {
                     break;
                 }
 
-                cc.find(`Layout/${strOptionName}/MahjongTile_${nIndex}_/Val`, this.node)
-                    .getComponent(cc.Sprite)
-                    .spriteFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+                const oValNode = cc.find(`Layout/${strOptionName}/MahjongTile_${nIndex}_/Val`, this.node);
+                if (oValNode) {
+                    const oSprite = oValNode.getComponent(cc.Sprite);
+                    if (oSprite) {
+                        const oFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+                        if (oFrame) {
+                            oSprite.spriteFrame = oFrame;
+                        }
+                    }
+                }
 
                 if (nIndex < 2) {
                     continue;

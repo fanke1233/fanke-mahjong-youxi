@@ -28,10 +28,11 @@ export default class MahjongMoPaiResultHandler {
         let oTableComp = cc.find("Canvas/MahjongTableArea").getComponentInChildren(MahjongTableComp);
 
         if (null != oTableComp) {
-            // 更新手牌
+            // 更新手牌（赖子牌信息由服务端通过SyncRoomData下发）
             oTableComp.updateMahjongMoPai(
                 UserData.getMyData().getUserId(), 
-                oResult.t
+                oResult.t,
+                0  // nState
             );
         }
     }

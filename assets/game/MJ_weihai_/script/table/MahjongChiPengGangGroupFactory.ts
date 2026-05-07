@@ -415,5 +415,11 @@ function __changeAMahjongVal(oValNode: cc.Node, nMahjongVal: number): void {
         return;
     }
 
-    oValNode.getComponent(cc.Sprite).spriteFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+    const oSprite = oValNode.getComponent(cc.Sprite);
+    if (oSprite) {
+        const oFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+        if (oFrame) {
+            oSprite.spriteFrame = oFrame;
+        }
+    }
 }

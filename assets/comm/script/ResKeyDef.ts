@@ -18,9 +18,14 @@ export default class ResKeyDef {
     static readonly SCENE_CLUB: string = "ClubScene";
 
     /**
-     * 威海麻将
+     * 仙桃麻将
      */
     static readonly SCENE_GAME_MJ_WEIHAI_: string = "MJ_weihai_Scene";
+
+    /**
+     * 仙桃麻将（新）
+     */
+    static readonly SCENE_GAME_MJ_XIANTAO_: string = "MJ_xiantao_Scene";
 
     /**
      * 麻将回放

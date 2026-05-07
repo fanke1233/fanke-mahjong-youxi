@@ -1,9 +1,9 @@
 {
   "ver": "1.1.2",
-  "uuid": "873acbc2-69b8-4fa8-93f6-76a6d73d4a0b",
+  "uuid": "a5e1c8f3-9d2b-4c7e-8f1a-2b3c4d5e6f7a",
   "isBundle": true,
-  "bundleName": "",
-  "priority": 1,
+  "bundleName": "chat",
+  "priority": 5,
   "compressionType": {},
   "optimizeHotUpdate": {},
   "inlineSpriteFrames": {},

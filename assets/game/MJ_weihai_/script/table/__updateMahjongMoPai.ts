@@ -9,8 +9,10 @@ import { __getMahjongInHandGroupCompOrElseCreate } from "./__getMahjongInHandGro
  * @param nUserId 用户 Id
  * @param nMahjongMoPai 麻将摸牌
  * @param nState 状态
+ * @param nLaiGenTile 赖子生成牌 (一赖到底玩法)
+ * @param nLaiZiTile 赖子牌 (一赖到底玩法)
  */
-export function __updateMahjongMoPai(SELF: MahjongTableComp, nUserId: number, nMahjongMoPai: number, nState: number = 0): void {
+export function __updateMahjongMoPai(SELF: MahjongTableComp, nUserId: number, nMahjongMoPai: number, nState: number = 0, nLaiGenTile: number = -1, nLaiZiTile: number = -1): void {
     if (null == SELF ||
         nUserId <= 0) {
         return;
@@ -35,6 +37,6 @@ export function __updateMahjongMoPai(SELF: MahjongTableComp, nUserId: number, nM
     );
 
     if (null != oGroupComp) {
-        oGroupComp.updateMahjongMoPai(nMahjongMoPai, nState);
+        oGroupComp.updateMahjongMoPai(nMahjongMoPai, nState, nLaiGenTile, nLaiZiTile);
     }
 }

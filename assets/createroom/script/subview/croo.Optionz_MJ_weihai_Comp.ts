@@ -81,7 +81,7 @@ const MAX_ROUND_AND_MAX_CIRCLE_CONFIG: { [strKey: string]: Array<{ maxRound : nu
 //#endregion
 
 /**
- * 威海麻将选项组件
+ * 仙桃麻将选项组件
  */
 @ccclass
 export default class Optionz_MJ_weihai_Comp extends cc.Component {

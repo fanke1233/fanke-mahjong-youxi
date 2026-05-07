@@ -9,7 +9,7 @@ type RuleItem = {
 }
 
 const GAME_TYPE_0_KEY_MJ_weihai = 1001;
-const GAME_TYPE_0_VAL_MJ_weihai = "威海麻将";
+const GAME_TYPE_0_VAL_MJ_weihai = "仙桃麻将";
 
 // 人类语言字典
 const HUMAN_LANGUAGE_MAP = {
@@ -48,6 +48,8 @@ const HUMAN_LANGUAGE_MAP = {
     "2008=1": "亮杠腚",
     "2009=1": "飘分",
     "2010=1": "64番封顶",
+    "2011=1": "一赖到底",
+    "2012=1": "只能自摸胡",
 };
 
 /**

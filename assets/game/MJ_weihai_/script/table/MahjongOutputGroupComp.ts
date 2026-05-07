@@ -545,8 +545,9 @@ export default class MahjongOutputGroupComp extends cc.Component {
      * 添加一张麻将到尾部, 一般是在出牌逻辑里调用
      * 
      * @param nT 麻将数值
+     * @param nLaiZiTile 赖子牌数值
      */
-    pushAMahjongVal(nT: number): void {
+    pushAMahjongVal(nT: number, nLaiZiTile?: number): void {
         if (nT <= 0) {
             return;
         }
@@ -562,7 +563,8 @@ export default class MahjongOutputGroupComp extends cc.Component {
         // 修改麻将牌面图片
         __changeAMahjongVal(
             cc.find(`Pos_${nLastIndex}_`, this.node),
-            nT // 麻将牌数值
+            nT, // 麻将牌数值
+            nLaiZiTile // 赖子牌数值
         );
     }
 
@@ -650,8 +652,9 @@ export default class MahjongOutputGroupComp extends cc.Component {
  * 
  * @param oAtPosNode 所在位置节点
  * @param nMahjongVal 麻将数据
+ * @param nLaiZiTile 赖子牌数值
  */
-function __changeAMahjongVal(oAtPosNode: cc.Node, nMahjongVal: number): void {
+function __changeAMahjongVal(oAtPosNode: cc.Node, nMahjongVal: number, nLaiZiTile?: number): void {
     if (null == oAtPosNode) {
         cc.log("oAtPosNode is null");
         return;
@@ -680,6 +683,70 @@ function __changeAMahjongVal(oAtPosNode: cc.Node, nMahjongVal: number): void {
 
     // 找到显示节点的 Val 子节点,
     // 设置麻将牌花图片
-    cc.find("Val", oShowNode).getComponent(cc.Sprite).spriteFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+    const oValNode = cc.find("Val", oShowNode);
+    if (oValNode) {
+        const oSprite = oValNode.getComponent(cc.Sprite);
+        if (oSprite) {
+            const oFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+            if (oFrame) {
+                oSprite.spriteFrame = oFrame;
+            }
+        }
+    }
+
+    // 检查是否是赖子牌，如果是则添加赖子标记
+    const bIsLaiZi = nLaiZiTile && nMahjongVal === nLaiZiTile;
+    __updateLaiZiMark(oShowNode, bIsLaiZi);
+
     oShowNode.active = true;
+}
+
+/**
+ * 更新赖子标记
+ * 
+ * @param oRootNode 根节点
+ * @param bIsLaiZi 是否是赖子牌
+ */
+function __updateLaiZiMark(oRootNode: cc.Node, bIsLaiZi: boolean): void {
+    if (null == oRootNode) {
+        return;
+    }
+
+    let oLaiZiMark = cc.find("LaiZiMark", oRootNode);
+
+    // 如果节点不存在，动态创建
+    if (null == oLaiZiMark) {
+        // 创建 LaiZiMark 节点
+        oLaiZiMark = new cc.Node("LaiZiMark");
+        oRootNode.addChild(oLaiZiMark);
+        
+        // 添加 Label 组件显示"赖"字
+        let oLabel = oLaiZiMark.addComponent(cc.Label);
+        oLabel.string = "赖";
+        oLabel.fontSize = 24;
+        oLabel.lineHeight = 24;
+        oLabel.horizontalAlign = cc.Label.HorizontalAlign.CENTER;
+        oLabel.verticalAlign = cc.Label.VerticalAlign.CENTER;
+        oLabel.overflow = cc.Label.Overflow.NONE;
+        
+        // 设置金色
+        oLabel.node.color = new cc.Color(255, 215, 0); // 金色 RGB(255, 215, 0)
+        
+        // 设置节点位置（右上角）
+        oLaiZiMark.setPosition(30, 30); // 根据麻将牌大小调整
+        
+        // 设置节点大小
+        oLaiZiMark.width = 50;
+        oLaiZiMark.height = 50;
+        
+        // 添加 Widget 组件保持相对位置
+        let oWidget = oLaiZiMark.addComponent(cc.Widget);
+        oWidget.isAlignRight = true;
+        oWidget.isAlignTop = true;
+        oWidget.right = 5;
+        oWidget.top = 5;
+    }
+
+    // 控制显示/隐藏
+    oLaiZiMark.active = bIsLaiZi;
 }

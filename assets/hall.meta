@@ -1,9 +1,9 @@
 {
   "ver": "1.1.2",
-  "uuid": "7dea7aab-d322-4f05-a95e-51f8db50b5c6",
+  "uuid": "e306f6f6-4159-4b62-8956-e63e5f3e5c5b",
   "isBundle": true,
-  "bundleName": "",
-  "priority": 1,
+  "bundleName": "hall",
+  "priority": 2,
   "compressionType": {},
   "optimizeHotUpdate": {},
   "inlineSpriteFrames": {},

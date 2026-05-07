@@ -1,5 +1,5 @@
 // 人类语言字典
-const HUMAN_LANGUAGE_DICT = {
+const HUMAN_LANGUAGE_DICT: Record<number, string> = {
     1: "平胡",
     1001: "庄家",
     1002: "自摸",

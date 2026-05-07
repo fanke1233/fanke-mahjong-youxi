@@ -10,10 +10,15 @@ import { mod_clubServerProtocol } from "../msg/AllMsg.ver_Club";
  * 玩法和 Bundle 字典
  */
 const GAME_TYPE_X_AND_RES_MAP: { [strGameTypeX: string]: { bundleName: string, sceneName: string, } } = {
-    // 麻将 - 威海麻将
+    // 麻将 - 仙桃麻将
     "1_1001": { 
         bundleName: "MJ_weihai_", 
         sceneName: ResKeyDef.SCENE_GAME_MJ_WEIHAI_, 
+    }, 
+    // 麻将 - 仙桃麻将
+    "1_1002": { 
+        bundleName: "MJ_xiantao_", 
+        sceneName: ResKeyDef.SCENE_GAME_MJ_XIANTAO_, 
     }, 
 }
 

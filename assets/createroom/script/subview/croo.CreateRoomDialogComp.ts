@@ -6,7 +6,7 @@ import RuleKeyAndValComp from "../../../comm/script/RuleKeyAndValComp";
 const { ccclass } = cc._decorator;
 const RULE_KEY_PAYMENT_WAY = 1002;
 const DEFAULT_GAME_TYPE_0 = 1; // 麻将
-const DEFAULT_GAME_TYPE_1 = 1001; // 威海麻将
+const DEFAULT_GAME_TYPE_1 = 1001; // 仙桃麻将
 
 /**
  * 规则项目

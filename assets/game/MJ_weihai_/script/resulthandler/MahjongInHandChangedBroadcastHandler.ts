@@ -28,17 +28,20 @@ export default class MahjongInHandChangedBroadcastHandler {
             return;
         }
 
-        cc.log(`其他玩家的麻将手牌发生变化, userId = ${oBroadcast.userId}, mahjongInHand = ${JSON.stringify(oBroadcast.mahjongInHand)}, moPai = ${oBroadcast.moPai}`);
+        cc.log(`其他玩家的麻将手牌发生变化, userId = ${oBroadcast.userId}, mahjongInHand = ${JSON.stringify(oBroadcast.mahjongInHand)}, moPai = ${oBroadcast.moPai}, laiGenTile = ${oBroadcast.laiGenTile}, laiZiTile = ${oBroadcast.laiZiTile}`);
 
         // 获取牌桌组件
         let oTableComp = cc.find("Canvas/MahjongTableArea").getComponentInChildren(MahjongTableComp);
 
         if (null != oTableComp) {
-            // 更新手牌
+            // 更新手牌（包含赖子牌信息）
             oTableComp.updateMahjongInHand(
                 oBroadcast.userId, 
                 oBroadcast.mahjongInHand, 
-                oBroadcast.moPai
+                oBroadcast.moPai,
+                0,  // nState
+                oBroadcast.laiGenTile,  // 赖子生成牌
+                oBroadcast.laiZiTile    // 赖子牌
             );
         }
     }

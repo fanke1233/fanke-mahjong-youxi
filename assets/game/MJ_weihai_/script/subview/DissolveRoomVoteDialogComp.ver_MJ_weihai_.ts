@@ -177,8 +177,12 @@ export default class DissolveRoomVoteDialogComp extends cc.Component {
 
         let nMyselfYes = -1;
         let bHasReject = false; // 是否有人拒绝
+        let nAgreeCount = 0; // 同意人数
+        let nTotalPlayers = 0; // 总玩家数
 
         if (null != this._oWaiting4PlayerArray) {
+            nTotalPlayers = this._oWaiting4PlayerArray.length;
+            
             for (let oWaiting4Player of this._oWaiting4PlayerArray) {
                 if (null == oWaiting4Player) {
                     continue;
@@ -189,6 +193,11 @@ export default class DissolveRoomVoteDialogComp extends cc.Component {
                 }
 
                 bHasReject = bHasReject || oWaiting4Player.yes == 0;
+                
+                // 统计同意人数
+                if (oWaiting4Player.yes == 1) {
+                    nAgreeCount++;
+                }
 
                 cc.find(`Dialog/Layout/Player_${oWaiting4Player.seatIndex}_`, this.node).active = true;
                 cc.find(`Dialog/Layout/Player_${oWaiting4Player.seatIndex}_/UserName`, this.node)
@@ -210,6 +219,20 @@ export default class DissolveRoomVoteDialogComp extends cc.Component {
         }
 
         this.unschedule(this.updateRemainTimeDisplay);
+
+        // 检查是否所有玩家都已同意
+        if (!bHasReject && nTotalPlayers > 0 && nAgreeCount >= nTotalPlayers) {
+            // 所有玩家都已同意，立即关闭对话框
+            cc.log(`所有玩家都已同意解散房间，立即退出！`);
+            this.unschedule(this.updateRemainTimeDisplay);
+            
+            // 延迟一小段时间后关闭对话框，让用户看到"已同意"状态
+            setTimeout(() => {
+                this.node.destroy();
+            }, 500);
+            
+            return;
+        }
 
         if (!bHasReject) {
             // 更新剩余时间显示

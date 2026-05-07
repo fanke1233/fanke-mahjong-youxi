@@ -34,14 +34,21 @@ export function __regUIEvent(SELF: MJ_weihai_Scene, oRuleSetting: RuleSetting): 
     }
 
     // 房间信息按钮
-    cc.find("Canvas/InteractionArea/Button_RoomInfo_").on(
-        cc.Node.EventType.TOUCH_END, (/*oEvent*/) => {
-            cc.find("Canvas/SubViewPlaceHolder/RoomInfoDialog").active = true;
-            cc.find("Canvas/SubViewPlaceHolder/RoomInfoDialog")
-                .getComponent(RoomInfoDialogComp)
-                .renewDisplay();
-        }
-    );
+    const oRoomInfoBtn = cc.find("Canvas/InteractionArea/Button_RoomInfo_");
+    if (oRoomInfoBtn) {
+        oRoomInfoBtn.on(
+            cc.Node.EventType.TOUCH_END, (/*oEvent*/) => {
+                const oRoomInfoDialog = cc.find("Canvas/SubViewPlaceHolder/RoomInfoDialog");
+                if (oRoomInfoDialog) {
+                    oRoomInfoDialog.active = true;
+                    const oRoomInfoComp = oRoomInfoDialog.getComponent(RoomInfoDialogComp);
+                    if (oRoomInfoComp) {
+                        oRoomInfoComp.renewDisplay();
+                    }
+                }
+            }
+        );
+    }
 
     for (let nPiaoX = 0; nPiaoX <= 4; nPiaoX++) {
         cc.find(`Canvas/InteractionArea/SelectPiaoHintArea/Button_Piao${nPiaoX}_`).on(
@@ -60,27 +67,36 @@ export function __regUIEvent(SELF: MJ_weihai_Scene, oRuleSetting: RuleSetting): 
     }
 
     // 邀请好友
-    cc.find("Canvas/InteractionArea/Button_Invite_").on(
-        cc.Node.EventType.TOUCH_END, (/*oEvent*/) => {
-            PrefabXFactory.useSpecifyFactoryCreate("share", "sha2.ShareAppDialogFactory", (oDialogNode) => {
-                if (null == oDialogNode) {
-                    return;
-                }
+    const oInviteBtn = cc.find("Canvas/InteractionArea/Button_Invite_");
+    if (oInviteBtn) {
+        oInviteBtn.on(
+            cc.Node.EventType.TOUCH_END, (/*oEvent*/) => {
+                PrefabXFactory.useSpecifyFactoryCreate("share", "sha2.ShareAppDialogFactory", (oDialogNode) => {
+                    if (null == oDialogNode) {
+                        return;
+                    }
 
-                // App 分享链接
-                let strShareAppURL = GlobalDef._strShareAppURL + "?jr=" + SELF._nRoomId.toString(36);
-                cc.log(`App 分享链接, shareAppURL = ${strShareAppURL}`);
+                    // App 分享链接
+                    let strShareAppURL = GlobalDef._strShareAppURL + "?jr=" + SELF._nRoomId.toString(36);
+                    cc.log(`App 分享链接, shareAppURL = ${strShareAppURL}`);
 
-                cc.find("Canvas/SubViewPlaceHolder").addChild(oDialogNode);
+                    const oSubViewPlaceHolder = cc.find("Canvas/SubViewPlaceHolder");
+                    if (oSubViewPlaceHolder) {
+                        oSubViewPlaceHolder.addChild(oDialogNode);
+                    }
 
-                oDialogNode.getComponent("sha2.ShareAppDialogComp")
-                    .putCaption("【威海麻将】房间号：" + SELF._nRoomId)
-                    .putDesc(oRuleSetting.getMaxPlayerAndMaxRoundDesc() + "，" + oRuleSetting.getPaymentWayDesc() + "\n" + oRuleSetting.getPlayMethodDesc())
-                    .putLinkAddr(strShareAppURL)
-                    .renewDisplay();
-            });
-        }
-    );
+                    const oShareComp = oDialogNode.getComponent("sha2.ShareAppDialogComp") as any;
+                    if (oShareComp) {
+                        oShareComp
+                            .putCaption("【威海麻将】房间号：" + SELF._nRoomId)
+                            .putDesc(oRuleSetting.getMaxPlayerAndMaxRoundDesc() + "，" + oRuleSetting.getPaymentWayDesc() + "\n" + oRuleSetting.getPlayMethodDesc())
+                            .putLinkAddr(strShareAppURL)
+                            .renewDisplay();
+                    }
+                });
+            }
+        );
+    }
 
     // 更多按钮点击事件
     __button_more_onTouchEnd(SELF);
@@ -101,6 +117,8 @@ export function __regUIEvent(SELF: MJ_weihai_Scene, oRuleSetting: RuleSetting): 
     __button_guo_onTouchEnd(SELF);
     __button_liangFeng_onTouchEnd(SELF, oRuleSetting);
     __button_buFeng_onTouchEnd(SELF);
+    // 临时禁用飘赖按钮事件（排查用）
+    // __button_piaoLai_onTouchEnd(SELF);
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -326,7 +344,7 @@ function __button_locationMeasureDistance_onTouchEnd(SELF: MJ_weihai_Scene): voi
                         headImg: oCurrPlayer.headImg,
                         clientIpAddr: oCurrPlayer.clientIpAddr,
                         seatIndexAtServer: oCurrPlayer.seatIndexAtServer,
-                        seatIndexAtClient: oMahjongSeatIndexer.getSeatIndexAtClient(oCurrPlayer.seatIndexAtServer),
+                        seatIndexAtClient: oMahjongSeatIndexer?.getSeatIndexAtClient(oCurrPlayer.seatIndexAtServer) ?? -1,
                     });
                 }
 
@@ -760,6 +778,10 @@ function __button_liangFeng_onTouchEnd(SELF: MJ_weihai_Scene, oRuleSetting: Rule
  * @param SELF this 指针
  */
 function __button_buFeng_onTouchEnd(SELF: MJ_weihai_Scene): void {
+    if (null == SELF) {
+        return;
+    }
+
     // "补风" 按钮
     cc.find("Canvas/InteractionArea/ChiPengGangHuOpArea/Button_BuFeng_")
         .on(cc.Node.EventType.TOUCH_END, (/*oEvent*/) => {
@@ -774,6 +796,57 @@ function __button_buFeng_onTouchEnd(SELF: MJ_weihai_Scene): void {
         );
 
         // 隐藏操作 
+        SELF.hideChiPengGangHuOpHint();
+    });
+}
+
+/**
+ * 飘赖按钮事件
+ * 
+ * @param SELF this 指针
+ */
+function __button_piaoLai_onTouchEnd(SELF: MJ_weihai_Scene): void {
+    if (null == SELF) {
+        return;
+    }
+
+    // "飘赖" 按钮
+    let oButtonNode = cc.find("Canvas/InteractionArea/ChiPengGangHuOpArea/Button_PiaoLai_");
+    if (null == oButtonNode) {
+        cc.warn("飘赖按钮节点不存在，跳过事件注册");
+        return;
+    }
+    
+    oButtonNode.on(cc.Node.EventType.TOUCH_END, (/*oEvent*/) => {
+        
+        // 获取赖子牌信息
+        let oTableComp = cc.find("Canvas/MahjongTableArea").getComponentInChildren(MahjongTableComp);
+        if (null == oTableComp) {
+            cc.error("未找到牌桌组件");
+            return;
+        }
+
+        // 获取自己的赖子牌（从玩家数据中获取）
+        let nMyUserId = UserData.getMyData().getUserId();
+        let oPlayerData = oTableComp._oPlayerDataMap[nMyUserId];
+        let nMyLaiZiTile = oPlayerData?.laiZiTile ?? -1;
+        
+        if (nMyLaiZiTile <= 0) {
+            cc.error("未找到赖子牌信息");
+            return;
+        }
+
+        // 发送飘赖指令
+        MsgBus.getInstance().sendMsg(
+            mod_MJ_weihai_Protocol.msg.MJ_weihai_MsgCodeDef._MahjongPiaoLaiCmd,
+            mod_MJ_weihai_Protocol.msg.MahjongPiaoLaiCmd.create({
+                laiZiTile: nMyLaiZiTile,
+            })
+        );
+
+        cc.log(`发送飘赖指令, laiZiTile = ${nMyLaiZiTile}`);
+
+        // 隐藏操作提示
         SELF.hideChiPengGangHuOpHint();
     });
 }

@@ -80,6 +80,11 @@ enum MJ_weihai_MsgCodeDef {
     _MahjongBuFengResult = 1070;
     _MahjongBuFengBroadcast = 1071;
     _MahjongLiangGangDingBroadcast = 1072;
+    _MahjongPiaoLaiCmd = 1073;
+    _MahjongPiaoLaiResult = 1074;
+    _MahjongPiaoLaiBroadcast = 1075;
+    _MahjongSelectTilePreviewCmd = 1076;
+    _MahjongSelectTilePreviewResult = 1077;
 };
 
 // 键值定义
@@ -175,6 +180,10 @@ message Player {
     // 麻将亮风
     // XXX 注意: 这是威海麻将特色玩法
     MahjongLiangFeng mahjongLiangFeng = 18;
+    // 赖子生成牌（墙牌最后一张）
+    sint32 laiGenTile = 19;
+    // 赖子牌（赖根牌+1）
+    sint32 laiZiTile = 20;
 }
 
 //
@@ -512,6 +521,10 @@ message MahjongInHandChangedResult {
     repeated sint32 mahjongInHand = 1;
     // 麻将摸牌
     sint32 moPai = 2;
+    // 赖子生成牌 (一赖到底玩法)
+    sint32 laiGenTile = 3;
+    // 赖子牌 (一赖到底玩法)
+    sint32 laiZiTile = 4;
 }
 
 // 广播
@@ -522,6 +535,10 @@ message MahjongInHandChangedBroadcast {
     repeated sint32 mahjongInHand = 2;
     // 麻将摸牌
     sint32 moPai = 3;
+    // 赖子生成牌 (一赖到底玩法)
+    sint32 laiGenTile = 4;
+    // 赖子牌 (一赖到底玩法)
+    sint32 laiZiTile = 5;
 }
 
 // 
@@ -644,6 +661,12 @@ message MahjongChiPengGangHuOpHintResult {
     LiangFengChoiceQuestion liangFengChoiceQuestion = 7;
     // 补风操作提示
     bool opHintBuFeng = 8;
+    // 飘赖操作提示
+    bool opHintPiaoLai = 9;
+    // 见字胡提示（一赖到底玩法）
+    bool jianZiHuHint = 10;
+    // 可以胡牌的麻将牌列表（一赖到底玩法，包含硬胡和软胡）
+    repeated sint32 huTileArray = 11;
 }
 
 // 
@@ -930,22 +953,51 @@ message MahjongLiangFengBroadcast {
 ///////////////////////////////////////////////////////////////////////
 // 指令
 message MahjongBuFengCmd {
+    // 第一张牌
+    sint32 t0 = 1;
 }
 
 // 结果
 message MahjongBuFengResult {
-    // 麻将亮风, 
-    // XXX 注意: 补风之后会导致亮风变化
-    MahjongLiangFeng mahjongLiangFeng = 1;
+    // 麻将亮风
+    MahjongLiangFeng mahjongBuFeng = 1;
 }
 
 // 广播
 message MahjongBuFengBroadcast {
     // 用户 Id
     sint32 userId = 1;
-    // 麻将亮风,
-    // XXX 注意: 补风之后会导致亮风变化
-    MahjongLiangFeng mahjongLiangFeng = 2;
+    // 麻将亮风
+    MahjongLiangFeng mahjongBuFeng = 2;
+}
+
+//
+// 飘赖
+///////////////////////////////////////////////////////////////////////
+// 指令
+message MahjongPiaoLaiCmd {
+    // 赖子牌数值
+    sint32 laiZiTile = 1;
+}
+
+// 结果
+message MahjongPiaoLaiResult {
+    // 赖子牌数值
+    sint32 laiZiTile = 1;
+    // 是否成功
+    bool ok = 2;
+}
+
+// 广播
+message MahjongPiaoLaiBroadcast {
+    // 用户 Id
+    sint32 userId = 1;
+    // 赖子牌数值
+    sint32 laiZiTile = 2;
+    // 是否成功
+    bool ok = 3;
+    // 补牌 (飘赖后从牌墙摸到的牌)
+    sint32 buPaiTile = 4;
 }
 
 //
@@ -957,4 +1009,18 @@ message MahjongLiangGangDingBroadcast {
     sint32 t0 = 1;
     // 第二张牌
     sint32 t1 = 2;
+}
+
+//
+// 选牌预览（一赖到底玩法）
+///////////////////////////////////////////////////////////////////////
+// 指令：玩家单击某张牌，请求预览如果打出这张牌后的可胡牌列表
+message MahjongSelectTilePreviewCmd {
+    // 玩家想打出的牌
+    sint32 selectTile = 1;
+}
+
+// 结果：返回可胡牌列表
+message MahjongSelectTilePreviewResult {
+    repeated sint32 huTileArray = 1;
 }

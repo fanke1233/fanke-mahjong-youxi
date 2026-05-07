@@ -30,33 +30,27 @@ const { ccclass } = cc._decorator;
  */
 export type PlayerData = {
     /** 用户 Id */
-    userId: number, 
-    /** 用户名称 */
-    userName: string,
+    userId?: number,
+    /** 用户名 */
+    userName?: string,
     /** 头像 */
-    headImg: string,
-    /** 性别, -1 = 未知, 0 = 女, 1 = 男, 2 = 双性 */
-    sex: number,
-    /** 客户端 IP 地址 */
-    clientIpAddr: string,
-    /** 座位索引 */
-    seatIndex: number,
-    /** 当前分数 */
-    currScore: number,
-    /** 总分数 */
-    totalScore: number,
-    /** 服务器端座位索引 */
-    seatIndexAtServer: number,
-    /** 飘几, -1 = 未知, 0 = 不飘, 1 = 飘_1, 2 = 飘_2, 3 = 飘_3, 4 = 飘_4 */
-    piaoX: number,
-    /** 房主标志 */
-    roomOwnerFlag: boolean,
-    /** 庄家标志 */
-    zhuangJiaFlag: boolean,
-    /** 手里的麻将牌数值列表 */
+    headImg?: string,
+    /** 性别 */
+    sex?: number,
+    /** 座位索引（服务端） */
+    seatIndexAtServer?: number,
+    /** 麻将手牌 */
     mahjongInHand?: Array<number>,
     /** 麻将摸牌 */
     mahjongMoPai?: number,
+    /** 总分 */
+    totalScore?: number,
+    /** 飘几 */
+    piaoX?: number,
+    /** 赖子生成牌（墙牌最后一张） */
+    laiGenTile?: number,
+    /** 赖子牌（赖根牌+1） */
+    laiZiTile?: number,
 }
 
 /**
@@ -77,7 +71,7 @@ export default class MahjongTableComp extends cc.Component {
     /**
      * 座位索引器
      */
-    _oMahjongSeatIndexer: MahjongSeatIndexer = null;
+    _oMahjongSeatIndexer?: MahjongSeatIndexer;
 
     // /**
     //  * onLoad
@@ -153,8 +147,15 @@ export default class MahjongTableComp extends cc.Component {
      * @param nMoPai 麻将摸牌
      * @param nState 状态, 0 = 正常状态, 1 = 躺倒 ( 正面朝上 ), 2 = 躺倒 ( 背面朝上 ), 3 = 提起
      */
-    updateMahjongInHand(nUserId: number, oMahjongInHand: Array<number>, nMoPai: number = -1, nState = 0): void {
-        __updateMahjongInHand(this, nUserId, oMahjongInHand, nMoPai, nState);
+    updateMahjongInHand(
+        nUserId: number,
+        oMahjongInHand: Array<number>,
+        nMoPai: number = -1,
+        nState = 0,
+        nLaiGenTile: number = -1,
+        nLaiZiTile: number = -1
+    ): void {
+        __updateMahjongInHand(this, nUserId, oMahjongInHand, nMoPai, nState, nLaiGenTile, nLaiZiTile);
     }
 
     /**
@@ -165,7 +166,7 @@ export default class MahjongTableComp extends cc.Component {
      */
     getMahjongInHand(nUserId: number): Array<number> {
         if (nUserId <= 0) {
-            return null;
+            return [];
         }
 
         // 获取玩家
@@ -173,9 +174,9 @@ export default class MahjongTableComp extends cc.Component {
 
         if (null == oPlayerData) {
             cc.error(`未找到玩家数据, userId = ${nUserId}`);
-            return null;
+            return [];
         } else {
-            return oPlayerData.mahjongInHand;
+            return oPlayerData.mahjongInHand || [];
         }
     }
 
@@ -186,8 +187,14 @@ export default class MahjongTableComp extends cc.Component {
      * @param nMahjongMoPai 麻将摸牌
      * @param nState 状态
      */
-    updateMahjongMoPai(nUserId: number, nMahjongMoPai: number, nState: number = 0): void {
-        __updateMahjongMoPai(this, nUserId, nMahjongMoPai, nState);
+    updateMahjongMoPai(
+        nUserId: number,
+        nMahjongMoPai: number,
+        nState: number = 0,
+        nLaiGenTile: number = -1,
+        nLaiZiTile: number = -1
+    ): void {
+        __updateMahjongMoPai(this, nUserId, nMahjongMoPai, nState, nLaiGenTile, nLaiZiTile);
     }
 
     /**
@@ -208,7 +215,7 @@ export default class MahjongTableComp extends cc.Component {
             cc.error(`未找到玩家数据, userId = ${nUserId}`);
             return -1;
         } else {
-            return oPlayerData.mahjongMoPai;
+            return oPlayerData.mahjongMoPai ?? -1;
         }
     }
 
@@ -337,6 +344,18 @@ export default class MahjongTableComp extends cc.Component {
             return;
         }
 
+        // 添加安全检查：确保 _oMahjongSeatIndexer 已初始化
+        if (!this._oMahjongSeatIndexer) {
+            cc.error("[clearChiPengGangByUserId] 座位索引器未初始化");
+            return;
+        }
+
+        // 添加安全检查：确保 seatIndexAtServer 已定义
+        if (oCurrPlayer.seatIndexAtServer === undefined) {
+            cc.error("[clearChiPengGangByUserId] 玩家座位索引未定义");
+            return;
+        }
+
         let nSeatIndexAtClient = this._oMahjongSeatIndexer.getSeatIndexAtClient(oCurrPlayer.seatIndexAtServer);
         
         let oChiPengGangAreaNode = cc.find(
@@ -369,8 +388,24 @@ export default class MahjongTableComp extends cc.Component {
      */
     onAMahjongTileClick(oMahjongTileOpNode: cc.Node): void {
         if (null == oMahjongTileOpNode) {
+            cc.warn("[麻将牌点击] 节点为空");
             return;
         }
+        
+        // 获取麻将牌组件
+        const oTileComp = oMahjongTileOpNode.getComponent(MahjongTileOpComp);
+        if (!oTileComp) {
+            cc.error("[麻将牌点击] 节点缺少 MahjongTileOpComp 组件");
+            return;
+        }
+        
+        // 获取牌值
+        const nTileValue = oTileComp.getVal();
+        cc.log(`[麻将牌点击] 事件触发，牌值: ${nTileValue}`);
+        
+        // TODO: 这里实现单击/双击逻辑
+        // 目前先只输出日志，确认事件正常工作
+        cc.log(`[麻将牌点击] 准备处理牌值: ${nTileValue}`);
     }
 
     /**
@@ -424,9 +459,9 @@ export default class MahjongTableComp extends cc.Component {
      * @param nUserId 用户 Id
      * @return Cocos 节点
      */
-    getShowAnimationPos(nUserId: number): cc.Node {
+    getShowAnimationPos(nUserId: number): cc.Node | undefined {
         if (nUserId <= 0) {
-            return;
+            return undefined;
         }
 
         // 获取玩家
@@ -434,7 +469,19 @@ export default class MahjongTableComp extends cc.Component {
 
         if (null == oPlayerData) {
             cc.error(`未找到玩家数据, userId = ${nUserId}`);
-            return;
+            return undefined;
+        }
+
+        // 添加安全检查：确保 _oMahjongSeatIndexer 已初始化
+        if (!this._oMahjongSeatIndexer) {
+            cc.error(`[getShowAnimationPos] 座位索引器未初始化, userId = ${nUserId}`);
+            return undefined;
+        }
+
+        // 添加安全检查：确保 seatIndexAtServer 已定义
+        if (oPlayerData.seatIndexAtServer === undefined) {
+            cc.error(`[getShowAnimationPos] 玩家座位索引未定义, userId = ${nUserId}`);
+            return undefined;
         }
 
         // 获取客户端座位索引
@@ -525,7 +572,17 @@ function __regUIEvent(SELF: MahjongTableComp): void {
             oEvent.stopPropagation();
 
             if ("function" == typeof(SELF.onAMahjongTileClick)) {
-                SELF.onAMahjongTileClick(oEvent.target);
+                // 修复：使用 getUserData() 而不是 target
+                const oTileNode = oEvent.getUserData() as cc.Node;
+                
+                // 添加节点有效性检查
+                if (!oTileNode || !oTileNode.isValid) {
+                    cc.warn("[麻将牌点击] 节点无效或已被销毁");
+                    return;
+                }
+                
+                cc.log(`[麻将牌点击] 事件处理器收到节点`);
+                SELF.onAMahjongTileClick(oTileNode);
             }
         }
     );

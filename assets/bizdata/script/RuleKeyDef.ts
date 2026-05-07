@@ -37,6 +37,10 @@ export default class RuleKeyDef {
     static readonly KEY_PLAY_METHOD_PIAO_FEN = 2009;
     /** 64 番封顶 */
     static readonly KEY_PLAY_METHOD_64_FAN_FENG_DING = 2010;
+    /** 一赖到底 */
+    static readonly KEY_PLAY_METHOD_YI_LAI_DAO_DI = 2011;
+    /** 只能自摸胡 */
+    static readonly KEY_PLAY_METHOD_ZHI_NENG_ZI_MO = 2012; 
 
     /**
      * 私有化类默认构造器

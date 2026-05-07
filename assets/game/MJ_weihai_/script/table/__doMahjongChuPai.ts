@@ -45,7 +45,7 @@ export function __doMahjongChuPai(SELF: MahjongTableComp, nUserId: number, nT: n
     );
 
     if (null != oGroupComp2) {
-        oGroupComp2.pushAMahjongVal(nT);
+        oGroupComp2.pushAMahjongVal(nT, oPlayerData.laiZiTile);
         __updatePendant(SELF, nUserId);
     }
 }

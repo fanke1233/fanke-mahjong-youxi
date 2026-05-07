@@ -39,7 +39,7 @@ export function __updateMahjongOutput(SELF: MahjongTableComp, nUserId: number, o
         oGroupComp.popAll();
         
         for (let nT of oMahjongOutputArray) {
-            oGroupComp.pushAMahjongVal(nT);
+            oGroupComp.pushAMahjongVal(nT, oPlayerData.laiZiTile);
         }
     }
 }

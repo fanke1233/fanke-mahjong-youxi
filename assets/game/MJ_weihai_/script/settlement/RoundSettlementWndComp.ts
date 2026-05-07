@@ -54,7 +54,7 @@ type MahjongLiangFeng = {
 }
 
 /**
- * 结算条目
+ * 麻将单局结算项目
  */
 type SettlementItem = {
     /** 用户 Id */
@@ -62,8 +62,14 @@ type SettlementItem = {
     /** 用户名称 */
     userName: string,
     /** 头像 */
-    headImg: string, 
-    /** 服务器端的座位索引 */
+    headImg: string,
+    /** 性别 */
+    sex: number,
+    /** 当前分数 */
+    currScore: number,
+    /** 总分数 */
+    totalScore: number,
+    /** 服务器端座位索引 */
     seatIndexAtServer: number,
     /** 飘几, -1 = 未知, 0 = 不飘, 1 = 飘_1, 2 = 飘_2, 3 = 飘_3, 4 = 飘_4 */
     piaoX: number,
@@ -71,28 +77,26 @@ type SettlementItem = {
     roomOwnerFlag: boolean,
     /** 庄家标志 */
     zhuangJiaFlag: boolean,
-    /** 胡牌模式数组 */
-    huPatternArray: Array<{ key: number, val: number, }>,
-    /** 杠牌模式数组 */
-    gangPatternArray: Array<{ key: number, val: number, }>,
-    /** 麻将吃碰杠 ( 包括明杠、暗杠、补杠 ) 数组 */
-    mahjongChiPengGangArray: Array<MahjongChiPengGang>,
-    /** 手中的麻将牌 ( 数组 ) */
-    mahjongInHand: Array<number>,
-    /** 胡牌或者自摸的麻将牌 */
-    mahjongHuOrZiMo: number,
-    /** 亮风麻将牌 */
-    mahjongLiangFeng: MahjongLiangFeng,
-    /** 是否自摸 */
-    ziMo: boolean,
-    /** 是否点炮 */
-    dianPao: boolean,
-    /** 是否胡牌 */
+    /** 胡牌 */
     hu: boolean,
-    /** 当前分数 */
-    currScore: number,
-    /** 总分数 */
-    totalScore: number,
+    /** 点炮 */
+    dianPao: boolean,
+    /** 自摸 */
+    ziMo: boolean,
+    /** 胡牌模式列表 */
+    huPatternArray: Array<any>,
+    /** 杠牌模式列表 */
+    gangPatternArray: Array<any>,
+    /** 麻将吃碰杠数组 */
+    mahjongChiPengGangArray: Array<any>,
+    /** 麻将手牌 */
+    mahjongInHand: Array<number>,
+    /** 胡或者自摸的牌 */
+    mahjongHuOrZiMo: number,
+    /** 麻将亮风 */
+    mahjongLiangFeng: any,
+    /** 赖子牌 (一赖到底玩法) */
+    laiZiTile: number,
 }
 
 /**
@@ -315,15 +319,15 @@ function __bindSettlementItem(SELF: RoundSettlementWndComp, oItemXNode: cc.Node,
     if (null != oMahjongInHand &&
         oMahjongInHand.length > 0) {
         for (let nMahjongVal of oMahjongInHand) {
-            // 创建麻将牌节点
-            oMahjongListArea.addChild(__createMahjongTile(SELF, nMahjongVal));
+            // 创建麻将牌节点（传递赖子牌信息）
+            oMahjongListArea.addChild(__createMahjongTile(SELF, nMahjongVal, oSettlementItem.laiZiTile));
         }
     }
 
     if (oSettlementItem.mahjongHuOrZiMo > 0) {
-        // 添加麻将胡牌
+        // 添加麻将胡牌（传递赖子牌信息）
         oMahjongListArea.addChild(__createSpace(SELF));
-        oMahjongListArea.addChild(__createMahjongTile(SELF, oSettlementItem.mahjongHuOrZiMo));
+        oMahjongListArea.addChild(__createMahjongTile(SELF, oSettlementItem.mahjongHuOrZiMo, oSettlementItem.laiZiTile));
     }
 
     cc.find("IconArea/Hu", oItemXNode).active = oSettlementItem.hu;

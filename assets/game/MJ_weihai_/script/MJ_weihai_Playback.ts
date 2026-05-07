@@ -10,7 +10,7 @@ import CachedData from "../../../bizdata/script/CachedData";
 const { ccclass } = cc._decorator;
 
 /**
- * 威海麻将回放
+ * 仙桃麻将回放
  */
 @ccclass
 export default class MJ_weihai_Playback extends cc.Component {

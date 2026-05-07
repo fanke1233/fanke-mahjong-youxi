@@ -223,8 +223,8 @@ export function __regUIEvent(SELF: HallScene): void {
 
                 // XXX forSearch: share, sharing, 分享
                 oDialogNode.getComponent("sha2.ShareAppDialogComp")
-                    .putCaption("【威海麻将】")
-                    .putDesc("点击图片，长按两秒，\n选择【识别图中二维码】马上进入")
+                    .putCaption("【仙桃麻将】")
+                    .putDesc("点击图片,长按两秒,\n选择【识别图中二维码】马上进入")
                     .putLinkAddr(GlobalDef._strShareAppURL)
                     .renewDisplay();
             });

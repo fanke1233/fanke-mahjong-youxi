@@ -1,6 +1,7 @@
 // @import
 import AllMahjongValImg from "./AllMahjongValImg";
 import HuFormula from "./hupattern/HuFormula";
+import HuCalculator from "./HuCalculator";
 import MahjongTableComp from "./table/MahjongTableComp";
 import MahjongTableFactory from "./table/MahjongTableFactory";
 import MahjongTileDef from "./MahjongTileDef";
@@ -8,6 +9,9 @@ import MahjongTileOpComp from "./table/MahjongTileOpComp";
 import MJ_weihai_Scene from "./MJ_weihai_Scene";
 import MsgBus from "../../../comm/script/MsgBus";
 import UserData from "../../../bizdata/script/UserData";
+import CachedData from "../../../bizdata/script/CachedData";
+import CachingKeyDef from "../../../bizdata/script/CachingKeyDef";
+import RuleKeyDef from "../../../bizdata/script/RuleKeyDef";
 import { mod_MJ_weihai_Protocol } from "./msg/AllMsg.ver_MJ_weihai_";
 
 /**
@@ -30,7 +34,7 @@ export function __createMahjongTable(SELF: MJ_weihai_Scene, nMaxPlayer: number, 
     }
 
     // 麻将牌桌组件
-    let oTableComp: MahjongTableComp = null;
+    let oTableComp: MahjongTableComp | null = null;
 
     if (cc.find("Canvas/MahjongTableArea").childrenCount <= 0) {
         // 创建麻将牌桌
@@ -56,6 +60,11 @@ export function __createMahjongTable(SELF: MJ_weihai_Scene, nMaxPlayer: number, 
         oTableComp = cc.find("Canvas/MahjongTableArea").getComponentInChildren(MahjongTableComp);
     }
 
+    if (null == oTableComp) {
+        cc.log("麻将牌桌组件为空");
+        return;
+    }
+
     // 获取玩家列表
     let oPlayerList = oSyncRoomDataResult.player;
     // 获取第一视角用户
@@ -70,6 +79,14 @@ export function __createMahjongTable(SELF: MJ_weihai_Scene, nMaxPlayer: number, 
         SELF.showPlayerInfoDialog(oCurrPlayer);
     }
 
+    // 添加调试日志：打印收到的完整player数据
+    cc.log(`[赖子牌追踪] SyncRoomDataResult 收到的 player 数量 = ${oPlayerList.length}`);
+    for (let i = 0; i < oPlayerList.length; i++) {
+        const oPlayer = oPlayerList[i];
+        cc.log(`[赖子牌追踪] Player[${i}] userId = ${oPlayer.userId}, laiGenTile = ${oPlayer.laiGenTile}, laiZiTile = ${oPlayer.laiZiTile}`);
+        cc.log(`[赖子牌追踪] Player[${i}] 完整数据 = ${JSON.stringify(oPlayer)}`);
+    }
+
     for (let oPlayer of oPlayerList) {
         if (null == oPlayer) {
             continue;
@@ -78,11 +95,18 @@ export function __createMahjongTable(SELF: MJ_weihai_Scene, nMaxPlayer: number, 
         // 添加玩家
         oTableComp.addPlayer(oPlayer);
 
-        // 更新玩家手牌
+        // 从Player数据中获取赖子牌信息（完全依赖服务端下发）
+        let nLaiGenTile = oPlayer.laiGenTile ?? -1;
+        let nLaiZiTile = oPlayer.laiZiTile ?? -1;
+
+        // 更新玩家手牌（包含赖子牌信息）
         oTableComp.updateMahjongInHand(
             oPlayer.userId,
             oPlayer.mahjongInHand,
-            oPlayer.mahjongMoPai
+            oPlayer.mahjongMoPai,
+            0,  // nState
+            nLaiGenTile,  // 赖子生成牌
+            nLaiZiTile    // 赖子牌
         );
 
         // 设置庄家标志
@@ -95,10 +119,6 @@ export function __createMahjongTable(SELF: MJ_weihai_Scene, nMaxPlayer: number, 
             // 就可以操作麻将牌
             oTableComp.onAMahjongTileClick = (oMahjongTileOpNode) => {
                 __onAMahjongTileClick(
-                    SELF, oTableComp, oMahjongTileOpNode
-                );
-
-                __hintMahjongCanHu(
                     SELF, oTableComp, oMahjongTileOpNode
                 );
             };
@@ -190,7 +210,7 @@ function __showMahjongLiangFeng(oTableComp: MahjongTableComp, oPlayer: LiangFeng
     }
 
     let oMahjongLiangFeng = oPlayer.mahjongLiangFeng;
-    let oCounterMap = {};
+    let oCounterMap: { [nKey: number]: number } = {};
     oCounterMap[MahjongTileDef.DONG_FENG]  = oMahjongLiangFeng.numOfDongFeng;
     oCounterMap[MahjongTileDef.NAN_FENG]   = oMahjongLiangFeng.numOfNanFeng;
     oCounterMap[MahjongTileDef.XI_FENG]    = oMahjongLiangFeng.numOfXiFeng;
@@ -308,6 +328,9 @@ function __onAMahjongTileClick(SELF: MJ_weihai_Scene, oTableComp: MahjongTableCo
     // 重制所有手中的麻将牌的状态
     oTableComp.resetAllMahjongInHandState();
     oCurrOpComp.setState(3);
+    
+    // 显示胡牌提示（根据玩法选择计算逻辑）
+    __hintMahjongCanHu(SELF, oTableComp, oMahjongTileOpNode);
 }
 
 /**
@@ -356,8 +379,33 @@ function __hintMahjongCanHu(SELF: MJ_weihai_Scene, oTableComp: MahjongTableComp,
         oTestMahjongValArray.splice(nPreOutputMahjongAtIndex, 1);
     }
 
-    let oCanHuMahjongArray = HuFormula.getCanHuMahjongArray(oTestMahjongValArray);
-    cc.log(`可以胡牌的列表 = ${JSON.stringify(oCanHuMahjongArray)}`);
+    // 判断玩法模式，选择胡牌计算逻辑
+    const oCachedRoom = CachedData.getInstance().get(CachingKeyDef.CACHED_ROOM);
+    const bYiLaiDaoDi = oCachedRoom &&
+        oCachedRoom.ruleSetting &&
+        oCachedRoom.ruleSetting.getRuleValue(RuleKeyDef.KEY_PLAY_METHOD_YI_LAI_DAO_DI) == 1;
+    
+    let oCanHuMahjongArray: number[] = [];
+    
+    if (bYiLaiDaoDi) {
+        // 一赖到底模式：带赖子牌计算（完全依赖服务端下发）
+        const oMyPlayer = oTableComp._oPlayerDataMap[nMyUserId];
+        if (oMyPlayer) {
+            const nLaiZiTile = oMyPlayer.laiZiTile ?? -1;
+            
+            if (nLaiZiTile > 0) {
+                oCanHuMahjongArray = HuCalculator.calcCanHuTilesWithLaiZi(oTestMahjongValArray, nLaiZiTile);
+            } else {
+                cc.warn(`[选牌预览] 赖子牌无效: ${nLaiZiTile}，使用普通胡牌计算`);
+                oCanHuMahjongArray = HuFormula.getCanHuMahjongArray(oTestMahjongValArray);
+            }
+        } else {
+            oCanHuMahjongArray = HuFormula.getCanHuMahjongArray(oTestMahjongValArray);
+        }
+    } else {
+        // 非一赖到底模式：不带赖子牌计算
+        oCanHuMahjongArray = HuFormula.getCanHuMahjongArray(oTestMahjongValArray);
+    }
 
     let oHintAreaNode = cc.find("Canvas/InteractionArea/HintMahjongCanHuArea");
 
@@ -374,9 +422,16 @@ function __hintMahjongCanHu(SELF: MJ_weihai_Scene, oTableComp: MahjongTableComp,
         // 获取可以胡牌的麻将牌数值
         let nMahjongVal = oCanHuMahjongArray[nI];
 
-        cc.find(`Pattern_${nI}_/MahjongTile/Val`, oHintAreaNode)
-            .getComponent(cc.Sprite)
-            .spriteFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+        const oValNode = cc.find(`Pattern_${nI}_/MahjongTile/Val`, oHintAreaNode);
+        if (oValNode) {
+            const oSprite = oValNode.getComponent(cc.Sprite);
+            if (oSprite) {
+                const oFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+                if (oFrame) {
+                    oSprite.spriteFrame = oFrame;
+                }
+            }
+        }
 
         cc.find(`Pattern_${nI}_`, oHintAreaNode).active = true;
     }

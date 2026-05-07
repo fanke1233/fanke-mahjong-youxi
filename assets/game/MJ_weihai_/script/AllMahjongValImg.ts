@@ -20,7 +20,7 @@ export default class AllMahjongValImg {
     /**
      * 缓存节点
      */
-    private static _oCachedNode: cc.Node = null;
+    private static _oCachedNode: cc.Node | null = null;
 
     /**
      * 类默认构造器
@@ -33,21 +33,34 @@ export default class AllMahjongValImg {
      * 
      * @param nMahjongVal 麻将值
      */
-    static getSpriteFrame(nMahjongVal: number): cc.SpriteFrame {
+    static getSpriteFrame(nMahjongVal: number): cc.SpriteFrame | null {
         if (-1 == MahjongTileDef.getValidVal(nMahjongVal)) {
             return null;
         }
 
         // 获取子节点
         const strChildName =`MahjongVal_${nMahjongVal}_`;
-        const oChildNode = cc.find(strChildName, AllMahjongValImg.getCachedNode());
+        const oCachedNode = AllMahjongValImg.getCachedNode();
+        
+        if (!oCachedNode) {
+            cc.error(`[AllMahjongValImg] 缓存节点为空，无法获取牌值: ${nMahjongVal}`);
+            return null;
+        }
+        
+        const oChildNode = cc.find(strChildName, oCachedNode);
         
         if (null == oChildNode) {
-            cc.error(`未找到子节点, childName = ${strChildName}`);
-            return;
+            cc.error(`[AllMahjongValImg] 未找到子节点, childName = ${strChildName}, 牌值 = ${nMahjongVal}`);
+            return null;
         }
 
-        return oChildNode.getComponent(cc.Sprite).spriteFrame;
+        const oSprite = oChildNode.getComponent(cc.Sprite);
+        if (!oSprite || !oSprite.spriteFrame) {
+            cc.error(`[AllMahjongValImg] Sprite或SpriteFrame为空, childName = ${strChildName}`);
+            return null;
+        }
+
+        return oSprite.spriteFrame;
     }
 
     /**
@@ -55,7 +68,7 @@ export default class AllMahjongValImg {
      * 
      * @return Cocos 节点
      */
-    private static getCachedNode(): cc.Node {
+    private static getCachedNode(): cc.Node | null {
         if (null != AllMahjongValImg._oCachedNode) {
             // 如果已有缓存节点,
             // 直接返回...
