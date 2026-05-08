@@ -5,8 +5,10 @@
 /library/
 /temp/
 /local/
-# /build/ - Commented out to allow deploying build/web-mobile to GitHub Pages
-!/build/web-mobile/
+# Build directory - allow build/web-mobile for GitHub Pages
+# Only ignore build cache, not the web-mobile output
+/build/cache/
+/build/runtime/
 
 #/////////////////////////////////////////////////////////////////////////////
 # npm files
