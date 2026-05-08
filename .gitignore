@@ -5,7 +5,8 @@
 /library/
 /temp/
 /local/
-/build/
+# /build/ - Commented out to allow deploying build/web-mobile to GitHub Pages
+!/build/web-mobile/
 
 #/////////////////////////////////////////////////////////////////////////////
 # npm files
