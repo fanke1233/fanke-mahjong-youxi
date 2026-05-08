@@ -1,9 +1,9 @@
 {
   "ver": "1.1.2",
-  "uuid": "b1f3d5e7-9c2a-4f8e-8d1c-3a5b7c9d0e2f",
+  "uuid": "7221a372-0674-4504-a7e4-69e924b3de53",
   "isBundle": true,
-  "bundleName": "geolocation",
-  "priority": 6,
+  "bundleName": "",
+  "priority": 1,
   "compressionType": {},
   "optimizeHotUpdate": {},
   "inlineSpriteFrames": {},
