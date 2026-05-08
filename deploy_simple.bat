@@ -16,32 +16,28 @@ if not exist "build\web-mobile" (
 )
 
 echo.
-echo Step 2: Switch to main branch
+echo Step 2: Ensure we are on main branch
 git checkout main
 
 echo.
-echo Step 3: Clean old build files (keep source code)
-git rm -rf --cached build/ 2>nul
-rmdir /s /q build 2>nul
-
-echo.
-echo Step 4: Copy web build files to build/web-mobile
-xcopy /E /I /Y build\web-mobile\*.* build\web-mobile\ 2>nul
-
-echo.
-echo Step 5: Add build files to git
+echo Step 3: Add build files to git tracking
 git add build/
 
 echo.
-echo Step 6: Check status
+echo Step 4: Check status
 git status
 
 echo.
-echo Step 7: Commit changes
-git commit -m "Deploy: Update web build files"
+echo Step 5: Commit changes (only if there are changes)
+git diff --cached --quiet
+if %errorlevel% equ 0 (
+    echo No changes to commit. Skipping commit.
+) else (
+    git commit -m "Deploy: Update web build files for GitHub Pages"
+)
 
 echo.
-echo Step 8: Push to GitHub
+echo Step 6: Push to GitHub
 git push origin main
 
 echo.
