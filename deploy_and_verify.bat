@@ -2,7 +2,7 @@
 chcp 65001 >nul
 echo.
 echo ========================================
-echo   Deploy to GitHub Pages (One-Click)
+echo   One-Click Deploy to GitHub Pages
 echo ========================================
 echo.
 
@@ -35,15 +35,9 @@ if %errorlevel% equ 0 (
 )
 echo.
 
-echo [Step 5] Summary of changes (showing file count only)...
+echo [Step 5] Summary of changes...
 for /f "tokens=*" %%i in ('git diff --cached --name-only ^| find /c /v ""') do set FILE_COUNT=%%i
 echo Total files to commit: %FILE_COUNT%
-echo.
-echo File types breakdown:
-git diff --cached --name-only | findstr /C:".ts" /C:".js" /C:".json" /C:".html" | find /c /v "" > temp_count.txt
-set /p TS_JS_COUNT=<temp_count.txt
-del temp_count.txt
-echo TypeScript/JavaScript/JSON/HTML files: %TS_JS_COUNT%
 echo.
 
 echo [Step 6] Committing changes...
@@ -57,18 +51,75 @@ if %errorlevel% neq 0 (
     pause
     exit /b 1
 )
+echo [INFO] Commit successful
 echo.
 
-echo [Step 7] Pushing to GitHub...
+echo [Step 7] Fetching remote changes...
+git fetch origin main --no-pager
+echo.
+
+echo [Step 8] Checking for remote updates...
+git log HEAD..origin/main --oneline --no-pager > temp_remote_commits.txt
+set /p REMOTE_COMMITS=<temp_remote_commits.txt
+del temp_remote_commits.txt
+
+if not "%REMOTE_COMMITS%"=="" (
+    echo [INFO] Remote has new commits that need to be merged.
+    echo.
+    echo [Step 9] Pulling and merging remote changes...
+    git pull origin main --no-pager --rebase
+    if %errorlevel% neq 0 (
+        echo.
+        echo [ERROR] Merge conflict detected!
+        echo.
+        echo You need to manually resolve conflicts:
+        echo 1. Check conflicted files: git status
+        echo 2. Edit files to resolve conflicts
+        echo 3. Stage resolved files: git add ^<filename^>
+        echo 4. Continue rebase: git rebase --continue
+        echo 5. Run this script again
+        echo.
+        pause
+        exit /b 1
+    )
+    echo [INFO] Successfully merged remote changes
+) else (
+    echo [INFO] No remote updates to merge
+)
+echo.
+
+echo [Step 10] Current commit history:
+git log --oneline -5 --no-pager
+echo.
+
+echo ========================================
+echo   Ready to push to GitHub
+echo ========================================
+echo.
+echo Repository: fanke1233/fanke-mahjong-youxi
+echo Branch: main
+echo.
+echo NOTE: You will be prompted for credentials
+echo - Username: fanke1233
+echo - Password: Paste your Personal Access Token (PAT)
+echo.
+pause
+
+echo.
+echo [Step 11] Pushing to GitHub...
 git push origin main
+
 if %errorlevel% neq 0 (
-    echo [ERROR] Push failed!
+    echo.
+    echo ========================================
+    echo   Push Failed!
+    echo ========================================
     echo.
     echo Troubleshooting:
-    echo 1. Check your internet connection
-    echo 2. Verify GitHub token is valid
-    echo 3. Run: git remote -v to check remote URL
-    echo 4. Clear credentials: git config --global --unset credential.helper
+    echo 1. Check internet connection
+    echo 2. Verify GitHub PAT token is valid
+    echo 3. Clear credentials: git config --global --unset credential.helper
+    echo 4. Run this script again
     echo.
     pause
     exit /b 1
