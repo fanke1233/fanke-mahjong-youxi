@@ -7,7 +7,7 @@ echo ========================================
 echo.
 
 echo [Step 1] Checking Git status...
-git status --short --no-pager
+git status --short
 echo.
 
 echo [Step 2] Removing old build files from Git tracking...
@@ -55,41 +55,45 @@ echo [INFO] Commit successful
 echo.
 
 echo [Step 7] Fetching remote changes...
-git fetch origin main --no-pager
+git fetch origin main
 echo.
 
 echo [Step 8] Checking for remote updates...
-git log HEAD..origin/main --oneline --no-pager > temp_remote_commits.txt
+git log HEAD..origin/main --oneline > temp_remote_commits.txt 2>&1
 set /p REMOTE_COMMITS=<temp_remote_commits.txt
 del temp_remote_commits.txt
 
 if not "%REMOTE_COMMITS%"=="" (
-    echo [INFO] Remote has new commits that need to be merged.
-    echo.
-    echo [Step 9] Pulling and merging remote changes...
-    git pull origin main --no-pager --rebase
-    if %errorlevel% neq 0 (
+    if not "%REMOTE_COMMITS:~0,5%"=="error" (
+        echo [INFO] Remote has new commits that need to be merged.
         echo.
-        echo [ERROR] Merge conflict detected!
-        echo.
-        echo You need to manually resolve conflicts:
-        echo 1. Check conflicted files: git status
-        echo 2. Edit files to resolve conflicts
-        echo 3. Stage resolved files: git add ^<filename^>
-        echo 4. Continue rebase: git rebase --continue
-        echo 5. Run this script again
-        echo.
-        pause
-        exit /b 1
+        echo [Step 9] Pulling and merging remote changes...
+        git pull origin main --rebase
+        if %errorlevel% neq 0 (
+            echo.
+            echo [ERROR] Merge conflict detected!
+            echo.
+            echo You need to manually resolve conflicts:
+            echo 1. Check conflicted files: git status
+            echo 2. Edit files to resolve conflicts
+            echo 3. Stage resolved files: git add ^<filename^>
+            echo 4. Continue rebase: git rebase --continue
+            echo 5. Run this script again
+            echo.
+            pause
+            exit /b 1
+        )
+        echo [INFO] Successfully merged remote changes
+    ) else (
+        echo [INFO] No remote updates to merge or fetch failed
     )
-    echo [INFO] Successfully merged remote changes
 ) else (
     echo [INFO] No remote updates to merge
 )
 echo.
 
 echo [Step 10] Current commit history:
-git log --oneline -5 --no-pager
+git log --oneline -5
 echo.
 
 echo ========================================
@@ -154,9 +158,9 @@ echo   Verification Commands:
 echo ========================================
 echo.
 echo Recent commits:
-git log --oneline -3 --no-pager
+git log --oneline -3
 echo.
 echo Remote repository:
-git remote -v --no-pager
+git remote -v
 echo.
 pause

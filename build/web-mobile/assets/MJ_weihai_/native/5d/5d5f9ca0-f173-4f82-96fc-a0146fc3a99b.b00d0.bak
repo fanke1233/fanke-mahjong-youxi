@@ -1,0 +1,422 @@
+// @import
+import MahjongTableComp from "./MahjongTableComp";
+import MahjongInHandGroupComp from "./MahjongInHandGroupComp";
+import AllMahjongValImg from "../AllMahjongValImg";
+import MahjongTileOpComp from "./MahjongTileOpComp";
+
+/**
+ * 重新定向活动用户 Id, 同时修改剩余卡牌数量
+ * 
+ * @param SELF this 指针
+ * @param nUserId 用户 Id
+ * @param nCurrRoundIndex 当前牌局索引
+ * @param nRemainCardNum 剩余卡牌数量
+ * @param nRemainTime 剩余时间, 单位 = 秒
+ */
+export function __redirectActUserId(
+    SELF: MahjongTableComp, nUserId: number, nCurrRoundIndex: number, nRemainCardNum: number, nRemainTime: number = -1): void {
+    if (null == SELF) {
+        return;
+    }
+
+    if (nCurrRoundIndex <= -1 || 
+        nRemainCardNum <= -1) {
+        // 不显示指针区域
+        cc.find("PointerArea", SELF.node).active = false;
+        return;
+    }
+
+    // 开启指针区域
+    cc.find("PointerArea", SELF.node).active = true;
+
+    // 当前局数
+    const oRoundIndexNode = cc.find("PointerArea/RoundIndexArea", SELF.node);
+    if (oRoundIndexNode) {
+        oRoundIndexNode.active = true;
+        const oLabel = oRoundIndexNode.getChildByName("Val")?.getComponent(cc.Label);
+        if (oLabel) {
+            oLabel.string = (nCurrRoundIndex + 1).toString();
+        }
+    }
+
+    // 剩余卡牌数量
+    const oRemainCardNode = cc.find("PointerArea/RemainCardArea", SELF.node);
+    if (oRemainCardNode) {
+        oRemainCardNode.active = true;
+        const oLabel = oRemainCardNode.getChildByName("Val")?.getComponent(cc.Label);
+        if (oLabel) {
+            oLabel.string = nRemainCardNum.toString();
+        }
+    }
+
+    // ★★★ 新增：显示赖根牌（正面朝上）★★★
+    if (nUserId > 0) {
+        // 获取玩家数据
+        let oPlayerData = SELF._oPlayerDataMap[nUserId];
+
+        if (oPlayerData && oPlayerData.laiGenTile && oPlayerData.laiGenTile > 0) {
+            // 有赖根牌数据，显示赖根牌正面
+            __updateLaiGenTileDisplay(SELF, oPlayerData.laiGenTile);
+        } else {
+            // 没有赖根牌数据，隐藏赖根牌显示区域
+            const oLaiGenTileArea = cc.find("PointerArea/LaiGenTileArea", SELF.node);
+            if (oLaiGenTileArea) {
+                oLaiGenTileArea.active = false;
+            }
+        }
+    } else {
+        // 没有用户ID，隐藏赖根牌显示区域
+        const oLaiGenTileArea = cc.find("PointerArea/LaiGenTileArea", SELF.node);
+        if (oLaiGenTileArea) {
+            oLaiGenTileArea.active = false;
+        }
+    }
+
+    if (nUserId <= 0) {
+        // 接下来的逻辑要用到用户 Id,
+        // 如果没有就直接退出吧
+        return;
+    }
+
+    // 获取玩家数据
+    let oPlayerData = SELF._oPlayerDataMap[nUserId];
+
+    if (null == oPlayerData) {
+        cc.error(`未找到玩家, userId = ${nUserId}`);
+        return;
+    }
+
+    // 获取客户端座位索引
+    // 使用非空断言操作符 (!) 告诉 TypeScript 这些值在此时一定存在
+    const nSeatIndexAtClient = SELF._oMahjongSeatIndexer!.getSeatIndexAtClient(oPlayerData.seatIndexAtServer!);
+
+    for (let nTempIndex: number = 0; nTempIndex <= 3; nTempIndex++) {
+        const oPointerLightXNode = cc.find(`PointerArea/Pointer_Light_${nTempIndex}_`, SELF.node);
+        if (!oPointerLightXNode) continue;
+
+        if (nTempIndex == nSeatIndexAtClient) {
+            // 激活节点
+            oPointerLightXNode.active = true;
+            // 设置缓动动画
+            let oTween = cc.tween(oPointerLightXNode);
+            oTween.sequence(
+                oTween.to(1.00, { opacity: 100, }),
+                oTween.to(1.00, { opacity: 255, }),
+            ).repeatForever()
+                .start();
+        }
+        else {
+            // 停止该节点上的所有缓动动画,
+            // 并设置为不活动状态
+            cc.Tween.stopAllByTarget(oPointerLightXNode);
+            oPointerLightXNode.active = false;
+        }
+    }
+
+    // 获取定时任务函数
+    // 使用 as any 绕过类型检查，因为这是动态附加的属性
+    let funTimerSchedule = (SELF as any)["__redirectActUserId_timerSchedule"];
+    SELF.unschedule(funTimerSchedule);
+
+    if (nRemainTime <= 0) {
+        // 隐藏节点
+        const oTimerNode = cc.find("PointerArea/Timer", SELF.node);
+        if (oTimerNode) {
+            oTimerNode.active = false;
+        }
+        return;
+    }
+
+    const oTimerNode = cc.find("PointerArea/Timer", SELF.node);
+    if (!oTimerNode) return;
+
+    cc.Tween.stopAllByTarget(oTimerNode);
+    const oTimerLabel = oTimerNode.getComponent(cc.Label);
+    if (oTimerLabel) {
+        oTimerLabel.string = "";
+    }
+    oTimerNode.opacity = 255;
+
+    funTimerSchedule = () => {
+        // 设置倒计时数字
+        const oLabel = oTimerNode.getComponent(cc.Label);
+        if (oLabel) {
+            oLabel.string = Math.max(0, nRemainTime).toString();
+        }
+        oTimerNode.active = true;
+
+        if (nRemainTime >= 0) {
+            cc.tween(oTimerNode)
+                .to(0.10, { angle: +10, scale: 1.28 })
+                .to(0.10, { angle: -10, scale: 1.10 })
+                .to(0.10, { angle: +10, scale: 1.28 })
+                .to(0.10, { angle: -10, scale: 1.10 })
+                .to(0.10, { angle: 0, scale: 1.00 })
+                .start();
+        } else
+        if (-1 == nRemainTime) {
+            cc.tween(oTimerNode)
+                .to(8.00, { opacity: 0 })
+                .start();
+        }
+
+        --nRemainTime;
+    };
+    
+    SELF.schedule(funTimerSchedule, 1, nRemainTime + 3, 0);
+    (SELF as any)["__redirectActUserId_timerSchedule"] = funTimerSchedule;
+}
+
+/**
+ * 更新赖根牌显示(正面朝上 + "赖根"标记)
+ * 
+ * @param SELF this 指针
+ * @param nLaiGenTile 赖根牌数值
+ */
+function __updateLaiGenTileDisplay(SELF: MahjongTableComp, nLaiGenTile: number): void {
+    if (!SELF || nLaiGenTile <= 0) {
+        return;
+    }
+
+    // 查找或创建赖根牌显示区域
+    let oLaiGenTileArea = cc.find("PointerArea/LaiGenTileArea", SELF.node);
+    
+    if (!oLaiGenTileArea) {
+        // 如果节点不存在,动态创建
+        oLaiGenTileArea = new cc.Node("LaiGenTileArea");
+        const oPointerArea = cc.find("PointerArea", SELF.node);
+        if (oPointerArea) {
+            oPointerArea.addChild(oLaiGenTileArea);
+            
+            // ★★★ 修改：设置位置到中心区域上方 ★★★
+            oLaiGenTileArea.x = 0;  // 水平居中
+            oLaiGenTileArea.y = 200;  // 上方位置,可根据实际调整
+        }
+    }
+
+    if (!oLaiGenTileArea) {
+        cc.error("[赖根牌显示] 无法创建赖根牌显示区域");
+        return;
+    }
+
+    oLaiGenTileArea.active = true;
+
+    // 查找或创建麻将牌节点
+    let oTileNode = cc.find("Tile", oLaiGenTileArea);
+    
+    if (!oTileNode) {
+        // 查找麻将牌模板节点
+        let oTemplateNode: cc.Node | null = null;
+        
+        // 方法1: 通过MahjongInHandGroupComp组件获取(最可靠)
+        const oInHandGroupComp = SELF.node.getComponentInChildren(MahjongInHandGroupComp);
+        
+        if (oInHandGroupComp && oInHandGroupComp.node) {
+            oTemplateNode = cc.find("MahjongTileOpTemplate", oInHandGroupComp.node);
+        }
+        
+        // 方法2: 直接路径查找(从SELF.node开始)
+        if (!oTemplateNode) {
+            oTemplateNode = cc.find("Seat_0_/MahjongInHandArea/MahjongInHandGroup/MahjongTileOpTemplate", SELF.node);
+        }
+        
+        // 方法3: 递归查找(最后手段)
+        if (!oTemplateNode) {
+            oTemplateNode = __findTemplateNodeRecursively(SELF.node);
+        }
+        
+        if (!oTemplateNode) {
+            cc.error("[赖根牌显示] 找不到麻将牌模板节点,请检查场景结构");
+            return;
+        }
+
+        // 克隆模板节点(包含完整的State节点和BG背景)
+        oTileNode = cc.instantiate(oTemplateNode);
+        oLaiGenTileArea.addChild(oTileNode);
+        oTileNode.name = "Tile";
+        
+        // 确保节点在正确层级显示
+        oTileNode.zIndex = 100;  // 提高zIndex确保显示在最上层
+        oTileNode.active = true;
+        
+        // 关键:克隆后立即添加MahjongTileOpComp组件
+        const oTileComp = oTileNode.addComponent(MahjongTileOpComp);
+    }
+
+    // 获取麻将牌组件
+    let oTileComp = oTileNode.getComponent(MahjongTileOpComp);
+    
+    if (oTileComp) {
+        // 关键修复：先确保所有State节点都有Val子节点
+        const stateNames = ["State_0_", "State_1_", "State_2_", "State_3_"];
+        
+        for (const stateName of stateNames) {
+            const oStateNode = cc.find(stateName, oTileNode);
+            if (!oStateNode) {
+                continue;
+            }
+            
+            // 检查Val节点是否存在
+            let oStateVal = cc.find("Val", oStateNode);
+            if (!oStateVal) {
+                // 从State_1_复制Val节点结构（因为它有Val）
+                const oState1Node = cc.find("State_1_", oTileNode);
+                if (oState1Node) {
+                    const oTemplateVal = cc.find("Val", oState1Node);
+                    if (oTemplateVal) {
+                        // 克隆Val节点
+                        oStateVal = cc.instantiate(oTemplateVal);
+                        oStateVal.name = "Val";
+                        oStateNode.addChild(oStateVal);
+                    } else {
+                        cc.error(`[赖根牌显示] State_1_也没有Val节点，无法创建模板`);
+                    }
+                } else {
+                    cc.error(`[赖根牌显示] State_1_节点不存在，无法创建Val模板`);
+                }
+            }
+        }
+        
+        // 按照正确的顺序初始化：先setState激活节点，再putVal设置牌面
+        oTileComp.setState(0);
+        oTileComp.putVal(nLaiGenTile);
+        
+        // 强制确保所有状态节点的Val都显示牌面
+        for (const stateName of stateNames) {
+            const oStateNode = cc.find(stateName, oTileNode);
+            
+            if (oStateNode) {
+                const oStateVal = cc.find("Val", oStateNode);
+                
+                if (oStateVal) {
+                    // 强制激活并设置牌面图片
+                    oStateVal.active = true;
+                    oStateVal.zIndex = 255;
+                    
+                    const oSprite = oStateVal.getComponent(cc.Sprite);
+                    
+                    if (oSprite) {
+                        const oFrame = AllMahjongValImg.getSpriteFrame(nLaiGenTile);
+                        
+                        if (oFrame) {
+                            oSprite.spriteFrame = oFrame;
+                        } else {
+                            cc.warn(`[赖根牌显示] 找不到牌值 ${nLaiGenTile} 的SpriteFrame`);
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 确保根节点的Val也是激活状态，并再次设置牌面
+        const oRootVal = cc.find("Val", oTileNode);
+        const oRootBG = cc.find("BG", oTileNode);
+        
+        if (oRootVal) {
+            oRootVal.active = true;
+            oRootVal.zIndex = oRootBG ? (oRootBG.zIndex + 1) : 255;
+            
+            // 再次设置根节点Val的牌面，确保是最后生效的设置
+            const oRootSprite = oRootVal.getComponent(cc.Sprite);
+            if (oRootSprite) {
+                const oRootFrame = AllMahjongValImg.getSpriteFrame(nLaiGenTile);
+                if (oRootFrame) {
+                    oRootSprite.spriteFrame = oRootFrame;
+                } else {
+                    cc.warn(`[赖根牌显示] 找不到牌值 ${nLaiGenTile} 的SpriteFrame`);
+                }
+            }
+        }
+        
+        // 强制设置BG为正面背景（白色底）
+        if (oRootBG) {
+            const oState1Node = cc.find("State_1_", oTileNode);
+            if (oState1Node) {
+                const oState1BG = cc.find("BG", oState1Node);
+                if (oState1BG) {
+                    const oState1BGSprite = oState1BG.getComponent(cc.Sprite);
+                    if (oState1BGSprite && oState1BGSprite.spriteFrame) {
+                        const oRootBGSprite = oRootBG.getComponent(cc.Sprite);
+                        if (oRootBGSprite) {
+                            oRootBGSprite.spriteFrame = oState1BGSprite.spriteFrame;
+                        }
+                    }
+                }
+            }
+        }
+        
+        // 禁用赖根牌的点击事件监听，防止玩家误触导致翻转
+        oTileNode.off(cc.Node.EventType.TOUCH_END);
+        oTileNode.off(cc.Node.EventType.TOUCH_START);
+        oTileNode.off(cc.Node.EventType.TOUCH_MOVE);
+        oTileNode.off(cc.Node.EventType.TOUCH_CANCEL);
+        
+        // 添加BlockInputEvents组件（拦截输入事件）
+        if (!oTileNode.getComponent(cc.BlockInputEvents)) {
+            oTileNode.addComponent(cc.BlockInputEvents);
+        }
+        
+        // 禁用节点及其子节点的触摸交互
+        oTileNode.touchEnabled = false;
+    } else {
+        cc.error(`[赖根牌显示] 无法获取MahjongTileOpComp组件!`);
+    }
+
+    // 查找或创建"赖根"标记
+    let oLaiGenMark = cc.find("LaiGenMark", oLaiGenTileArea);
+    
+    if (!oLaiGenMark) {
+        // 创建"赖根"标记节点
+        oLaiGenMark = new cc.Node("LaiGenMark");
+        oLaiGenTileArea.addChild(oLaiGenMark);
+        
+        // 添加 Label 组件显示"赖根"文字
+        const oLabel = oLaiGenMark.addComponent(cc.Label);
+        oLabel.string = "赖根";
+        oLabel.fontSize = 20;
+        oLabel.lineHeight = 20;
+        oLabel.horizontalAlign = cc.Label.HorizontalAlign.CENTER;
+        oLabel.verticalAlign = cc.Label.VerticalAlign.CENTER;
+        oLabel.overflow = cc.Label.Overflow.NONE;
+        
+        // 设置金色文字
+        oLaiGenMark.color = new cc.Color(255, 215, 0); // 金色 RGB(255, 215, 0)
+        
+        // ★★★ 修改：设置节点位置(牌的正上方) ★★★
+        oLaiGenMark.setPosition(0, 80);
+        
+        // 设置节点大小
+        oLaiGenMark.width = 100;
+        oLaiGenMark.height = 30;
+    }
+
+    oLaiGenMark.active = true;
+}
+
+/**
+ * 递归查找麻将牌模板节点
+ * 
+ * @param oParentNode 父节点
+ * @returns 麻将牌模板节点
+ */
+function __findTemplateNodeRecursively(oParentNode: cc.Node): cc.Node | null {
+    if (!oParentNode) {
+        return null;
+    }
+    
+    // 遍历所有子节点
+    for (const oChild of oParentNode.children) {
+        // 检查当前节点是否是模板节点
+        if (oChild.name === "MahjongTileOpTemplate") {
+            return oChild;
+        }
+        
+        // 递归查找子节点
+        const oFound = __findTemplateNodeRecursively(oChild);
+        if (oFound) {
+            return oFound;
+        }
+    }
+    
+    return null;
+}
