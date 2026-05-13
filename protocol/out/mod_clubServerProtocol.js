@@ -51,6 +51,7 @@ export const msg = $root.msg = (() => {
      * @property {number} _ModifyFixGameResult=328 _ModifyFixGameResult value
      * @property {number} _ExchangeRoomCardCmd=329 _ExchangeRoomCardCmd value
      * @property {number} _ExchangeRoomCardResult=330 _ExchangeRoomCardResult value
+     * @property {number} _ApprovalResultBroadcast=331 _ApprovalResultBroadcast value
      * @property {number} _StartTableChangedListenCmd=371 _StartTableChangedListenCmd value
      * @property {number} _StopTableChangedListenCmd=372 _StopTableChangedListenCmd value
      * @property {number} _AClubTableChangedBroadcast=373 _AClubTableChangedBroadcast value
@@ -86,6 +87,7 @@ export const msg = $root.msg = (() => {
         values[valuesById[328] = "_ModifyFixGameResult"] = 328;
         values[valuesById[329] = "_ExchangeRoomCardCmd"] = 329;
         values[valuesById[330] = "_ExchangeRoomCardResult"] = 330;
+        values[valuesById[331] = "_ApprovalResultBroadcast"] = 331;
         values[valuesById[371] = "_StartTableChangedListenCmd"] = 371;
         values[valuesById[372] = "_StopTableChangedListenCmd"] = 372;
         values[valuesById[373] = "_AClubTableChangedBroadcast"] = 373;
@@ -9890,6 +9892,281 @@ export const msg = $root.msg = (() => {
         };
 
         return AClubTableChangedBroadcast;
+    })();
+
+    msg.ApprovalResultBroadcast = (function() {
+
+        /**
+         * Properties of an ApprovalResultBroadcast.
+         * @memberof msg
+         * @interface IApprovalResultBroadcast
+         * @property {number|null} [userId] ApprovalResultBroadcast userId
+         * @property {number|null} [clubId] ApprovalResultBroadcast clubId
+         * @property {string|null} [clubName] ApprovalResultBroadcast clubName
+         * @property {boolean|null} [approved] ApprovalResultBroadcast approved
+         */
+
+        /**
+         * Constructs a new ApprovalResultBroadcast.
+         * @memberof msg
+         * @classdesc Represents an ApprovalResultBroadcast.
+         * @implements IApprovalResultBroadcast
+         * @constructor
+         * @param {msg.IApprovalResultBroadcast=} [properties] Properties to set
+         */
+        function ApprovalResultBroadcast(properties) {
+            if (properties)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null)
+                        this[keys[i]] = properties[keys[i]];
+        }
+
+        /**
+         * ApprovalResultBroadcast userId.
+         * @member {number} userId
+         * @memberof msg.ApprovalResultBroadcast
+         * @instance
+         */
+        ApprovalResultBroadcast.prototype.userId = 0;
+
+        /**
+         * ApprovalResultBroadcast clubId.
+         * @member {number} clubId
+         * @memberof msg.ApprovalResultBroadcast
+         * @instance
+         */
+        ApprovalResultBroadcast.prototype.clubId = 0;
+
+        /**
+         * ApprovalResultBroadcast clubName.
+         * @member {string} clubName
+         * @memberof msg.ApprovalResultBroadcast
+         * @instance
+         */
+        ApprovalResultBroadcast.prototype.clubName = "";
+
+        /**
+         * ApprovalResultBroadcast approved.
+         * @member {boolean} approved
+         * @memberof msg.ApprovalResultBroadcast
+         * @instance
+         */
+        ApprovalResultBroadcast.prototype.approved = false;
+
+        /**
+         * Creates a new ApprovalResultBroadcast instance using the specified properties.
+         * @function create
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {msg.IApprovalResultBroadcast=} [properties] Properties to set
+         * @returns {msg.ApprovalResultBroadcast} ApprovalResultBroadcast instance
+         */
+        ApprovalResultBroadcast.create = function create(properties) {
+            return new ApprovalResultBroadcast(properties);
+        };
+
+        /**
+         * Encodes the specified ApprovalResultBroadcast message. Does not implicitly {@link msg.ApprovalResultBroadcast.verify|verify} messages.
+         * @function encode
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {msg.IApprovalResultBroadcast} message ApprovalResultBroadcast message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ApprovalResultBroadcast.encode = function encode(message, writer) {
+            if (!writer)
+                writer = $Writer.create();
+            if (message.userId != null && Object.hasOwnProperty.call(message, "userId"))
+                writer.uint32(/* id 1, wireType 0 =*/8).sint32(message.userId);
+            if (message.clubId != null && Object.hasOwnProperty.call(message, "clubId"))
+                writer.uint32(/* id 2, wireType 0 =*/16).sint32(message.clubId);
+            if (message.clubName != null && Object.hasOwnProperty.call(message, "clubName"))
+                writer.uint32(/* id 3, wireType 2 =*/26).string(message.clubName);
+            if (message.approved != null && Object.hasOwnProperty.call(message, "approved"))
+                writer.uint32(/* id 4, wireType 0 =*/32).bool(message.approved);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified ApprovalResultBroadcast message, length delimited. Does not implicitly {@link msg.ApprovalResultBroadcast.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {msg.IApprovalResultBroadcast} message ApprovalResultBroadcast message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        ApprovalResultBroadcast.encodeDelimited = function encodeDelimited(message, writer) {
+            return this.encode(message, writer).ldelim();
+        };
+
+        /**
+         * Decodes an ApprovalResultBroadcast message from the specified reader or buffer.
+         * @function decode
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {msg.ApprovalResultBroadcast} ApprovalResultBroadcast
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ApprovalResultBroadcast.decode = function decode(reader, length, error) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.ApprovalResultBroadcast();
+            while (reader.pos < end) {
+                let tag = reader.uint32();
+                if (tag === error)
+                    break;
+                switch (tag >>> 3) {
+                case 1: {
+                        message.userId = reader.sint32();
+                        break;
+                    }
+                case 2: {
+                        message.clubId = reader.sint32();
+                        break;
+                    }
+                case 3: {
+                        message.clubName = reader.string();
+                        break;
+                    }
+                case 4: {
+                        message.approved = reader.bool();
+                        break;
+                    }
+                default:
+                    reader.skipType(tag & 7);
+                    break;
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Decodes an ApprovalResultBroadcast message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {msg.ApprovalResultBroadcast} ApprovalResultBroadcast
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        ApprovalResultBroadcast.decodeDelimited = function decodeDelimited(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.uint32());
+        };
+
+        /**
+         * Verifies an ApprovalResultBroadcast message.
+         * @function verify
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        ApprovalResultBroadcast.verify = function verify(message) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                if (!$util.isInteger(message.userId))
+                    return "userId: integer expected";
+            if (message.clubId != null && message.hasOwnProperty("clubId"))
+                if (!$util.isInteger(message.clubId))
+                    return "clubId: integer expected";
+            if (message.clubName != null && message.hasOwnProperty("clubName"))
+                if (!$util.isString(message.clubName))
+                    return "clubName: string expected";
+            if (message.approved != null && message.hasOwnProperty("approved"))
+                if (typeof message.approved !== "boolean")
+                    return "approved: boolean expected";
+            return null;
+        };
+
+        /**
+         * Creates an ApprovalResultBroadcast message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {msg.ApprovalResultBroadcast} ApprovalResultBroadcast
+         */
+        ApprovalResultBroadcast.fromObject = function fromObject(object) {
+            if (object instanceof $root.msg.ApprovalResultBroadcast)
+                return object;
+            let message = new $root.msg.ApprovalResultBroadcast();
+            if (object.userId != null)
+                message.userId = object.userId | 0;
+            if (object.clubId != null)
+                message.clubId = object.clubId | 0;
+            if (object.clubName != null)
+                message.clubName = String(object.clubName);
+            if (object.approved != null)
+                message.approved = Boolean(object.approved);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from an ApprovalResultBroadcast message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {msg.ApprovalResultBroadcast} message ApprovalResultBroadcast
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        ApprovalResultBroadcast.toObject = function toObject(message, options) {
+            if (!options)
+                options = {};
+            let object = {};
+            if (options.defaults) {
+                object.userId = 0;
+                object.clubId = 0;
+                object.clubName = "";
+                object.approved = false;
+            }
+            if (message.userId != null && message.hasOwnProperty("userId"))
+                object.userId = message.userId;
+            if (message.clubId != null && message.hasOwnProperty("clubId"))
+                object.clubId = message.clubId;
+            if (message.clubName != null && message.hasOwnProperty("clubName"))
+                object.clubName = message.clubName;
+            if (message.approved != null && message.hasOwnProperty("approved"))
+                object.approved = message.approved;
+            return object;
+        };
+
+        /**
+         * Converts this ApprovalResultBroadcast to JSON.
+         * @function toJSON
+         * @memberof msg.ApprovalResultBroadcast
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        ApprovalResultBroadcast.prototype.toJSON = function toJSON() {
+            return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the default type url for ApprovalResultBroadcast
+         * @function getTypeUrl
+         * @memberof msg.ApprovalResultBroadcast
+         * @static
+         * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+         * @returns {string} The default type url
+         */
+        ApprovalResultBroadcast.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+            if (typeUrlPrefix === undefined) {
+                typeUrlPrefix = "type.googleapis.com";
+            }
+            return typeUrlPrefix + "/msg.ApprovalResultBroadcast";
+        };
+
+        return ApprovalResultBroadcast;
     })();
 
     return msg;

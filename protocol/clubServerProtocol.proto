@@ -40,6 +40,10 @@ enum ClubServerMsgCodeDef {
     _ExchangeRoomCardResult = 330;
 
     // 
+    // 审核结果广播（服务端推送给被审核用户）
+    _ApprovalResultBroadcast = 331;
+
+    // 
     // 以下消息是一个比较特殊的存在!
     // 主要是负责告知客户端有哪些牌桌发生变化了...
     // XXX 注意, 在这里只会把发生变化的牌桌的亲友圈 Id 和牌桌序号告知前端.
@@ -495,4 +499,19 @@ message AClubTableChangedBroadcast {
     sint32 tableSeqNum = 2;
     // 房间 Id
     sint32 roomId = 3;
+}
+
+//
+// 审核结果广播（服务端推送给被审核用户）
+///////////////////////////////////////////////////////////////////////
+// 广播
+message ApprovalResultBroadcast {
+    // 用户 Id
+    sint32 userId = 1;
+    // 亲友圈 Id
+    sint32 clubId = 2;
+    // 亲友圈名称
+    string clubName = 3;
+    // 是否通过审核 true = 通过, false = 拒绝
+    bool approved = 4;
 }

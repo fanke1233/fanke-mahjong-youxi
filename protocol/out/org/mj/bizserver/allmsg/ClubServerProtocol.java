@@ -149,6 +149,15 @@ public final class ClubServerProtocol {
     /**
      * <pre>
      * 
+     * 审核结果广播（服务端推送给被审核用户）
+     * </pre>
+     *
+     * <code>_ApprovalResultBroadcast = 331;</code>
+     */
+    _ApprovalResultBroadcast(331),
+    /**
+     * <pre>
+     * 
      * 以下消息是一个比较特殊的存在!
      * 主要是负责告知客户端有哪些牌桌发生变化了...
      * XXX 注意, 在这里只会把发生变化的牌桌的亲友圈 Id 和牌桌序号告知前端.
@@ -303,6 +312,15 @@ public final class ClubServerProtocol {
     /**
      * <pre>
      * 
+     * 审核结果广播（服务端推送给被审核用户）
+     * </pre>
+     *
+     * <code>_ApprovalResultBroadcast = 331;</code>
+     */
+    public static final int _ApprovalResultBroadcast_VALUE = 331;
+    /**
+     * <pre>
+     * 
      * 以下消息是一个比较特殊的存在!
      * 主要是负责告知客户端有哪些牌桌发生变化了...
      * XXX 注意, 在这里只会把发生变化的牌桌的亲友圈 Id 和牌桌序号告知前端.
@@ -385,6 +403,7 @@ public final class ClubServerProtocol {
         case 328: return _ModifyFixGameResult;
         case 329: return _ExchangeRoomCardCmd;
         case 330: return _ExchangeRoomCardResult;
+        case 331: return _ApprovalResultBroadcast;
         case 371: return _StartTableChangedListenCmd;
         case 372: return _StopTableChangedListenCmd;
         case 373: return _AClubTableChangedBroadcast;
@@ -32200,6 +32219,885 @@ public final class ClubServerProtocol {
 
   }
 
+  public interface ApprovalResultBroadcastOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:msg.ApprovalResultBroadcast)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 用户 Id
+     * </pre>
+     *
+     * <code>sint32 userId = 1;</code>
+     * @return The userId.
+     */
+    int getUserId();
+
+    /**
+     * <pre>
+     * 亲友圈 Id
+     * </pre>
+     *
+     * <code>sint32 clubId = 2;</code>
+     * @return The clubId.
+     */
+    int getClubId();
+
+    /**
+     * <pre>
+     * 亲友圈名称
+     * </pre>
+     *
+     * <code>string clubName = 3;</code>
+     * @return The clubName.
+     */
+    java.lang.String getClubName();
+    /**
+     * <pre>
+     * 亲友圈名称
+     * </pre>
+     *
+     * <code>string clubName = 3;</code>
+     * @return The bytes for clubName.
+     */
+    com.google.protobuf.ByteString
+        getClubNameBytes();
+
+    /**
+     * <pre>
+     * 是否通过审核 true = 通过, false = 拒绝
+     * </pre>
+     *
+     * <code>bool approved = 4;</code>
+     * @return The approved.
+     */
+    boolean getApproved();
+  }
+  /**
+   * <pre>
+   *
+   * 审核结果广播（服务端推送给被审核用户）
+   * /////////////////////////////////////////////////////////////////////
+   * 广播
+   * </pre>
+   *
+   * Protobuf type {@code msg.ApprovalResultBroadcast}
+   */
+  public static final class ApprovalResultBroadcast extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:msg.ApprovalResultBroadcast)
+      ApprovalResultBroadcastOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use ApprovalResultBroadcast.newBuilder() to construct.
+    private ApprovalResultBroadcast(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private ApprovalResultBroadcast() {
+      clubName_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new ApprovalResultBroadcast();
+    }
+
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return org.mj.bizserver.allmsg.ClubServerProtocol.internal_static_msg_ApprovalResultBroadcast_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return org.mj.bizserver.allmsg.ClubServerProtocol.internal_static_msg_ApprovalResultBroadcast_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast.class, org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast.Builder.class);
+    }
+
+    public static final int USERID_FIELD_NUMBER = 1;
+    private int userId_ = 0;
+    /**
+     * <pre>
+     * 用户 Id
+     * </pre>
+     *
+     * <code>sint32 userId = 1;</code>
+     * @return The userId.
+     */
+    @java.lang.Override
+    public int getUserId() {
+      return userId_;
+    }
+
+    public static final int CLUBID_FIELD_NUMBER = 2;
+    private int clubId_ = 0;
+    /**
+     * <pre>
+     * 亲友圈 Id
+     * </pre>
+     *
+     * <code>sint32 clubId = 2;</code>
+     * @return The clubId.
+     */
+    @java.lang.Override
+    public int getClubId() {
+      return clubId_;
+    }
+
+    public static final int CLUBNAME_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object clubName_ = "";
+    /**
+     * <pre>
+     * 亲友圈名称
+     * </pre>
+     *
+     * <code>string clubName = 3;</code>
+     * @return The clubName.
+     */
+    @java.lang.Override
+    public java.lang.String getClubName() {
+      java.lang.Object ref = clubName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        clubName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * 亲友圈名称
+     * </pre>
+     *
+     * <code>string clubName = 3;</code>
+     * @return The bytes for clubName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getClubNameBytes() {
+      java.lang.Object ref = clubName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        clubName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int APPROVED_FIELD_NUMBER = 4;
+    private boolean approved_ = false;
+    /**
+     * <pre>
+     * 是否通过审核 true = 通过, false = 拒绝
+     * </pre>
+     *
+     * <code>bool approved = 4;</code>
+     * @return The approved.
+     */
+    @java.lang.Override
+    public boolean getApproved() {
+      return approved_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (userId_ != 0) {
+        output.writeSInt32(1, userId_);
+      }
+      if (clubId_ != 0) {
+        output.writeSInt32(2, clubId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clubName_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, clubName_);
+      }
+      if (approved_ != false) {
+        output.writeBool(4, approved_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (userId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(1, userId_);
+      }
+      if (clubId_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(2, clubId_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(clubName_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, clubName_);
+      }
+      if (approved_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(4, approved_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast)) {
+        return super.equals(obj);
+      }
+      org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast other = (org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast) obj;
+
+      if (getUserId()
+          != other.getUserId()) return false;
+      if (getClubId()
+          != other.getClubId()) return false;
+      if (!getClubName()
+          .equals(other.getClubName())) return false;
+      if (getApproved()
+          != other.getApproved()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + USERID_FIELD_NUMBER;
+      hash = (53 * hash) + getUserId();
+      hash = (37 * hash) + CLUBID_FIELD_NUMBER;
+      hash = (53 * hash) + getClubId();
+      hash = (37 * hash) + CLUBNAME_FIELD_NUMBER;
+      hash = (53 * hash) + getClubName().hashCode();
+      hash = (37 * hash) + APPROVED_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getApproved());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * <pre>
+     *
+     * 审核结果广播（服务端推送给被审核用户）
+     * /////////////////////////////////////////////////////////////////////
+     * 广播
+     * </pre>
+     *
+     * Protobuf type {@code msg.ApprovalResultBroadcast}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:msg.ApprovalResultBroadcast)
+        org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcastOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return org.mj.bizserver.allmsg.ClubServerProtocol.internal_static_msg_ApprovalResultBroadcast_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return org.mj.bizserver.allmsg.ClubServerProtocol.internal_static_msg_ApprovalResultBroadcast_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast.class, org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast.Builder.class);
+      }
+
+      // Construct using org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        userId_ = 0;
+        clubId_ = 0;
+        clubName_ = "";
+        approved_ = false;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return org.mj.bizserver.allmsg.ClubServerProtocol.internal_static_msg_ApprovalResultBroadcast_descriptor;
+      }
+
+      @java.lang.Override
+      public org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast getDefaultInstanceForType() {
+        return org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast build() {
+        org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast buildPartial() {
+        org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast result = new org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.userId_ = userId_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.clubId_ = clubId_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.clubName_ = clubName_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.approved_ = approved_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast) {
+          return mergeFrom((org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast other) {
+        if (other == org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast.getDefaultInstance()) return this;
+        if (other.getUserId() != 0) {
+          setUserId(other.getUserId());
+        }
+        if (other.getClubId() != 0) {
+          setClubId(other.getClubId());
+        }
+        if (!other.getClubName().isEmpty()) {
+          clubName_ = other.clubName_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        if (other.getApproved() != false) {
+          setApproved(other.getApproved());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                userId_ = input.readSInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 16: {
+                clubId_ = input.readSInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              case 26: {
+                clubName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              case 32: {
+                approved_ = input.readBool();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 32
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int userId_ ;
+      /**
+       * <pre>
+       * 用户 Id
+       * </pre>
+       *
+       * <code>sint32 userId = 1;</code>
+       * @return The userId.
+       */
+      @java.lang.Override
+      public int getUserId() {
+        return userId_;
+      }
+      /**
+       * <pre>
+       * 用户 Id
+       * </pre>
+       *
+       * <code>sint32 userId = 1;</code>
+       * @param value The userId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setUserId(int value) {
+
+        userId_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 用户 Id
+       * </pre>
+       *
+       * <code>sint32 userId = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearUserId() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        userId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int clubId_ ;
+      /**
+       * <pre>
+       * 亲友圈 Id
+       * </pre>
+       *
+       * <code>sint32 clubId = 2;</code>
+       * @return The clubId.
+       */
+      @java.lang.Override
+      public int getClubId() {
+        return clubId_;
+      }
+      /**
+       * <pre>
+       * 亲友圈 Id
+       * </pre>
+       *
+       * <code>sint32 clubId = 2;</code>
+       * @param value The clubId to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClubId(int value) {
+
+        clubId_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 亲友圈 Id
+       * </pre>
+       *
+       * <code>sint32 clubId = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClubId() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        clubId_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object clubName_ = "";
+      /**
+       * <pre>
+       * 亲友圈名称
+       * </pre>
+       *
+       * <code>string clubName = 3;</code>
+       * @return The clubName.
+       */
+      public java.lang.String getClubName() {
+        java.lang.Object ref = clubName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          clubName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 亲友圈名称
+       * </pre>
+       *
+       * <code>string clubName = 3;</code>
+       * @return The bytes for clubName.
+       */
+      public com.google.protobuf.ByteString
+          getClubNameBytes() {
+        java.lang.Object ref = clubName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          clubName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * 亲友圈名称
+       * </pre>
+       *
+       * <code>string clubName = 3;</code>
+       * @param value The clubName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClubName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        clubName_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 亲友圈名称
+       * </pre>
+       *
+       * <code>string clubName = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearClubName() {
+        clubName_ = getDefaultInstance().getClubName();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 亲友圈名称
+       * </pre>
+       *
+       * <code>string clubName = 3;</code>
+       * @param value The bytes for clubName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setClubNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        clubName_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+
+      private boolean approved_ ;
+      /**
+       * <pre>
+       * 是否通过审核 true = 通过, false = 拒绝
+       * </pre>
+       *
+       * <code>bool approved = 4;</code>
+       * @return The approved.
+       */
+      @java.lang.Override
+      public boolean getApproved() {
+        return approved_;
+      }
+      /**
+       * <pre>
+       * 是否通过审核 true = 通过, false = 拒绝
+       * </pre>
+       *
+       * <code>bool approved = 4;</code>
+       * @param value The approved to set.
+       * @return This builder for chaining.
+       */
+      public Builder setApproved(boolean value) {
+
+        approved_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 是否通过审核 true = 通过, false = 拒绝
+       * </pre>
+       *
+       * <code>bool approved = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearApproved() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        approved_ = false;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:msg.ApprovalResultBroadcast)
+    }
+
+    // @@protoc_insertion_point(class_scope:msg.ApprovalResultBroadcast)
+    private static final org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast();
+    }
+
+    public static org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<ApprovalResultBroadcast>
+        PARSER = new com.google.protobuf.AbstractParser<ApprovalResultBroadcast>() {
+      @java.lang.Override
+      public ApprovalResultBroadcast parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<ApprovalResultBroadcast> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ApprovalResultBroadcast> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public org.mj.bizserver.allmsg.ClubServerProtocol.ApprovalResultBroadcast getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_msg_KeyAndVal_descriptor;
   private static final 
@@ -32385,6 +33283,11 @@ public final class ClubServerProtocol {
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_msg_AClubTableChangedBroadcast_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_msg_ApprovalResultBroadcast_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_msg_ApprovalResultBroadcast_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -32473,29 +33376,32 @@ public final class ClubServerProtocol {
       "ubId\030\001 \001(\021\"\033\n\031StopTableChangedListenCmd\"" +
       "Q\n\032AClubTableChangedBroadcast\022\016\n\006clubId\030" +
       "\001 \001(\021\022\023\n\013tableSeqNum\030\002 \001(\021\022\016\n\006roomId\030\003 \001" +
-      "(\021*\311\006\n\024ClubServerMsgCodeDef\022\n\n\006_Dummy\020\000\022" +
-      "\032\n\025_GetJoinedClubListCmd\020\255\002\022\035\n\030_GetJoine" +
-      "dClubListResult\020\256\002\022\023\n\016_CreateClubCmd\020\257\002\022" +
-      "\026\n\021_CreateClubResult\020\260\002\022\021\n\014_JoinClubCmd\020" +
-      "\261\002\022\024\n\017_JoinClubResult\020\262\002\022\027\n\022_GetClubDeta" +
-      "ilzCmd\020\263\002\022\032\n\025_GetClubDetailzResult\020\264\002\022\032\n" +
-      "\025_GetMemberInfoListCmd\020\265\002\022\035\n\030_GetMemberI" +
-      "nfoListResult\020\266\002\022\025\n\020_GetTableListCmd\020\267\002\022" +
-      "\030\n\023_GetTableListResult\020\270\002\022\030\n\023_GetTableDe" +
-      "tailzCmd\020\271\002\022\033\n\026_GetTableDetailzResult\020\272\002" +
-      "\022\024\n\017_CreateTableCmd\020\273\002\022\027\n\022_CreateTableRe" +
-      "sult\020\274\002\022\022\n\r_JoinTableCmd\020\275\002\022\025\n\020_JoinTabl" +
-      "eResult\020\276\002\022\027\n\022_ApprovalToJoinCmd\020\301\002\022\032\n\025_" +
-      "ApprovalToJoinResult\020\302\002\022\027\n\022_DismissAMemb" +
-      "erCmd\020\303\002\022\032\n\025_DismissAMemberResult\020\304\002\022\021\n\014" +
-      "_QuitClubCmd\020\305\002\022\024\n\017_QuitClubResult\020\306\002\022\026\n" +
-      "\021_ModifyFixGameCmd\020\307\002\022\031\n\024_ModifyFixGameR" +
-      "esult\020\310\002\022\031\n\024_ExchangeRoomCardCmd\020\311\002\022\034\n\027_" +
-      "ExchangeRoomCardResult\020\312\002\022 \n\033_StartTable" +
-      "ChangedListenCmd\020\363\002\022\037\n\032_StopTableChanged" +
-      "ListenCmd\020\364\002\022 \n\033_AClubTableChangedBroadc" +
-      "ast\020\365\002B\031\n\027org.mj.bizserver.allmsgb\006proto" +
-      "3"
+      "(\021\"]\n\027ApprovalResultBroadcast\022\016\n\006userId\030" +
+      "\001 \001(\021\022\016\n\006clubId\030\002 \001(\021\022\020\n\010clubName\030\003 \001(\t\022" +
+      "\020\n\010approved\030\004 \001(\010*\350\006\n\024ClubServerMsgCodeD" +
+      "ef\022\n\n\006_Dummy\020\000\022\032\n\025_GetJoinedClubListCmd\020" +
+      "\255\002\022\035\n\030_GetJoinedClubListResult\020\256\002\022\023\n\016_Cr" +
+      "eateClubCmd\020\257\002\022\026\n\021_CreateClubResult\020\260\002\022\021" +
+      "\n\014_JoinClubCmd\020\261\002\022\024\n\017_JoinClubResult\020\262\002\022" +
+      "\027\n\022_GetClubDetailzCmd\020\263\002\022\032\n\025_GetClubDeta" +
+      "ilzResult\020\264\002\022\032\n\025_GetMemberInfoListCmd\020\265\002" +
+      "\022\035\n\030_GetMemberInfoListResult\020\266\002\022\025\n\020_GetT" +
+      "ableListCmd\020\267\002\022\030\n\023_GetTableListResult\020\270\002" +
+      "\022\030\n\023_GetTableDetailzCmd\020\271\002\022\033\n\026_GetTableD" +
+      "etailzResult\020\272\002\022\024\n\017_CreateTableCmd\020\273\002\022\027\n" +
+      "\022_CreateTableResult\020\274\002\022\022\n\r_JoinTableCmd\020" +
+      "\275\002\022\025\n\020_JoinTableResult\020\276\002\022\027\n\022_ApprovalTo" +
+      "JoinCmd\020\301\002\022\032\n\025_ApprovalToJoinResult\020\302\002\022\027" +
+      "\n\022_DismissAMemberCmd\020\303\002\022\032\n\025_DismissAMemb" +
+      "erResult\020\304\002\022\021\n\014_QuitClubCmd\020\305\002\022\024\n\017_QuitC" +
+      "lubResult\020\306\002\022\026\n\021_ModifyFixGameCmd\020\307\002\022\031\n\024" +
+      "_ModifyFixGameResult\020\310\002\022\031\n\024_ExchangeRoom" +
+      "CardCmd\020\311\002\022\034\n\027_ExchangeRoomCardResult\020\312\002" +
+      "\022\035\n\030_ApprovalResultBroadcast\020\313\002\022 \n\033_Star" +
+      "tTableChangedListenCmd\020\363\002\022\037\n\032_StopTableC" +
+      "hangedListenCmd\020\364\002\022 \n\033_AClubTableChanged" +
+      "Broadcast\020\365\002B\031\n\027org.mj.bizserver.allmsgb" +
+      "\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -32723,6 +33629,12 @@ public final class ClubServerProtocol {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_msg_AClubTableChangedBroadcast_descriptor,
         new java.lang.String[] { "ClubId", "TableSeqNum", "RoomId", });
+    internal_static_msg_ApprovalResultBroadcast_descriptor =
+      getDescriptor().getMessageTypes().get(34);
+    internal_static_msg_ApprovalResultBroadcast_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_msg_ApprovalResultBroadcast_descriptor,
+        new java.lang.String[] { "UserId", "ClubId", "ClubName", "Approved", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

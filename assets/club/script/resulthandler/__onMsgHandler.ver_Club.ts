@@ -3,6 +3,7 @@ import ClubScene from "../ClubScene";
 import MsgBus from "../../../comm/script/MsgBus";
 // @handler
 import AClubTableChangedBroadcastHandler from "./AClubTableChangedBroadcastHandler";
+  import ApprovalResultBroadcastHandler from "./ApprovalResultBroadcastHandler";
 import ApprovalToJoinResultHandler from "./ApprovalToJoinResultHandler";
 import CreateClubResultHandler from "./CreateClubResultHandler";
 import CreateTableResultHandler from "./CreateTableResultHandler";
@@ -34,6 +35,7 @@ function __getMsgHandlerMap(): { [strKey: string]: any, } {
 
     let oMap = g_oMsgHandlerMap_club = {};
     oMap["AClubTableChangedBroadcast"] = AClubTableChangedBroadcastHandler;
+    oMap["ApprovalResultBroadcast"] = ApprovalResultBroadcastHandler;
     oMap["ApprovalToJoinResult"] = ApprovalToJoinResultHandler;
     oMap["CreateClubResult"] = CreateClubResultHandler;
     oMap["CreateTableResult"] = CreateTableResultHandler;
