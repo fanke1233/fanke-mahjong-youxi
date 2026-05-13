@@ -3857,6 +3857,26 @@ public final class MJ_weihai_Protocol {
      * <code>.msg.MahjongLiangFeng mahjongLiangFeng = 18;</code>
      */
     org.mj.bizserver.allmsg.MJ_weihai_Protocol.MahjongLiangFengOrBuilder getMahjongLiangFengOrBuilder();
+
+    /**
+     * <pre>
+     * 赖子生成牌（墙牌最后一张）
+     * </pre>
+     *
+     * <code>sint32 laiGenTile = 19;</code>
+     * @return The laiGenTile.
+     */
+    int getLaiGenTile();
+
+    /**
+     * <pre>
+     * 赖子牌（赖根牌+1）
+     * </pre>
+     *
+     * <code>sint32 laiZiTile = 20;</code>
+     * @return The laiZiTile.
+     */
+    int getLaiZiTile();
   }
   /**
    * <pre>
@@ -4396,6 +4416,36 @@ public final class MJ_weihai_Protocol {
       return mahjongLiangFeng_ == null ? org.mj.bizserver.allmsg.MJ_weihai_Protocol.MahjongLiangFeng.getDefaultInstance() : mahjongLiangFeng_;
     }
 
+    public static final int LAIGENTILE_FIELD_NUMBER = 19;
+    private int laiGenTile_ = 0;
+    /**
+     * <pre>
+     * 赖子生成牌（墙牌最后一张）
+     * </pre>
+     *
+     * <code>sint32 laiGenTile = 19;</code>
+     * @return The laiGenTile.
+     */
+    @java.lang.Override
+    public int getLaiGenTile() {
+      return laiGenTile_;
+    }
+
+    public static final int LAIZITILE_FIELD_NUMBER = 20;
+    private int laiZiTile_ = 0;
+    /**
+     * <pre>
+     * 赖子牌（赖根牌+1）
+     * </pre>
+     *
+     * <code>sint32 laiZiTile = 20;</code>
+     * @return The laiZiTile.
+     */
+    @java.lang.Override
+    public int getLaiZiTile() {
+      return laiZiTile_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -4472,6 +4522,12 @@ public final class MJ_weihai_Protocol {
       }
       if (((bitField0_ & 0x00000001) != 0)) {
         output.writeMessage(18, getMahjongLiangFeng());
+      }
+      if (laiGenTile_ != 0) {
+        output.writeSInt32(19, laiGenTile_);
+      }
+      if (laiZiTile_ != 0) {
+        output.writeSInt32(20, laiZiTile_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4571,6 +4627,14 @@ public final class MJ_weihai_Protocol {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(18, getMahjongLiangFeng());
       }
+      if (laiGenTile_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(19, laiGenTile_);
+      }
+      if (laiZiTile_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(20, laiZiTile_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -4625,6 +4689,10 @@ public final class MJ_weihai_Protocol {
         if (!getMahjongLiangFeng()
             .equals(other.getMahjongLiangFeng())) return false;
       }
+      if (getLaiGenTile()
+          != other.getLaiGenTile()) return false;
+      if (getLaiZiTile()
+          != other.getLaiZiTile()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -4684,6 +4752,10 @@ public final class MJ_weihai_Protocol {
         hash = (37 * hash) + MAHJONGLIANGFENG_FIELD_NUMBER;
         hash = (53 * hash) + getMahjongLiangFeng().hashCode();
       }
+      hash = (37 * hash) + LAIGENTILE_FIELD_NUMBER;
+      hash = (53 * hash) + getLaiGenTile();
+      hash = (37 * hash) + LAIZITILE_FIELD_NUMBER;
+      hash = (53 * hash) + getLaiZiTile();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -4854,6 +4926,8 @@ public final class MJ_weihai_Protocol {
           mahjongLiangFengBuilder_.dispose();
           mahjongLiangFengBuilder_ = null;
         }
+        laiGenTile_ = 0;
+        laiZiTile_ = 0;
         return this;
       }
 
@@ -4956,6 +5030,12 @@ public final class MJ_weihai_Protocol {
               ? mahjongLiangFeng_
               : mahjongLiangFengBuilder_.build();
           to_bitField0_ |= 0x00000001;
+        }
+        if (((from_bitField0_ & 0x00040000) != 0)) {
+          result.laiGenTile_ = laiGenTile_;
+        }
+        if (((from_bitField0_ & 0x00080000) != 0)) {
+          result.laiZiTile_ = laiZiTile_;
         }
         result.bitField0_ |= to_bitField0_;
       }
@@ -5102,6 +5182,12 @@ public final class MJ_weihai_Protocol {
         }
         if (other.hasMahjongLiangFeng()) {
           mergeMahjongLiangFeng(other.getMahjongLiangFeng());
+        }
+        if (other.getLaiGenTile() != 0) {
+          setLaiGenTile(other.getLaiGenTile());
+        }
+        if (other.getLaiZiTile() != 0) {
+          setLaiZiTile(other.getLaiZiTile());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -5251,6 +5337,16 @@ public final class MJ_weihai_Protocol {
                 bitField0_ |= 0x00020000;
                 break;
               } // case 146
+              case 152: {
+                laiGenTile_ = input.readSInt32();
+                bitField0_ |= 0x00040000;
+                break;
+              } // case 152
+              case 160: {
+                laiZiTile_ = input.readSInt32();
+                bitField0_ |= 0x00080000;
+                break;
+              } // case 160
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -6728,6 +6824,94 @@ public final class MJ_weihai_Protocol {
           mahjongLiangFeng_ = null;
         }
         return mahjongLiangFengBuilder_;
+      }
+
+      private int laiGenTile_ ;
+      /**
+       * <pre>
+       * 赖子生成牌（墙牌最后一张）
+       * </pre>
+       *
+       * <code>sint32 laiGenTile = 19;</code>
+       * @return The laiGenTile.
+       */
+      @java.lang.Override
+      public int getLaiGenTile() {
+        return laiGenTile_;
+      }
+      /**
+       * <pre>
+       * 赖子生成牌（墙牌最后一张）
+       * </pre>
+       *
+       * <code>sint32 laiGenTile = 19;</code>
+       * @param value The laiGenTile to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLaiGenTile(int value) {
+
+        laiGenTile_ = value;
+        bitField0_ |= 0x00040000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 赖子生成牌（墙牌最后一张）
+       * </pre>
+       *
+       * <code>sint32 laiGenTile = 19;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLaiGenTile() {
+        bitField0_ = (bitField0_ & ~0x00040000);
+        laiGenTile_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int laiZiTile_ ;
+      /**
+       * <pre>
+       * 赖子牌（赖根牌+1）
+       * </pre>
+       *
+       * <code>sint32 laiZiTile = 20;</code>
+       * @return The laiZiTile.
+       */
+      @java.lang.Override
+      public int getLaiZiTile() {
+        return laiZiTile_;
+      }
+      /**
+       * <pre>
+       * 赖子牌（赖根牌+1）
+       * </pre>
+       *
+       * <code>sint32 laiZiTile = 20;</code>
+       * @param value The laiZiTile to set.
+       * @return This builder for chaining.
+       */
+      public Builder setLaiZiTile(int value) {
+
+        laiZiTile_ = value;
+        bitField0_ |= 0x00080000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 赖子牌（赖根牌+1）
+       * </pre>
+       *
+       * <code>sint32 laiZiTile = 20;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearLaiZiTile() {
+        bitField0_ = (bitField0_ & ~0x00080000);
+        laiZiTile_ = 0;
+        onChanged();
+        return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -69138,7 +69322,7 @@ public final class MJ_weihai_Protocol {
       "fNanFeng\030\003 \001(\021\022\023\n\013numOfXiFeng\030\004 \001(\021\022\024\n\014n" +
       "umOfBeiFeng\030\005 \001(\021\022\026\n\016numOfHongZhong\030\006 \001(" +
       "\021\022\022\n\nnumOfFaCai\030\007 \001(\021\022\023\n\013numOfBaiBan\030\010 \001" +
-      "(\021\"\247\003\n\006Player\022\016\n\006userId\030\001 \001(\021\022\020\n\010userNam" +
+      "(\021\"\316\003\n\006Player\022\016\n\006userId\030\001 \001(\021\022\020\n\010userNam" +
       "e\030\002 \001(\t\022\017\n\007headImg\030\003 \001(\t\022\013\n\003sex\030\004 \001(\021\022\024\n" +
       "\014clientIpAddr\030\005 \001(\t\022\021\n\tcurrScore\030\006 \001(\021\022\022" +
       "\n\ntotalScore\030\007 \001(\021\022\021\n\tseatIndex\030\010 \001(\021\022\r\n" +
@@ -69148,224 +69332,225 @@ public final class MJ_weihai_Protocol {
       "\021\022\024\n\014mahjongMoPai\030\017 \001(\021\022\025\n\rmahjongOutput" +
       "\030\020 \003(\021\0223\n\022mahjongChiPengGang\030\021 \003(\0132\027.msg" +
       ".MahjongChiPengGang\022/\n\020mahjongLiangFeng\030" +
-      "\022 \001(\0132\025.msg.MahjongLiangFeng\"\243\001\n\021JoinRoo" +
-      "mBroadcast\022\016\n\006userId\030\001 \001(\021\022\020\n\010userName\030\002" +
-      " \001(\t\022\017\n\007headImg\030\003 \001(\t\022\013\n\003sex\030\004 \001(\021\022\024\n\014cl" +
-      "ientIpAddr\030\005 \001(\t\022\021\n\tseatIndex\030\006 \001(\021\022\021\n\tc" +
-      "urrScore\030\007 \001(\021\022\022\n\ntotalScore\030\010 \001(\021\"$\n\022Di" +
-      "ssolveTheRoomCmd\022\016\n\006reason\030\001 \001(\021\"3\n\025Diss" +
-      "olveTheRoomResult\022\016\n\006reason\030\001 \001(\021\022\n\n\002ok\030" +
-      "\002 \001(\010\"\274\002\n\030DissolveTheRoomBroadcast\022\022\n\nfr" +
-      "omUserId\030\001 \001(\021\022\024\n\014fromUserName\030\002 \001(\t\022\016\n\006" +
-      "reason\030\003 \001(\021\022\026\n\016currRoundIndex\030\004 \001(\021\022\022\n\n" +
-      "remainTime\030\005 \001(\021\022@\n\014waiting4User\030\006 \003(\0132*" +
-      ".msg.DissolveTheRoomBroadcast.Waiting4Us" +
-      "er\032x\n\014Waiting4User\022\016\n\006userId\030\001 \001(\021\022\020\n\010us" +
-      "erName\030\002 \001(\t\022\017\n\007headImg\030\003 \001(\t\022\025\n\rroomOwn" +
-      "erFlag\030\004 \001(\010\022\021\n\tseatIndex\030\005 \001(\021\022\013\n\003yes\030\006" +
-      " \001(\021\"!\n\022DissolutionVoteCmd\022\013\n\003yes\030\001 \001(\021\"" +
-      "0\n\025DissolutionVoteResult\022\013\n\003yes\030\001 \001(\021\022\n\n" +
-      "\002ok\030\002 \001(\010\"7\n\030DissolutionVoteBroadcast\022\016\n" +
-      "\006userId\030\001 \001(\021\022\013\n\003yes\030\002 \001(\021\"\032\n\030DissolveSu" +
-      "ccezzBroadcast\"&\n\016FireAPlayerCmd\022\024\n\014targ" +
-      "etUserId\030\001 \001(\021\"5\n\021FireAPlayerResult\022\024\n\014t" +
-      "argetUserId\030\001 \001(\021\022\n\n\002ok\030\002 \001(\010\",\n\024FireAPl" +
-      "ayerBroadcast\022\024\n\014targetUserId\030\001 \001(\021\"\r\n\013Q" +
-      "uitRoomCmd\"\034\n\016QuitRoomResult\022\n\n\002ok\030\001 \001(\010" +
-      "\"\'\n\021QuitRoomBroadcast\022\022\n\nfromUserId\030\001 \001(" +
-      "\021\"\021\n\017SyncRoomDataCmd\"\220\002\n\022SyncRoomDataRes" +
-      "ult\022\016\n\006roomId\030\001 \001(\021\022\021\n\tgameType0\030\002 \001(\021\022\021" +
-      "\n\tgameType1\030\003 \001(\021\022\026\n\016roomCreateTime\030\004 \001(" +
-      "\022\022\023\n\013roomOwnerId\030\005 \001(\021\022 \n\010ruleItem\030\006 \003(\013" +
-      "2\016.msg.KeyAndVal\022\026\n\016currRoundIndex\030\007 \001(\021" +
-      "\022\025\n\rcurrActUserId\030\010 \001(\021\022\025\n\rremainCardNum" +
-      "\030\t \001(\021\022\022\n\nremainTime\030\n \001(\021\022\033\n\006player\030\013 \003" +
-      "(\0132\013.msg.Player\"c\n\024ReportGeoLocationCmd\022" +
-      "\020\n\010latitude\030\001 \001(\002\022\021\n\tlongitude\030\002 \001(\002\022\020\n\010" +
-      "altitude\030\003 \001(\002\022\024\n\014clientIpAddr\030\004 \001(\t\"%\n\027" +
-      "ReportGeoLocationResult\022\n\n\002ok\030\001 \001(\010\"\027\n\025M" +
-      "easureGeoDistanceCmd\"\275\001\n\030MeasureGeoDista" +
-      "nceResult\022F\n\017geoDistanceItem\030\001 \003(\0132-.msg" +
-      ".MeasureGeoDistanceResult.GeoDistanceIte" +
-      "m\032Y\n\017GeoDistanceItem\022\017\n\007userIdA\030\001 \001(\021\022\017\n" +
-      "\007userIdB\030\002 \001(\021\022\020\n\010distance\030\003 \001(\002\022\022\n\nsame" +
-      "IpAddr\030\004 \001(\010\"\031\n\nPrepareCmd\022\013\n\003yes\030\001 \001(\021\"" +
-      "(\n\rPrepareResult\022\013\n\003yes\030\001 \001(\021\022\n\n\002ok\030\002 \001(" +
-      "\010\"A\n\020PrepareBroadcast\022\016\n\006userId\030\001 \001(\021\022\013\n" +
-      "\003yes\030\002 \001(\021\022\020\n\010allReady\030\003 \001(\010\"\022\n\020Official" +
-      "StartCmd\"!\n\023OfficialStartResult\022\n\n\002ok\030\001 " +
-      "\001(\010\"\030\n\026OfficialStartBroadcast\"e\n\027SelectP" +
-      "iaoHintBroadcast\022\016\n\006buPiao\030\001 \001(\010\022\r\n\005piao" +
-      "1\030\002 \001(\010\022\r\n\005piao2\030\003 \001(\010\022\r\n\005piao3\030\004 \001(\010\022\r\n" +
-      "\005piao4\030\005 \001(\010\"\034\n\013DingPiaoCmd\022\r\n\005piaoX\030\001 \001" +
-      "(\021\"+\n\016DingPiaoResult\022\r\n\005piaoX\030\001 \001(\021\022\n\n\002o" +
-      "k\030\002 \001(\010\">\n\021DingPiaoBroadcast\022\016\n\006userId\030\001" +
-      " \001(\021\022\r\n\005piaoX\030\002 \001(\021\022\n\n\002ok\030\003 \001(\010\"H\n\025Round" +
-      "StartedBroadcast\022\026\n\016currRoundIndex\030\001 \001(\021" +
-      "\022\027\n\017zhuangJiaUserId\030\002 \001(\021\"i\n\032MahjongInHa" +
-      "ndChangedResult\022\025\n\rmahjongInHand\030\001 \003(\021\022\r" +
-      "\n\005moPai\030\002 \001(\021\022\022\n\nlaiGenTile\030\003 \001(\021\022\021\n\tlai" +
-      "ZiTile\030\004 \001(\021\"|\n\035MahjongInHandChangedBroa" +
-      "dcast\022\016\n\006userId\030\001 \001(\021\022\025\n\rmahjongInHand\030\002" +
-      " \003(\021\022\r\n\005moPai\030\003 \001(\021\022\022\n\nlaiGenTile\030\004 \001(\021\022" +
-      "\021\n\tlaiZiTile\030\005 \001(\021\"\037\n\022MahjongMoPaiResult" +
-      "\022\t\n\001t\030\001 \001(\021\"2\n\025MahjongMoPaiBroadcast\022\016\n\006" +
-      "userId\030\001 \001(\021\022\t\n\001t\030\002 \001(\021\"\202\001\n\032RedirectActU" +
-      "serIdBroadcast\022\016\n\006userId\030\001 \001(\021\022\021\n\tseatIn" +
-      "dex\030\002 \001(\021\022\026\n\016currRoundIndex\030\003 \001(\021\022\025\n\rrem" +
-      "ainCardNum\030\004 \001(\021\022\022\n\nremainTime\030\005 \001(\021\"#\n\025" +
-      "OpRemainTimeBroadcast\022\n\n\002ms\030\001 \001(\021\"\035\n\020Mah" +
-      "jongChuPaiCmd\022\t\n\001t\030\001 \001(\021\" \n\023MahjongChuPa" +
-      "iResult\022\t\n\001t\030\001 \001(\021\"3\n\026MahjongChuPaiBroad" +
-      "cast\022\016\n\006userId\030\001 \001(\021\022\t\n\001t\030\002 \001(\021\"i\n\021ChiCh" +
-      "oiceQuestion\022\014\n\004chiT\030\001 \001(\021\022\026\n\016displayOpt" +
-      "ionA\030\002 \001(\010\022\026\n\016displayOptionB\030\003 \001(\010\022\026\n\016di" +
-      "splayOptionC\030\004 \001(\010\"\373\001\n\027LiangFengChoiceQu" +
-      "estion\022\017\n\007luanMao\030\001 \001(\010\022\035\n\025displayOption" +
-      "DongFeng\030\002 \001(\010\022\034\n\024displayOptionNanFeng\030\003" +
-      " \001(\010\022\033\n\023displayOptionXiFeng\030\004 \001(\010\022\034\n\024dis" +
-      "playOptionBeiFeng\030\005 \001(\010\022\036\n\026displayOption" +
-      "HongZhong\030\006 \001(\010\022\032\n\022displayOptionFaCai\030\007 " +
-      "\001(\010\022\033\n\023displayOptionBaiBan\030\010 \001(\010\"\322\002\n Mah" +
-      "jongChiPengGangHuOpHintResult\022\021\n\topHintC" +
-      "hi\030\001 \001(\010\0221\n\021chiChoiceQuestion\030\002 \001(\0132\026.ms" +
-      "g.ChiChoiceQuestion\022\022\n\nopHintPeng\030\003 \001(\010\022" +
-      "\022\n\nopHintGang\030\004 \001(\010\022\020\n\010opHintHu\030\005 \001(\010\022\027\n" +
-      "\017opHintLiangFeng\030\006 \001(\010\022=\n\027liangFengChoic" +
-      "eQuestion\030\007 \001(\0132\034.msg.LiangFengChoiceQue" +
-      "stion\022\024\n\014opHintBuFeng\030\010 \001(\010\022\025\n\ropHintPia" +
-      "oLai\030\t \001(\010\022\024\n\014jianZiHuHint\030\n \001(\010\022\023\n\013huTi" +
-      "leArray\030\013 \003(\021\"\'\n\rMahjongChiCmd\022\026\n\016select" +
-      "edOption\030\001 \001(\021\"?\n\020MahjongChiResult\022+\n\nma" +
-      "hjongChi\030\001 \001(\0132\027.msg.MahjongChiPengGang\"" +
-      "R\n\023MahjongChiBroadcast\022\016\n\006userId\030\001 \001(\021\022+" +
-      "\n\nmahjongChi\030\002 \001(\0132\027.msg.MahjongChiPengG" +
-      "ang\"\020\n\016MahjongPengCmd\"A\n\021MahjongPengResu" +
-      "lt\022,\n\013mahjongPeng\030\001 \001(\0132\027.msg.MahjongChi" +
-      "PengGang\"T\n\024MahjongPengBroadcast\022\016\n\006user" +
-      "Id\030\001 \001(\021\022,\n\013mahjongPeng\030\002 \001(\0132\027.msg.Mahj" +
-      "ongChiPengGang\"\020\n\016MahjongGangCmd\"I\n\025Mahj" +
-      "ongMingGangResult\0220\n\017mahjongMingGang\030\001 \001" +
-      "(\0132\027.msg.MahjongChiPengGang\"E\n\023MahjongAn" +
-      "GangResult\022.\n\rmahjongAnGang\030\001 \001(\0132\027.msg." +
-      "MahjongChiPengGang\"E\n\023MahjongBuGangResul" +
-      "t\022.\n\rmahjongBuGang\030\001 \001(\0132\027.msg.MahjongCh" +
-      "iPengGang\"\\\n\030MahjongMingGangBroadcast\022\016\n" +
-      "\006userId\030\001 \001(\021\0220\n\017mahjongMingGang\030\002 \001(\0132\027" +
-      ".msg.MahjongChiPengGang\"X\n\026MahjongAnGang" +
-      "Broadcast\022\016\n\006userId\030\001 \001(\021\022.\n\rmahjongAnGa" +
-      "ng\030\002 \001(\0132\027.msg.MahjongChiPengGang\"X\n\026Mah" +
-      "jongBuGangBroadcast\022\016\n\006userId\030\001 \001(\021\022.\n\rm" +
-      "ahjongBuGang\030\002 \001(\0132\027.msg.MahjongChiPengG" +
-      "ang\"\024\n\022MahjongLiangDaoCmd\"=\n\025MahjongLian" +
-      "gDaoResult\022\025\n\rmahjongInHand\030\001 \003(\021\022\r\n\005moP" +
-      "ai\030\002 \001(\021\"P\n\030MahjongLiangDaoBroadcast\022\016\n\006" +
-      "userId\030\001 \001(\021\022\025\n\rmahjongInHand\030\002 \003(\021\022\r\n\005m" +
-      "oPai\030\003 \001(\021\"\016\n\014MahjongHuCmd\"v\n\025MahjongHuO" +
-      "rZiMoResult\022\t\n\001t\030\001 \001(\021\022\n\n\002hu\030\002 \001(\010\022\014\n\004zi" +
-      "Mo\030\003 \001(\010\022\025\n\rdianPaoUserId\030\004 \001(\021\022!\n\thuPat" +
-      "tern\030\005 \003(\0132\016.msg.KeyAndVal\"\211\001\n\030MahjongHu" +
-      "OrZiMoBroadcast\022\016\n\006userId\030\001 \001(\021\022\t\n\001t\030\002 \001" +
-      "(\021\022\n\n\002hu\030\003 \001(\010\022\014\n\004ziMo\030\004 \001(\010\022\025\n\rdianPaoU" +
-      "serId\030\005 \001(\021\022!\n\thuPattern\030\006 \003(\0132\016.msg.Key" +
-      "AndVal\"\017\n\rMahjongGuoCmd\"\036\n\020MahjongGuoRes" +
-      "ult\022\n\n\002ok\030\001 \001(\010\"\035\n\033MahjongHuangZhuangBro" +
-      "adcast\"\203\004\n\030RoundSettlementBroadcast\022D\n\016s" +
-      "ettlementItem\030\001 \003(\0132,.msg.RoundSettlemen" +
-      "tBroadcast.SettlementItem\032\240\003\n\016Settlement" +
-      "Item\022\016\n\006userId\030\001 \001(\021\022\021\n\tcurrScore\030\002 \001(\021\022" +
-      "\022\n\ntotalScore\030\003 \001(\021\022\021\n\tseatIndex\030\004 \001(\021\022\r" +
-      "\n\005piaoX\030\005 \001(\021\022\025\n\rroomOwnerFlag\030\006 \001(\010\022\025\n\r" +
-      "zhuangJiaFlag\030\007 \001(\010\022\n\n\002hu\030\010 \001(\010\022\017\n\007dianP" +
-      "ao\030\t \001(\010\022\014\n\004ziMo\030\n \001(\010\022!\n\thuPattern\030\013 \003(" +
-      "\0132\016.msg.KeyAndVal\022#\n\013gangPattern\030\014 \003(\0132\016" +
-      ".msg.KeyAndVal\022\025\n\rmahjongInHand\030\r \003(\021\022\027\n" +
-      "\017mahjongHuOrZiMo\030\016 \001(\021\0223\n\022mahjongChiPeng" +
-      "Gang\030\017 \003(\0132\027.msg.MahjongChiPengGang\022/\n\020m" +
-      "ahjongLiangFeng\030\020 \001(\0132\025.msg.MahjongLiang" +
-      "Feng\"\247\002\n\027RoomSettlementBroadcast\022C\n\016sett" +
-      "lementItem\030\001 \003(\0132+.msg.RoomSettlementBro" +
-      "adcast.SettlementItem\032\306\001\n\016SettlementItem" +
-      "\022\016\n\006userId\030\001 \001(\021\022\021\n\tseatIndex\030\002 \001(\021\022\025\n\rr" +
-      "oomOwnerFlag\030\003 \001(\010\022\026\n\016zuoZhuangTimez\030\004 \001" +
-      "(\021\022\021\n\tziMoTimez\030\005 \001(\021\022\024\n\014dianPaoTimez\030\006 " +
-      "\001(\021\022\022\n\nhuPaiTimez\030\007 \001(\021\022\022\n\ntotalScore\030\010 " +
-      "\001(\021\022\021\n\tbigWinner\030\t \001(\010\"9\n\023MahjongLiangFe" +
-      "ngCmd\022\n\n\002t0\030\001 \001(\021\022\n\n\002t1\030\002 \001(\021\022\n\n\002t2\030\003 \001(" +
-      "\021\"I\n\026MahjongLiangFengResult\022/\n\020mahjongLi" +
-      "angFeng\030\001 \001(\0132\025.msg.MahjongLiangFeng\"\\\n\031" +
-      "MahjongLiangFengBroadcast\022\016\n\006userId\030\001 \001(" +
-      "\021\022/\n\020mahjongLiangFeng\030\002 \001(\0132\025.msg.Mahjon" +
-      "gLiangFeng\"\036\n\020MahjongBuFengCmd\022\n\n\002t0\030\001 \001" +
-      "(\021\"C\n\023MahjongBuFengResult\022,\n\rmahjongBuFe" +
-      "ng\030\001 \001(\0132\025.msg.MahjongLiangFeng\"V\n\026Mahjo" +
-      "ngBuFengBroadcast\022\016\n\006userId\030\001 \001(\021\022,\n\rmah" +
-      "jongBuFeng\030\002 \001(\0132\025.msg.MahjongLiangFeng\"" +
-      "&\n\021MahjongPiaoLaiCmd\022\021\n\tlaiZiTile\030\001 \001(\021\"" +
-      "5\n\024MahjongPiaoLaiResult\022\021\n\tlaiZiTile\030\001 \001" +
-      "(\021\022\n\n\002ok\030\002 \001(\010\"[\n\027MahjongPiaoLaiBroadcas" +
-      "t\022\016\n\006userId\030\001 \001(\021\022\021\n\tlaiZiTile\030\002 \001(\021\022\n\n\002" +
-      "ok\030\003 \001(\010\022\021\n\tbuPaiTile\030\004 \001(\021\"7\n\035MahjongLi" +
-      "angGangDingBroadcast\022\n\n\002t0\030\001 \001(\021\022\n\n\002t1\030\002" +
-      " \001(\021\"1\n\033MahjongSelectTilePreviewCmd\022\022\n\ns" +
-      "electTile\030\001 \001(\021\"5\n\036MahjongSelectTilePrev" +
-      "iewResult\022\023\n\013huTileArray\030\001 \003(\021*\377\020\n\024MJ_we" +
-      "ihai_MsgCodeDef\022\n\n\006_Dummy\020\000\022\027\n\022_JoinRoom" +
-      "Broadcast\020\351\007\022\030\n\023_DissolveTheRoomCmd\020\352\007\022\033" +
-      "\n\026_DissolveTheRoomResult\020\353\007\022\036\n\031_Dissolve" +
-      "TheRoomBroadcast\020\354\007\022\030\n\023_DissolutionVoteC" +
-      "md\020\355\007\022\033\n\026_DissolutionVoteResult\020\356\007\022\036\n\031_D" +
-      "issolutionVoteBroadcast\020\357\007\022\036\n\031_DissolveS" +
-      "uccezzBroadcast\020\360\007\022\024\n\017_FireAPlayerCmd\020\361\007" +
-      "\022\027\n\022_FireAPlayerResult\020\362\007\022\032\n\025_FireAPlaye" +
-      "rBroadcast\020\363\007\022\021\n\014_QuitRoomCmd\020\364\007\022\024\n\017_Qui" +
-      "tRoomResult\020\365\007\022\027\n\022_QuitRoomBroadcast\020\366\007\022" +
-      "\025\n\020_SyncRoomDataCmd\020\367\007\022\030\n\023_SyncRoomDataR" +
-      "esult\020\370\007\022\032\n\025_ReportGeoLocationCmd\020\371\007\022\035\n\030" +
-      "_ReportGeoLocationResult\020\372\007\022\033\n\026_MeasureG" +
-      "eoDistanceCmd\020\373\007\022\036\n\031_MeasureGeoDistanceR" +
-      "esult\020\374\007\022\020\n\013_PrepareCmd\020\375\007\022\023\n\016_PrepareRe" +
-      "sult\020\376\007\022\026\n\021_PrepareBroadcast\020\377\007\022\026\n\021_Offi" +
-      "cialStartCmd\020\200\010\022\031\n\024_OfficialStartResult\020" +
-      "\201\010\022\034\n\027_OfficialStartBroadcast\020\202\010\022\035\n\030_Sel" +
-      "ectPiaoHintBroadcast\020\203\010\022\021\n\014_DingPiaoCmd\020" +
-      "\204\010\022\024\n\017_DingPiaoResult\020\205\010\022\027\n\022_DingPiaoBro" +
-      "adcast\020\206\010\022\033\n\026_RoundStartedBroadcast\020\207\010\022 " +
-      "\n\033_MahjongInHandChangedResult\020\210\010\022#\n\036_Mah" +
-      "jongInHandChangedBroadcast\020\211\010\022\030\n\023_Mahjon" +
-      "gMoPaiResult\020\212\010\022\033\n\026_MahjongMoPaiBroadcas" +
-      "t\020\213\010\022 \n\033_RedirectActUserIdBroadcast\020\214\010\022\033" +
-      "\n\026_OpRemainTimeBroadcast\020\215\010\022\026\n\021_MahjongC" +
-      "huPaiCmd\020\216\010\022\031\n\024_MahjongChuPaiResult\020\217\010\022\034" +
-      "\n\027_MahjongChuPaiBroadcast\020\220\010\022&\n!_Mahjong" +
-      "ChiPengGangHuOpHintResult\020\221\010\022\023\n\016_Mahjong" +
-      "ChiCmd\020\222\010\022\026\n\021_MahjongChiResult\020\223\010\022\031\n\024_Ma" +
-      "hjongChiBroadcast\020\224\010\022\024\n\017_MahjongPengCmd\020" +
-      "\225\010\022\027\n\022_MahjongPengResult\020\226\010\022\032\n\025_MahjongP" +
-      "engBroadcast\020\227\010\022\024\n\017_MahjongGangCmd\020\230\010\022\033\n" +
-      "\026_MahjongMingGangResult\020\231\010\022\031\n\024_MahjongAn" +
-      "GangResult\020\232\010\022\031\n\024_MahjongBuGangResult\020\233\010" +
-      "\022\036\n\031_MahjongMingGangBroadcast\020\234\010\022\034\n\027_Mah" +
-      "jongAnGangBroadcast\020\235\010\022\034\n\027_MahjongBuGang" +
-      "Broadcast\020\236\010\022\030\n\023_MahjongLiangDaoCmd\020\237\010\022\033" +
-      "\n\026_MahjongLiangDaoResult\020\240\010\022\036\n\031_MahjongL" +
-      "iangDaoBroadcast\020\241\010\022\022\n\r_MahjongHuCmd\020\242\010\022" +
-      "\033\n\026_MahjongHuOrZiMoResult\020\243\010\022\036\n\031_Mahjong" +
-      "HuOrZiMoBroadcast\020\244\010\022\023\n\016_MahjongGuoCmd\020\245" +
-      "\010\022\026\n\021_MahjongGuoResult\020\246\010\022!\n\034_MahjongHua" +
-      "ngZhuangBroadcast\020\247\010\022\036\n\031_RoundSettlement" +
-      "Broadcast\020\250\010\022\035\n\030_RoomSettlementBroadcast" +
-      "\020\251\010\022\031\n\024_MahjongLiangFengCmd\020\252\010\022\034\n\027_Mahjo" +
-      "ngLiangFengResult\020\253\010\022\037\n\032_MahjongLiangFen" +
-      "gBroadcast\020\254\010\022\026\n\021_MahjongBuFengCmd\020\255\010\022\031\n" +
-      "\024_MahjongBuFengResult\020\256\010\022\034\n\027_MahjongBuFe" +
-      "ngBroadcast\020\257\010\022#\n\036_MahjongLiangGangDingB" +
-      "roadcast\020\260\010\022\027\n\022_MahjongPiaoLaiCmd\020\261\010\022\032\n\025" +
-      "_MahjongPiaoLaiResult\020\262\010\022\035\n\030_MahjongPiao" +
-      "LaiBroadcast\020\263\010\022!\n\034_MahjongSelectTilePre" +
-      "viewCmd\020\264\010\022$\n\037_MahjongSelectTilePreviewR" +
-      "esult\020\265\010B-\n\027org.mj.bizserver.allmsgB\022MJ_" +
-      "weihai_Protocolb\006proto3"
+      "\022 \001(\0132\025.msg.MahjongLiangFeng\022\022\n\nlaiGenTi" +
+      "le\030\023 \001(\021\022\021\n\tlaiZiTile\030\024 \001(\021\"\243\001\n\021JoinRoom" +
+      "Broadcast\022\016\n\006userId\030\001 \001(\021\022\020\n\010userName\030\002 " +
+      "\001(\t\022\017\n\007headImg\030\003 \001(\t\022\013\n\003sex\030\004 \001(\021\022\024\n\014cli" +
+      "entIpAddr\030\005 \001(\t\022\021\n\tseatIndex\030\006 \001(\021\022\021\n\tcu" +
+      "rrScore\030\007 \001(\021\022\022\n\ntotalScore\030\010 \001(\021\"$\n\022Dis" +
+      "solveTheRoomCmd\022\016\n\006reason\030\001 \001(\021\"3\n\025Disso" +
+      "lveTheRoomResult\022\016\n\006reason\030\001 \001(\021\022\n\n\002ok\030\002" +
+      " \001(\010\"\274\002\n\030DissolveTheRoomBroadcast\022\022\n\nfro" +
+      "mUserId\030\001 \001(\021\022\024\n\014fromUserName\030\002 \001(\t\022\016\n\006r" +
+      "eason\030\003 \001(\021\022\026\n\016currRoundIndex\030\004 \001(\021\022\022\n\nr" +
+      "emainTime\030\005 \001(\021\022@\n\014waiting4User\030\006 \003(\0132*." +
+      "msg.DissolveTheRoomBroadcast.Waiting4Use" +
+      "r\032x\n\014Waiting4User\022\016\n\006userId\030\001 \001(\021\022\020\n\010use" +
+      "rName\030\002 \001(\t\022\017\n\007headImg\030\003 \001(\t\022\025\n\rroomOwne" +
+      "rFlag\030\004 \001(\010\022\021\n\tseatIndex\030\005 \001(\021\022\013\n\003yes\030\006 " +
+      "\001(\021\"!\n\022DissolutionVoteCmd\022\013\n\003yes\030\001 \001(\021\"0" +
+      "\n\025DissolutionVoteResult\022\013\n\003yes\030\001 \001(\021\022\n\n\002" +
+      "ok\030\002 \001(\010\"7\n\030DissolutionVoteBroadcast\022\016\n\006" +
+      "userId\030\001 \001(\021\022\013\n\003yes\030\002 \001(\021\"\032\n\030DissolveSuc" +
+      "cezzBroadcast\"&\n\016FireAPlayerCmd\022\024\n\014targe" +
+      "tUserId\030\001 \001(\021\"5\n\021FireAPlayerResult\022\024\n\014ta" +
+      "rgetUserId\030\001 \001(\021\022\n\n\002ok\030\002 \001(\010\",\n\024FireAPla" +
+      "yerBroadcast\022\024\n\014targetUserId\030\001 \001(\021\"\r\n\013Qu" +
+      "itRoomCmd\"\034\n\016QuitRoomResult\022\n\n\002ok\030\001 \001(\010\"" +
+      "\'\n\021QuitRoomBroadcast\022\022\n\nfromUserId\030\001 \001(\021" +
+      "\"\021\n\017SyncRoomDataCmd\"\220\002\n\022SyncRoomDataResu" +
+      "lt\022\016\n\006roomId\030\001 \001(\021\022\021\n\tgameType0\030\002 \001(\021\022\021\n" +
+      "\tgameType1\030\003 \001(\021\022\026\n\016roomCreateTime\030\004 \001(\022" +
+      "\022\023\n\013roomOwnerId\030\005 \001(\021\022 \n\010ruleItem\030\006 \003(\0132" +
+      "\016.msg.KeyAndVal\022\026\n\016currRoundIndex\030\007 \001(\021\022" +
+      "\025\n\rcurrActUserId\030\010 \001(\021\022\025\n\rremainCardNum\030" +
+      "\t \001(\021\022\022\n\nremainTime\030\n \001(\021\022\033\n\006player\030\013 \003(" +
+      "\0132\013.msg.Player\"c\n\024ReportGeoLocationCmd\022\020" +
+      "\n\010latitude\030\001 \001(\002\022\021\n\tlongitude\030\002 \001(\002\022\020\n\010a" +
+      "ltitude\030\003 \001(\002\022\024\n\014clientIpAddr\030\004 \001(\t\"%\n\027R" +
+      "eportGeoLocationResult\022\n\n\002ok\030\001 \001(\010\"\027\n\025Me" +
+      "asureGeoDistanceCmd\"\275\001\n\030MeasureGeoDistan" +
+      "ceResult\022F\n\017geoDistanceItem\030\001 \003(\0132-.msg." +
+      "MeasureGeoDistanceResult.GeoDistanceItem" +
+      "\032Y\n\017GeoDistanceItem\022\017\n\007userIdA\030\001 \001(\021\022\017\n\007" +
+      "userIdB\030\002 \001(\021\022\020\n\010distance\030\003 \001(\002\022\022\n\nsameI" +
+      "pAddr\030\004 \001(\010\"\031\n\nPrepareCmd\022\013\n\003yes\030\001 \001(\021\"(" +
+      "\n\rPrepareResult\022\013\n\003yes\030\001 \001(\021\022\n\n\002ok\030\002 \001(\010" +
+      "\"A\n\020PrepareBroadcast\022\016\n\006userId\030\001 \001(\021\022\013\n\003" +
+      "yes\030\002 \001(\021\022\020\n\010allReady\030\003 \001(\010\"\022\n\020OfficialS" +
+      "tartCmd\"!\n\023OfficialStartResult\022\n\n\002ok\030\001 \001" +
+      "(\010\"\030\n\026OfficialStartBroadcast\"e\n\027SelectPi" +
+      "aoHintBroadcast\022\016\n\006buPiao\030\001 \001(\010\022\r\n\005piao1" +
+      "\030\002 \001(\010\022\r\n\005piao2\030\003 \001(\010\022\r\n\005piao3\030\004 \001(\010\022\r\n\005" +
+      "piao4\030\005 \001(\010\"\034\n\013DingPiaoCmd\022\r\n\005piaoX\030\001 \001(" +
+      "\021\"+\n\016DingPiaoResult\022\r\n\005piaoX\030\001 \001(\021\022\n\n\002ok" +
+      "\030\002 \001(\010\">\n\021DingPiaoBroadcast\022\016\n\006userId\030\001 " +
+      "\001(\021\022\r\n\005piaoX\030\002 \001(\021\022\n\n\002ok\030\003 \001(\010\"H\n\025RoundS" +
+      "tartedBroadcast\022\026\n\016currRoundIndex\030\001 \001(\021\022" +
+      "\027\n\017zhuangJiaUserId\030\002 \001(\021\"i\n\032MahjongInHan" +
+      "dChangedResult\022\025\n\rmahjongInHand\030\001 \003(\021\022\r\n" +
+      "\005moPai\030\002 \001(\021\022\022\n\nlaiGenTile\030\003 \001(\021\022\021\n\tlaiZ" +
+      "iTile\030\004 \001(\021\"|\n\035MahjongInHandChangedBroad" +
+      "cast\022\016\n\006userId\030\001 \001(\021\022\025\n\rmahjongInHand\030\002 " +
+      "\003(\021\022\r\n\005moPai\030\003 \001(\021\022\022\n\nlaiGenTile\030\004 \001(\021\022\021" +
+      "\n\tlaiZiTile\030\005 \001(\021\"\037\n\022MahjongMoPaiResult\022" +
+      "\t\n\001t\030\001 \001(\021\"2\n\025MahjongMoPaiBroadcast\022\016\n\006u" +
+      "serId\030\001 \001(\021\022\t\n\001t\030\002 \001(\021\"\202\001\n\032RedirectActUs" +
+      "erIdBroadcast\022\016\n\006userId\030\001 \001(\021\022\021\n\tseatInd" +
+      "ex\030\002 \001(\021\022\026\n\016currRoundIndex\030\003 \001(\021\022\025\n\rrema" +
+      "inCardNum\030\004 \001(\021\022\022\n\nremainTime\030\005 \001(\021\"#\n\025O" +
+      "pRemainTimeBroadcast\022\n\n\002ms\030\001 \001(\021\"\035\n\020Mahj" +
+      "ongChuPaiCmd\022\t\n\001t\030\001 \001(\021\" \n\023MahjongChuPai" +
+      "Result\022\t\n\001t\030\001 \001(\021\"3\n\026MahjongChuPaiBroadc" +
+      "ast\022\016\n\006userId\030\001 \001(\021\022\t\n\001t\030\002 \001(\021\"i\n\021ChiCho" +
+      "iceQuestion\022\014\n\004chiT\030\001 \001(\021\022\026\n\016displayOpti" +
+      "onA\030\002 \001(\010\022\026\n\016displayOptionB\030\003 \001(\010\022\026\n\016dis" +
+      "playOptionC\030\004 \001(\010\"\373\001\n\027LiangFengChoiceQue" +
+      "stion\022\017\n\007luanMao\030\001 \001(\010\022\035\n\025displayOptionD" +
+      "ongFeng\030\002 \001(\010\022\034\n\024displayOptionNanFeng\030\003 " +
+      "\001(\010\022\033\n\023displayOptionXiFeng\030\004 \001(\010\022\034\n\024disp" +
+      "layOptionBeiFeng\030\005 \001(\010\022\036\n\026displayOptionH" +
+      "ongZhong\030\006 \001(\010\022\032\n\022displayOptionFaCai\030\007 \001" +
+      "(\010\022\033\n\023displayOptionBaiBan\030\010 \001(\010\"\322\002\n Mahj" +
+      "ongChiPengGangHuOpHintResult\022\021\n\topHintCh" +
+      "i\030\001 \001(\010\0221\n\021chiChoiceQuestion\030\002 \001(\0132\026.msg" +
+      ".ChiChoiceQuestion\022\022\n\nopHintPeng\030\003 \001(\010\022\022" +
+      "\n\nopHintGang\030\004 \001(\010\022\020\n\010opHintHu\030\005 \001(\010\022\027\n\017" +
+      "opHintLiangFeng\030\006 \001(\010\022=\n\027liangFengChoice" +
+      "Question\030\007 \001(\0132\034.msg.LiangFengChoiceQues" +
+      "tion\022\024\n\014opHintBuFeng\030\010 \001(\010\022\025\n\ropHintPiao" +
+      "Lai\030\t \001(\010\022\024\n\014jianZiHuHint\030\n \001(\010\022\023\n\013huTil" +
+      "eArray\030\013 \003(\021\"\'\n\rMahjongChiCmd\022\026\n\016selecte" +
+      "dOption\030\001 \001(\021\"?\n\020MahjongChiResult\022+\n\nmah" +
+      "jongChi\030\001 \001(\0132\027.msg.MahjongChiPengGang\"R" +
+      "\n\023MahjongChiBroadcast\022\016\n\006userId\030\001 \001(\021\022+\n" +
+      "\nmahjongChi\030\002 \001(\0132\027.msg.MahjongChiPengGa" +
+      "ng\"\020\n\016MahjongPengCmd\"A\n\021MahjongPengResul" +
+      "t\022,\n\013mahjongPeng\030\001 \001(\0132\027.msg.MahjongChiP" +
+      "engGang\"T\n\024MahjongPengBroadcast\022\016\n\006userI" +
+      "d\030\001 \001(\021\022,\n\013mahjongPeng\030\002 \001(\0132\027.msg.Mahjo" +
+      "ngChiPengGang\"\020\n\016MahjongGangCmd\"I\n\025Mahjo" +
+      "ngMingGangResult\0220\n\017mahjongMingGang\030\001 \001(" +
+      "\0132\027.msg.MahjongChiPengGang\"E\n\023MahjongAnG" +
+      "angResult\022.\n\rmahjongAnGang\030\001 \001(\0132\027.msg.M" +
+      "ahjongChiPengGang\"E\n\023MahjongBuGangResult" +
+      "\022.\n\rmahjongBuGang\030\001 \001(\0132\027.msg.MahjongChi" +
+      "PengGang\"\\\n\030MahjongMingGangBroadcast\022\016\n\006" +
+      "userId\030\001 \001(\021\0220\n\017mahjongMingGang\030\002 \001(\0132\027." +
+      "msg.MahjongChiPengGang\"X\n\026MahjongAnGangB" +
+      "roadcast\022\016\n\006userId\030\001 \001(\021\022.\n\rmahjongAnGan" +
+      "g\030\002 \001(\0132\027.msg.MahjongChiPengGang\"X\n\026Mahj" +
+      "ongBuGangBroadcast\022\016\n\006userId\030\001 \001(\021\022.\n\rma" +
+      "hjongBuGang\030\002 \001(\0132\027.msg.MahjongChiPengGa" +
+      "ng\"\024\n\022MahjongLiangDaoCmd\"=\n\025MahjongLiang" +
+      "DaoResult\022\025\n\rmahjongInHand\030\001 \003(\021\022\r\n\005moPa" +
+      "i\030\002 \001(\021\"P\n\030MahjongLiangDaoBroadcast\022\016\n\006u" +
+      "serId\030\001 \001(\021\022\025\n\rmahjongInHand\030\002 \003(\021\022\r\n\005mo" +
+      "Pai\030\003 \001(\021\"\016\n\014MahjongHuCmd\"v\n\025MahjongHuOr" +
+      "ZiMoResult\022\t\n\001t\030\001 \001(\021\022\n\n\002hu\030\002 \001(\010\022\014\n\004ziM" +
+      "o\030\003 \001(\010\022\025\n\rdianPaoUserId\030\004 \001(\021\022!\n\thuPatt" +
+      "ern\030\005 \003(\0132\016.msg.KeyAndVal\"\211\001\n\030MahjongHuO" +
+      "rZiMoBroadcast\022\016\n\006userId\030\001 \001(\021\022\t\n\001t\030\002 \001(" +
+      "\021\022\n\n\002hu\030\003 \001(\010\022\014\n\004ziMo\030\004 \001(\010\022\025\n\rdianPaoUs" +
+      "erId\030\005 \001(\021\022!\n\thuPattern\030\006 \003(\0132\016.msg.KeyA" +
+      "ndVal\"\017\n\rMahjongGuoCmd\"\036\n\020MahjongGuoResu" +
+      "lt\022\n\n\002ok\030\001 \001(\010\"\035\n\033MahjongHuangZhuangBroa" +
+      "dcast\"\203\004\n\030RoundSettlementBroadcast\022D\n\016se" +
+      "ttlementItem\030\001 \003(\0132,.msg.RoundSettlement" +
+      "Broadcast.SettlementItem\032\240\003\n\016SettlementI" +
+      "tem\022\016\n\006userId\030\001 \001(\021\022\021\n\tcurrScore\030\002 \001(\021\022\022" +
+      "\n\ntotalScore\030\003 \001(\021\022\021\n\tseatIndex\030\004 \001(\021\022\r\n" +
+      "\005piaoX\030\005 \001(\021\022\025\n\rroomOwnerFlag\030\006 \001(\010\022\025\n\rz" +
+      "huangJiaFlag\030\007 \001(\010\022\n\n\002hu\030\010 \001(\010\022\017\n\007dianPa" +
+      "o\030\t \001(\010\022\014\n\004ziMo\030\n \001(\010\022!\n\thuPattern\030\013 \003(\013" +
+      "2\016.msg.KeyAndVal\022#\n\013gangPattern\030\014 \003(\0132\016." +
+      "msg.KeyAndVal\022\025\n\rmahjongInHand\030\r \003(\021\022\027\n\017" +
+      "mahjongHuOrZiMo\030\016 \001(\021\0223\n\022mahjongChiPengG" +
+      "ang\030\017 \003(\0132\027.msg.MahjongChiPengGang\022/\n\020ma" +
+      "hjongLiangFeng\030\020 \001(\0132\025.msg.MahjongLiangF" +
+      "eng\"\247\002\n\027RoomSettlementBroadcast\022C\n\016settl" +
+      "ementItem\030\001 \003(\0132+.msg.RoomSettlementBroa" +
+      "dcast.SettlementItem\032\306\001\n\016SettlementItem\022" +
+      "\016\n\006userId\030\001 \001(\021\022\021\n\tseatIndex\030\002 \001(\021\022\025\n\rro" +
+      "omOwnerFlag\030\003 \001(\010\022\026\n\016zuoZhuangTimez\030\004 \001(" +
+      "\021\022\021\n\tziMoTimez\030\005 \001(\021\022\024\n\014dianPaoTimez\030\006 \001" +
+      "(\021\022\022\n\nhuPaiTimez\030\007 \001(\021\022\022\n\ntotalScore\030\010 \001" +
+      "(\021\022\021\n\tbigWinner\030\t \001(\010\"9\n\023MahjongLiangFen" +
+      "gCmd\022\n\n\002t0\030\001 \001(\021\022\n\n\002t1\030\002 \001(\021\022\n\n\002t2\030\003 \001(\021" +
+      "\"I\n\026MahjongLiangFengResult\022/\n\020mahjongLia" +
+      "ngFeng\030\001 \001(\0132\025.msg.MahjongLiangFeng\"\\\n\031M" +
+      "ahjongLiangFengBroadcast\022\016\n\006userId\030\001 \001(\021" +
+      "\022/\n\020mahjongLiangFeng\030\002 \001(\0132\025.msg.Mahjong" +
+      "LiangFeng\"\036\n\020MahjongBuFengCmd\022\n\n\002t0\030\001 \001(" +
+      "\021\"C\n\023MahjongBuFengResult\022,\n\rmahjongBuFen" +
+      "g\030\001 \001(\0132\025.msg.MahjongLiangFeng\"V\n\026Mahjon" +
+      "gBuFengBroadcast\022\016\n\006userId\030\001 \001(\021\022,\n\rmahj" +
+      "ongBuFeng\030\002 \001(\0132\025.msg.MahjongLiangFeng\"&" +
+      "\n\021MahjongPiaoLaiCmd\022\021\n\tlaiZiTile\030\001 \001(\021\"5" +
+      "\n\024MahjongPiaoLaiResult\022\021\n\tlaiZiTile\030\001 \001(" +
+      "\021\022\n\n\002ok\030\002 \001(\010\"[\n\027MahjongPiaoLaiBroadcast" +
+      "\022\016\n\006userId\030\001 \001(\021\022\021\n\tlaiZiTile\030\002 \001(\021\022\n\n\002o" +
+      "k\030\003 \001(\010\022\021\n\tbuPaiTile\030\004 \001(\021\"7\n\035MahjongLia" +
+      "ngGangDingBroadcast\022\n\n\002t0\030\001 \001(\021\022\n\n\002t1\030\002 " +
+      "\001(\021\"1\n\033MahjongSelectTilePreviewCmd\022\022\n\nse" +
+      "lectTile\030\001 \001(\021\"5\n\036MahjongSelectTilePrevi" +
+      "ewResult\022\023\n\013huTileArray\030\001 \003(\021*\377\020\n\024MJ_wei" +
+      "hai_MsgCodeDef\022\n\n\006_Dummy\020\000\022\027\n\022_JoinRoomB" +
+      "roadcast\020\351\007\022\030\n\023_DissolveTheRoomCmd\020\352\007\022\033\n" +
+      "\026_DissolveTheRoomResult\020\353\007\022\036\n\031_DissolveT" +
+      "heRoomBroadcast\020\354\007\022\030\n\023_DissolutionVoteCm" +
+      "d\020\355\007\022\033\n\026_DissolutionVoteResult\020\356\007\022\036\n\031_Di" +
+      "ssolutionVoteBroadcast\020\357\007\022\036\n\031_DissolveSu" +
+      "ccezzBroadcast\020\360\007\022\024\n\017_FireAPlayerCmd\020\361\007\022" +
+      "\027\n\022_FireAPlayerResult\020\362\007\022\032\n\025_FireAPlayer" +
+      "Broadcast\020\363\007\022\021\n\014_QuitRoomCmd\020\364\007\022\024\n\017_Quit" +
+      "RoomResult\020\365\007\022\027\n\022_QuitRoomBroadcast\020\366\007\022\025" +
+      "\n\020_SyncRoomDataCmd\020\367\007\022\030\n\023_SyncRoomDataRe" +
+      "sult\020\370\007\022\032\n\025_ReportGeoLocationCmd\020\371\007\022\035\n\030_" +
+      "ReportGeoLocationResult\020\372\007\022\033\n\026_MeasureGe" +
+      "oDistanceCmd\020\373\007\022\036\n\031_MeasureGeoDistanceRe" +
+      "sult\020\374\007\022\020\n\013_PrepareCmd\020\375\007\022\023\n\016_PrepareRes" +
+      "ult\020\376\007\022\026\n\021_PrepareBroadcast\020\377\007\022\026\n\021_Offic" +
+      "ialStartCmd\020\200\010\022\031\n\024_OfficialStartResult\020\201" +
+      "\010\022\034\n\027_OfficialStartBroadcast\020\202\010\022\035\n\030_Sele" +
+      "ctPiaoHintBroadcast\020\203\010\022\021\n\014_DingPiaoCmd\020\204" +
+      "\010\022\024\n\017_DingPiaoResult\020\205\010\022\027\n\022_DingPiaoBroa" +
+      "dcast\020\206\010\022\033\n\026_RoundStartedBroadcast\020\207\010\022 \n" +
+      "\033_MahjongInHandChangedResult\020\210\010\022#\n\036_Mahj" +
+      "ongInHandChangedBroadcast\020\211\010\022\030\n\023_Mahjong" +
+      "MoPaiResult\020\212\010\022\033\n\026_MahjongMoPaiBroadcast" +
+      "\020\213\010\022 \n\033_RedirectActUserIdBroadcast\020\214\010\022\033\n" +
+      "\026_OpRemainTimeBroadcast\020\215\010\022\026\n\021_MahjongCh" +
+      "uPaiCmd\020\216\010\022\031\n\024_MahjongChuPaiResult\020\217\010\022\034\n" +
+      "\027_MahjongChuPaiBroadcast\020\220\010\022&\n!_MahjongC" +
+      "hiPengGangHuOpHintResult\020\221\010\022\023\n\016_MahjongC" +
+      "hiCmd\020\222\010\022\026\n\021_MahjongChiResult\020\223\010\022\031\n\024_Mah" +
+      "jongChiBroadcast\020\224\010\022\024\n\017_MahjongPengCmd\020\225" +
+      "\010\022\027\n\022_MahjongPengResult\020\226\010\022\032\n\025_MahjongPe" +
+      "ngBroadcast\020\227\010\022\024\n\017_MahjongGangCmd\020\230\010\022\033\n\026" +
+      "_MahjongMingGangResult\020\231\010\022\031\n\024_MahjongAnG" +
+      "angResult\020\232\010\022\031\n\024_MahjongBuGangResult\020\233\010\022" +
+      "\036\n\031_MahjongMingGangBroadcast\020\234\010\022\034\n\027_Mahj" +
+      "ongAnGangBroadcast\020\235\010\022\034\n\027_MahjongBuGangB" +
+      "roadcast\020\236\010\022\030\n\023_MahjongLiangDaoCmd\020\237\010\022\033\n" +
+      "\026_MahjongLiangDaoResult\020\240\010\022\036\n\031_MahjongLi" +
+      "angDaoBroadcast\020\241\010\022\022\n\r_MahjongHuCmd\020\242\010\022\033" +
+      "\n\026_MahjongHuOrZiMoResult\020\243\010\022\036\n\031_MahjongH" +
+      "uOrZiMoBroadcast\020\244\010\022\023\n\016_MahjongGuoCmd\020\245\010" +
+      "\022\026\n\021_MahjongGuoResult\020\246\010\022!\n\034_MahjongHuan" +
+      "gZhuangBroadcast\020\247\010\022\036\n\031_RoundSettlementB" +
+      "roadcast\020\250\010\022\035\n\030_RoomSettlementBroadcast\020" +
+      "\251\010\022\031\n\024_MahjongLiangFengCmd\020\252\010\022\034\n\027_Mahjon" +
+      "gLiangFengResult\020\253\010\022\037\n\032_MahjongLiangFeng" +
+      "Broadcast\020\254\010\022\026\n\021_MahjongBuFengCmd\020\255\010\022\031\n\024" +
+      "_MahjongBuFengResult\020\256\010\022\034\n\027_MahjongBuFen" +
+      "gBroadcast\020\257\010\022#\n\036_MahjongLiangGangDingBr" +
+      "oadcast\020\260\010\022\027\n\022_MahjongPiaoLaiCmd\020\261\010\022\032\n\025_" +
+      "MahjongPiaoLaiResult\020\262\010\022\035\n\030_MahjongPiaoL" +
+      "aiBroadcast\020\263\010\022!\n\034_MahjongSelectTilePrev" +
+      "iewCmd\020\264\010\022$\n\037_MahjongSelectTilePreviewRe" +
+      "sult\020\265\010B-\n\027org.mj.bizserver.allmsgB\022MJ_w" +
+      "eihai_Protocolb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -69394,7 +69579,7 @@ public final class MJ_weihai_Protocol {
     internal_static_msg_Player_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_msg_Player_descriptor,
-        new java.lang.String[] { "UserId", "UserName", "HeadImg", "Sex", "ClientIpAddr", "CurrScore", "TotalScore", "SeatIndex", "PiaoX", "RoomOwnerFlag", "ZhuangJiaFlag", "ReadyFlag", "OfflineFlag", "MahjongInHand", "MahjongMoPai", "MahjongOutput", "MahjongChiPengGang", "MahjongLiangFeng", });
+        new java.lang.String[] { "UserId", "UserName", "HeadImg", "Sex", "ClientIpAddr", "CurrScore", "TotalScore", "SeatIndex", "PiaoX", "RoomOwnerFlag", "ZhuangJiaFlag", "ReadyFlag", "OfflineFlag", "MahjongInHand", "MahjongMoPai", "MahjongOutput", "MahjongChiPengGang", "MahjongLiangFeng", "LaiGenTile", "LaiZiTile", });
     internal_static_msg_JoinRoomBroadcast_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_msg_JoinRoomBroadcast_fieldAccessorTable = new

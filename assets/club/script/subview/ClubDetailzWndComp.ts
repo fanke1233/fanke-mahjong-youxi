@@ -131,6 +131,22 @@ export default class ClubDetailzWndComp extends cc.Component {
         __regUIEvent(this);
     }
 
+    /**
+     * onDisable - 当组件被禁用时调用（视图切换时会触发）
+     */
+    onDisable(): void {
+        // 停止牌桌变化监听
+        if (this._nClubId > 0) {
+            MsgBus.getInstance().sendMsg(
+                mod_clubServerProtocol.msg.ClubServerMsgCodeDef._StopTableChangedListenCmd,
+                mod_clubServerProtocol.msg.StopTableChangedListenCmd.create({
+                    clubId: this._nClubId,
+                })
+            );
+            cc.log(`ClubDetailzWndComp: 已停止俱乐部 ${this._nClubId} 的牌桌变化监听`);
+        }
+    }
+
     // /**
     //  * update
     //  * 

@@ -1098,11 +1098,17 @@ function __doCaching(oRuleSetting: RuleSetting, oSyncRoomDataResult: ISyncRoomDa
             continue;
         }
 
+        // 确保性别值为有效范围，如果服务器未返回则设为-1(未知)以触发随机逻辑
+        let nSex = oCurrPlayer.sex;
+        if (nSex === undefined || nSex === null || nSex < -1 || nSex > 2) {
+            nSex = -1;  // 未知性别，后续通过 getSafeSex() 随机选择
+        }
+
         UserData.checkIn(
             oCurrPlayer.userId,
             oCurrPlayer.userName ?? "",
             oCurrPlayer.headImg ?? "",
-            oCurrPlayer.sex ?? 0,
+            nSex,
             oCurrPlayer.clientIpAddr ?? ""
         );
     }

@@ -4,19 +4,19 @@
 var $protobuf = require("protobufjs/minimal");
 
 // Common aliases
-var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+const $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
 
 // Exported root namespace
-var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
+const $root = $protobuf.roots.MJ_weihai_ || ($protobuf.roots.MJ_weihai_ = {});
 
-$root.msg = (function() {
+export const msg = $root.msg = (() => {
 
     /**
      * Namespace msg.
      * @exports msg
      * @namespace
      */
-    var msg = {};
+    const msg = {};
 
     /**
      * MJ_weihai_MsgCodeDef enum.
@@ -102,7 +102,7 @@ $root.msg = (function() {
      * @property {number} _MahjongSelectTilePreviewResult=1077 _MahjongSelectTilePreviewResult value
      */
     msg.MJ_weihai_MsgCodeDef = (function() {
-        var valuesById = {}, values = Object.create(valuesById);
+        const valuesById = {}, values = Object.create(valuesById);
         values[valuesById[0] = "_Dummy"] = 0;
         values[valuesById[1001] = "_JoinRoomBroadcast"] = 1001;
         values[valuesById[1002] = "_DissolveTheRoomCmd"] = 1002;
@@ -204,7 +204,7 @@ $root.msg = (function() {
          */
         function KeyAndVal(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -283,9 +283,9 @@ $root.msg = (function() {
         KeyAndVal.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.KeyAndVal();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.KeyAndVal();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -352,7 +352,7 @@ $root.msg = (function() {
         KeyAndVal.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.KeyAndVal)
                 return object;
-            var message = new $root.msg.KeyAndVal();
+            let message = new $root.msg.KeyAndVal();
             if (object.key != null)
                 message.key = object.key | 0;
             if (object.val != null)
@@ -372,7 +372,7 @@ $root.msg = (function() {
         KeyAndVal.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.key = 0;
                 object.val = 0;
@@ -437,7 +437,7 @@ $root.msg = (function() {
          */
         function MahjongChiPengGang(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -556,9 +556,9 @@ $root.msg = (function() {
         MahjongChiPengGang.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiPengGang();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiPengGang();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -653,7 +653,7 @@ $root.msg = (function() {
         MahjongChiPengGang.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChiPengGang)
                 return object;
-            var message = new $root.msg.MahjongChiPengGang();
+            let message = new $root.msg.MahjongChiPengGang();
             if (object.kind != null)
                 message.kind = object.kind | 0;
             if (object.tX != null)
@@ -681,7 +681,7 @@ $root.msg = (function() {
         MahjongChiPengGang.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.kind = 0;
                 object.tX = 0;
@@ -760,7 +760,7 @@ $root.msg = (function() {
          */
         function MahjongLiangFeng(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -899,9 +899,9 @@ $root.msg = (function() {
         MahjongLiangFeng.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFeng();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFeng();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -1010,7 +1010,7 @@ $root.msg = (function() {
         MahjongLiangFeng.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongLiangFeng)
                 return object;
-            var message = new $root.msg.MahjongLiangFeng();
+            let message = new $root.msg.MahjongLiangFeng();
             if (object.kind != null)
                 message.kind = object.kind | 0;
             if (object.numOfDongFeng != null)
@@ -1042,7 +1042,7 @@ $root.msg = (function() {
         MahjongLiangFeng.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.kind = 0;
                 object.numOfDongFeng = 0;
@@ -1142,7 +1142,7 @@ $root.msg = (function() {
             this.mahjongOutput = [];
             this.mahjongChiPengGang = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -1359,7 +1359,7 @@ $root.msg = (function() {
                 writer.uint32(/* id 13, wireType 0 =*/104).bool(message.offlineFlag);
             if (message.mahjongInHand != null && message.mahjongInHand.length) {
                 writer.uint32(/* id 14, wireType 2 =*/114).fork();
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     writer.sint32(message.mahjongInHand[i]);
                 writer.ldelim();
             }
@@ -1367,12 +1367,12 @@ $root.msg = (function() {
                 writer.uint32(/* id 15, wireType 0 =*/120).sint32(message.mahjongMoPai);
             if (message.mahjongOutput != null && message.mahjongOutput.length) {
                 writer.uint32(/* id 16, wireType 2 =*/130).fork();
-                for (var i = 0; i < message.mahjongOutput.length; ++i)
+                for (let i = 0; i < message.mahjongOutput.length; ++i)
                     writer.sint32(message.mahjongOutput[i]);
                 writer.ldelim();
             }
             if (message.mahjongChiPengGang != null && message.mahjongChiPengGang.length)
-                for (var i = 0; i < message.mahjongChiPengGang.length; ++i)
+                for (let i = 0; i < message.mahjongChiPengGang.length; ++i)
                     $root.msg.MahjongChiPengGang.encode(message.mahjongChiPengGang[i], writer.uint32(/* id 17, wireType 2 =*/138).fork()).ldelim();
             if (message.mahjongLiangFeng != null && Object.hasOwnProperty.call(message, "mahjongLiangFeng"))
                 $root.msg.MahjongLiangFeng.encode(message.mahjongLiangFeng, writer.uint32(/* id 18, wireType 2 =*/146).fork()).ldelim();
@@ -1410,9 +1410,9 @@ $root.msg = (function() {
         Player.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.Player();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.Player();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -1472,7 +1472,7 @@ $root.msg = (function() {
                         if (!(message.mahjongInHand && message.mahjongInHand.length))
                             message.mahjongInHand = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.mahjongInHand.push(reader.sint32());
                         } else
@@ -1487,7 +1487,7 @@ $root.msg = (function() {
                         if (!(message.mahjongOutput && message.mahjongOutput.length))
                             message.mahjongOutput = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.mahjongOutput.push(reader.sint32());
                         } else
@@ -1589,7 +1589,7 @@ $root.msg = (function() {
             if (message.mahjongInHand != null && message.hasOwnProperty("mahjongInHand")) {
                 if (!Array.isArray(message.mahjongInHand))
                     return "mahjongInHand: array expected";
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     if (!$util.isInteger(message.mahjongInHand[i]))
                         return "mahjongInHand: integer[] expected";
             }
@@ -1599,21 +1599,21 @@ $root.msg = (function() {
             if (message.mahjongOutput != null && message.hasOwnProperty("mahjongOutput")) {
                 if (!Array.isArray(message.mahjongOutput))
                     return "mahjongOutput: array expected";
-                for (var i = 0; i < message.mahjongOutput.length; ++i)
+                for (let i = 0; i < message.mahjongOutput.length; ++i)
                     if (!$util.isInteger(message.mahjongOutput[i]))
                         return "mahjongOutput: integer[] expected";
             }
             if (message.mahjongChiPengGang != null && message.hasOwnProperty("mahjongChiPengGang")) {
                 if (!Array.isArray(message.mahjongChiPengGang))
                     return "mahjongChiPengGang: array expected";
-                for (var i = 0; i < message.mahjongChiPengGang.length; ++i) {
-                    var error = $root.msg.MahjongChiPengGang.verify(message.mahjongChiPengGang[i]);
+                for (let i = 0; i < message.mahjongChiPengGang.length; ++i) {
+                    let error = $root.msg.MahjongChiPengGang.verify(message.mahjongChiPengGang[i]);
                     if (error)
                         return "mahjongChiPengGang." + error;
                 }
             }
             if (message.mahjongLiangFeng != null && message.hasOwnProperty("mahjongLiangFeng")) {
-                var error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
+                let error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
                 if (error)
                     return "mahjongLiangFeng." + error;
             }
@@ -1637,7 +1637,7 @@ $root.msg = (function() {
         Player.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.Player)
                 return object;
-            var message = new $root.msg.Player();
+            let message = new $root.msg.Player();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.userName != null)
@@ -1668,7 +1668,7 @@ $root.msg = (function() {
                 if (!Array.isArray(object.mahjongInHand))
                     throw TypeError(".msg.Player.mahjongInHand: array expected");
                 message.mahjongInHand = [];
-                for (var i = 0; i < object.mahjongInHand.length; ++i)
+                for (let i = 0; i < object.mahjongInHand.length; ++i)
                     message.mahjongInHand[i] = object.mahjongInHand[i] | 0;
             }
             if (object.mahjongMoPai != null)
@@ -1677,14 +1677,14 @@ $root.msg = (function() {
                 if (!Array.isArray(object.mahjongOutput))
                     throw TypeError(".msg.Player.mahjongOutput: array expected");
                 message.mahjongOutput = [];
-                for (var i = 0; i < object.mahjongOutput.length; ++i)
+                for (let i = 0; i < object.mahjongOutput.length; ++i)
                     message.mahjongOutput[i] = object.mahjongOutput[i] | 0;
             }
             if (object.mahjongChiPengGang) {
                 if (!Array.isArray(object.mahjongChiPengGang))
                     throw TypeError(".msg.Player.mahjongChiPengGang: array expected");
                 message.mahjongChiPengGang = [];
-                for (var i = 0; i < object.mahjongChiPengGang.length; ++i) {
+                for (let i = 0; i < object.mahjongChiPengGang.length; ++i) {
                     if (typeof object.mahjongChiPengGang[i] !== "object")
                         throw TypeError(".msg.Player.mahjongChiPengGang: object expected");
                     message.mahjongChiPengGang[i] = $root.msg.MahjongChiPengGang.fromObject(object.mahjongChiPengGang[i]);
@@ -1714,7 +1714,7 @@ $root.msg = (function() {
         Player.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults) {
                 object.mahjongInHand = [];
                 object.mahjongOutput = [];
@@ -1767,19 +1767,19 @@ $root.msg = (function() {
                 object.offlineFlag = message.offlineFlag;
             if (message.mahjongInHand && message.mahjongInHand.length) {
                 object.mahjongInHand = [];
-                for (var j = 0; j < message.mahjongInHand.length; ++j)
+                for (let j = 0; j < message.mahjongInHand.length; ++j)
                     object.mahjongInHand[j] = message.mahjongInHand[j];
             }
             if (message.mahjongMoPai != null && message.hasOwnProperty("mahjongMoPai"))
                 object.mahjongMoPai = message.mahjongMoPai;
             if (message.mahjongOutput && message.mahjongOutput.length) {
                 object.mahjongOutput = [];
-                for (var j = 0; j < message.mahjongOutput.length; ++j)
+                for (let j = 0; j < message.mahjongOutput.length; ++j)
                     object.mahjongOutput[j] = message.mahjongOutput[j];
             }
             if (message.mahjongChiPengGang && message.mahjongChiPengGang.length) {
                 object.mahjongChiPengGang = [];
-                for (var j = 0; j < message.mahjongChiPengGang.length; ++j)
+                for (let j = 0; j < message.mahjongChiPengGang.length; ++j)
                     object.mahjongChiPengGang[j] = $root.msg.MahjongChiPengGang.toObject(message.mahjongChiPengGang[j], options);
             }
             if (message.mahjongLiangFeng != null && message.hasOwnProperty("mahjongLiangFeng"))
@@ -1846,7 +1846,7 @@ $root.msg = (function() {
          */
         function JoinRoomBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -1985,9 +1985,9 @@ $root.msg = (function() {
         JoinRoomBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.JoinRoomBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.JoinRoomBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -2096,7 +2096,7 @@ $root.msg = (function() {
         JoinRoomBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.JoinRoomBroadcast)
                 return object;
-            var message = new $root.msg.JoinRoomBroadcast();
+            let message = new $root.msg.JoinRoomBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.userName != null)
@@ -2128,7 +2128,7 @@ $root.msg = (function() {
         JoinRoomBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.userName = "";
@@ -2206,7 +2206,7 @@ $root.msg = (function() {
          */
         function DissolveTheRoomCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2275,9 +2275,9 @@ $root.msg = (function() {
         DissolveTheRoomCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -2337,7 +2337,7 @@ $root.msg = (function() {
         DissolveTheRoomCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DissolveTheRoomCmd)
                 return object;
-            var message = new $root.msg.DissolveTheRoomCmd();
+            let message = new $root.msg.DissolveTheRoomCmd();
             if (object.reason != null)
                 message.reason = object.reason | 0;
             return message;
@@ -2355,7 +2355,7 @@ $root.msg = (function() {
         DissolveTheRoomCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.reason = 0;
             if (message.reason != null && message.hasOwnProperty("reason"))
@@ -2412,7 +2412,7 @@ $root.msg = (function() {
          */
         function DissolveTheRoomResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2491,9 +2491,9 @@ $root.msg = (function() {
         DissolveTheRoomResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -2560,7 +2560,7 @@ $root.msg = (function() {
         DissolveTheRoomResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DissolveTheRoomResult)
                 return object;
-            var message = new $root.msg.DissolveTheRoomResult();
+            let message = new $root.msg.DissolveTheRoomResult();
             if (object.reason != null)
                 message.reason = object.reason | 0;
             if (object.ok != null)
@@ -2580,7 +2580,7 @@ $root.msg = (function() {
         DissolveTheRoomResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.reason = 0;
                 object.ok = false;
@@ -2646,7 +2646,7 @@ $root.msg = (function() {
         function DissolveTheRoomBroadcast(properties) {
             this.waiting4User = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -2734,7 +2734,7 @@ $root.msg = (function() {
             if (message.remainTime != null && Object.hasOwnProperty.call(message, "remainTime"))
                 writer.uint32(/* id 5, wireType 0 =*/40).sint32(message.remainTime);
             if (message.waiting4User != null && message.waiting4User.length)
-                for (var i = 0; i < message.waiting4User.length; ++i)
+                for (let i = 0; i < message.waiting4User.length; ++i)
                     $root.msg.DissolveTheRoomBroadcast.Waiting4User.encode(message.waiting4User[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             return writer;
         };
@@ -2766,9 +2766,9 @@ $root.msg = (function() {
         DissolveTheRoomBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -2851,8 +2851,8 @@ $root.msg = (function() {
             if (message.waiting4User != null && message.hasOwnProperty("waiting4User")) {
                 if (!Array.isArray(message.waiting4User))
                     return "waiting4User: array expected";
-                for (var i = 0; i < message.waiting4User.length; ++i) {
-                    var error = $root.msg.DissolveTheRoomBroadcast.Waiting4User.verify(message.waiting4User[i]);
+                for (let i = 0; i < message.waiting4User.length; ++i) {
+                    let error = $root.msg.DissolveTheRoomBroadcast.Waiting4User.verify(message.waiting4User[i]);
                     if (error)
                         return "waiting4User." + error;
                 }
@@ -2871,7 +2871,7 @@ $root.msg = (function() {
         DissolveTheRoomBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DissolveTheRoomBroadcast)
                 return object;
-            var message = new $root.msg.DissolveTheRoomBroadcast();
+            let message = new $root.msg.DissolveTheRoomBroadcast();
             if (object.fromUserId != null)
                 message.fromUserId = object.fromUserId | 0;
             if (object.fromUserName != null)
@@ -2886,7 +2886,7 @@ $root.msg = (function() {
                 if (!Array.isArray(object.waiting4User))
                     throw TypeError(".msg.DissolveTheRoomBroadcast.waiting4User: array expected");
                 message.waiting4User = [];
-                for (var i = 0; i < object.waiting4User.length; ++i) {
+                for (let i = 0; i < object.waiting4User.length; ++i) {
                     if (typeof object.waiting4User[i] !== "object")
                         throw TypeError(".msg.DissolveTheRoomBroadcast.waiting4User: object expected");
                     message.waiting4User[i] = $root.msg.DissolveTheRoomBroadcast.Waiting4User.fromObject(object.waiting4User[i]);
@@ -2907,7 +2907,7 @@ $root.msg = (function() {
         DissolveTheRoomBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.waiting4User = [];
             if (options.defaults) {
@@ -2929,7 +2929,7 @@ $root.msg = (function() {
                 object.remainTime = message.remainTime;
             if (message.waiting4User && message.waiting4User.length) {
                 object.waiting4User = [];
-                for (var j = 0; j < message.waiting4User.length; ++j)
+                for (let j = 0; j < message.waiting4User.length; ++j)
                     object.waiting4User[j] = $root.msg.DissolveTheRoomBroadcast.Waiting4User.toObject(message.waiting4User[j], options);
             }
             return object;
@@ -2985,7 +2985,7 @@ $root.msg = (function() {
              */
             function Waiting4User(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -3104,9 +3104,9 @@ $root.msg = (function() {
             Waiting4User.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomBroadcast.Waiting4User();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveTheRoomBroadcast.Waiting4User();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     if (tag === error)
                         break;
                     switch (tag >>> 3) {
@@ -3201,7 +3201,7 @@ $root.msg = (function() {
             Waiting4User.fromObject = function fromObject(object) {
                 if (object instanceof $root.msg.DissolveTheRoomBroadcast.Waiting4User)
                     return object;
-                var message = new $root.msg.DissolveTheRoomBroadcast.Waiting4User();
+                let message = new $root.msg.DissolveTheRoomBroadcast.Waiting4User();
                 if (object.userId != null)
                     message.userId = object.userId | 0;
                 if (object.userName != null)
@@ -3229,7 +3229,7 @@ $root.msg = (function() {
             Waiting4User.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.userId = 0;
                     object.userName = "";
@@ -3304,7 +3304,7 @@ $root.msg = (function() {
          */
         function DissolutionVoteCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -3373,9 +3373,9 @@ $root.msg = (function() {
         DissolutionVoteCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolutionVoteCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolutionVoteCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -3435,7 +3435,7 @@ $root.msg = (function() {
         DissolutionVoteCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DissolutionVoteCmd)
                 return object;
-            var message = new $root.msg.DissolutionVoteCmd();
+            let message = new $root.msg.DissolutionVoteCmd();
             if (object.yes != null)
                 message.yes = object.yes | 0;
             return message;
@@ -3453,7 +3453,7 @@ $root.msg = (function() {
         DissolutionVoteCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.yes = 0;
             if (message.yes != null && message.hasOwnProperty("yes"))
@@ -3510,7 +3510,7 @@ $root.msg = (function() {
          */
         function DissolutionVoteResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -3589,9 +3589,9 @@ $root.msg = (function() {
         DissolutionVoteResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolutionVoteResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolutionVoteResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -3658,7 +3658,7 @@ $root.msg = (function() {
         DissolutionVoteResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DissolutionVoteResult)
                 return object;
-            var message = new $root.msg.DissolutionVoteResult();
+            let message = new $root.msg.DissolutionVoteResult();
             if (object.yes != null)
                 message.yes = object.yes | 0;
             if (object.ok != null)
@@ -3678,7 +3678,7 @@ $root.msg = (function() {
         DissolutionVoteResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.yes = 0;
                 object.ok = false;
@@ -3739,7 +3739,7 @@ $root.msg = (function() {
          */
         function DissolutionVoteBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -3818,9 +3818,9 @@ $root.msg = (function() {
         DissolutionVoteBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolutionVoteBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolutionVoteBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -3887,7 +3887,7 @@ $root.msg = (function() {
         DissolutionVoteBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DissolutionVoteBroadcast)
                 return object;
-            var message = new $root.msg.DissolutionVoteBroadcast();
+            let message = new $root.msg.DissolutionVoteBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.yes != null)
@@ -3907,7 +3907,7 @@ $root.msg = (function() {
         DissolutionVoteBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.yes = 0;
@@ -3966,7 +3966,7 @@ $root.msg = (function() {
          */
         function DissolveSuccezzBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4025,9 +4025,9 @@ $root.msg = (function() {
         DissolveSuccezzBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveSuccezzBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DissolveSuccezzBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -4144,7 +4144,7 @@ $root.msg = (function() {
          */
         function FireAPlayerCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4213,9 +4213,9 @@ $root.msg = (function() {
         FireAPlayerCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.FireAPlayerCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.FireAPlayerCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -4275,7 +4275,7 @@ $root.msg = (function() {
         FireAPlayerCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.FireAPlayerCmd)
                 return object;
-            var message = new $root.msg.FireAPlayerCmd();
+            let message = new $root.msg.FireAPlayerCmd();
             if (object.targetUserId != null)
                 message.targetUserId = object.targetUserId | 0;
             return message;
@@ -4293,7 +4293,7 @@ $root.msg = (function() {
         FireAPlayerCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.targetUserId = 0;
             if (message.targetUserId != null && message.hasOwnProperty("targetUserId"))
@@ -4350,7 +4350,7 @@ $root.msg = (function() {
          */
         function FireAPlayerResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4429,9 +4429,9 @@ $root.msg = (function() {
         FireAPlayerResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.FireAPlayerResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.FireAPlayerResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -4498,7 +4498,7 @@ $root.msg = (function() {
         FireAPlayerResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.FireAPlayerResult)
                 return object;
-            var message = new $root.msg.FireAPlayerResult();
+            let message = new $root.msg.FireAPlayerResult();
             if (object.targetUserId != null)
                 message.targetUserId = object.targetUserId | 0;
             if (object.ok != null)
@@ -4518,7 +4518,7 @@ $root.msg = (function() {
         FireAPlayerResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.targetUserId = 0;
                 object.ok = false;
@@ -4578,7 +4578,7 @@ $root.msg = (function() {
          */
         function FireAPlayerBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4647,9 +4647,9 @@ $root.msg = (function() {
         FireAPlayerBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.FireAPlayerBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.FireAPlayerBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -4709,7 +4709,7 @@ $root.msg = (function() {
         FireAPlayerBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.FireAPlayerBroadcast)
                 return object;
-            var message = new $root.msg.FireAPlayerBroadcast();
+            let message = new $root.msg.FireAPlayerBroadcast();
             if (object.targetUserId != null)
                 message.targetUserId = object.targetUserId | 0;
             return message;
@@ -4727,7 +4727,7 @@ $root.msg = (function() {
         FireAPlayerBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.targetUserId = 0;
             if (message.targetUserId != null && message.hasOwnProperty("targetUserId"))
@@ -4782,7 +4782,7 @@ $root.msg = (function() {
          */
         function QuitRoomCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -4841,9 +4841,9 @@ $root.msg = (function() {
         QuitRoomCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.QuitRoomCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.QuitRoomCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -4960,7 +4960,7 @@ $root.msg = (function() {
          */
         function QuitRoomResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -5029,9 +5029,9 @@ $root.msg = (function() {
         QuitRoomResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.QuitRoomResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.QuitRoomResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -5091,7 +5091,7 @@ $root.msg = (function() {
         QuitRoomResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.QuitRoomResult)
                 return object;
-            var message = new $root.msg.QuitRoomResult();
+            let message = new $root.msg.QuitRoomResult();
             if (object.ok != null)
                 message.ok = Boolean(object.ok);
             return message;
@@ -5109,7 +5109,7 @@ $root.msg = (function() {
         QuitRoomResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.ok = false;
             if (message.ok != null && message.hasOwnProperty("ok"))
@@ -5165,7 +5165,7 @@ $root.msg = (function() {
          */
         function QuitRoomBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -5234,9 +5234,9 @@ $root.msg = (function() {
         QuitRoomBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.QuitRoomBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.QuitRoomBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -5296,7 +5296,7 @@ $root.msg = (function() {
         QuitRoomBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.QuitRoomBroadcast)
                 return object;
-            var message = new $root.msg.QuitRoomBroadcast();
+            let message = new $root.msg.QuitRoomBroadcast();
             if (object.fromUserId != null)
                 message.fromUserId = object.fromUserId | 0;
             return message;
@@ -5314,7 +5314,7 @@ $root.msg = (function() {
         QuitRoomBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.fromUserId = 0;
             if (message.fromUserId != null && message.hasOwnProperty("fromUserId"))
@@ -5369,7 +5369,7 @@ $root.msg = (function() {
          */
         function SyncRoomDataCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -5428,9 +5428,9 @@ $root.msg = (function() {
         SyncRoomDataCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.SyncRoomDataCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.SyncRoomDataCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -5559,7 +5559,7 @@ $root.msg = (function() {
             this.ruleItem = [];
             this.player = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -5687,7 +5687,7 @@ $root.msg = (function() {
             if (message.roomOwnerId != null && Object.hasOwnProperty.call(message, "roomOwnerId"))
                 writer.uint32(/* id 5, wireType 0 =*/40).sint32(message.roomOwnerId);
             if (message.ruleItem != null && message.ruleItem.length)
-                for (var i = 0; i < message.ruleItem.length; ++i)
+                for (let i = 0; i < message.ruleItem.length; ++i)
                     $root.msg.KeyAndVal.encode(message.ruleItem[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             if (message.currRoundIndex != null && Object.hasOwnProperty.call(message, "currRoundIndex"))
                 writer.uint32(/* id 7, wireType 0 =*/56).sint32(message.currRoundIndex);
@@ -5698,7 +5698,7 @@ $root.msg = (function() {
             if (message.remainTime != null && Object.hasOwnProperty.call(message, "remainTime"))
                 writer.uint32(/* id 10, wireType 0 =*/80).sint32(message.remainTime);
             if (message.player != null && message.player.length)
-                for (var i = 0; i < message.player.length; ++i)
+                for (let i = 0; i < message.player.length; ++i)
                     $root.msg.Player.encode(message.player[i], writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
             return writer;
         };
@@ -5730,9 +5730,9 @@ $root.msg = (function() {
         SyncRoomDataResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.SyncRoomDataResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.SyncRoomDataResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -5837,8 +5837,8 @@ $root.msg = (function() {
             if (message.ruleItem != null && message.hasOwnProperty("ruleItem")) {
                 if (!Array.isArray(message.ruleItem))
                     return "ruleItem: array expected";
-                for (var i = 0; i < message.ruleItem.length; ++i) {
-                    var error = $root.msg.KeyAndVal.verify(message.ruleItem[i]);
+                for (let i = 0; i < message.ruleItem.length; ++i) {
+                    let error = $root.msg.KeyAndVal.verify(message.ruleItem[i]);
                     if (error)
                         return "ruleItem." + error;
                 }
@@ -5858,8 +5858,8 @@ $root.msg = (function() {
             if (message.player != null && message.hasOwnProperty("player")) {
                 if (!Array.isArray(message.player))
                     return "player: array expected";
-                for (var i = 0; i < message.player.length; ++i) {
-                    var error = $root.msg.Player.verify(message.player[i]);
+                for (let i = 0; i < message.player.length; ++i) {
+                    let error = $root.msg.Player.verify(message.player[i]);
                     if (error)
                         return "player." + error;
                 }
@@ -5878,7 +5878,7 @@ $root.msg = (function() {
         SyncRoomDataResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.SyncRoomDataResult)
                 return object;
-            var message = new $root.msg.SyncRoomDataResult();
+            let message = new $root.msg.SyncRoomDataResult();
             if (object.roomId != null)
                 message.roomId = object.roomId | 0;
             if (object.gameType0 != null)
@@ -5900,7 +5900,7 @@ $root.msg = (function() {
                 if (!Array.isArray(object.ruleItem))
                     throw TypeError(".msg.SyncRoomDataResult.ruleItem: array expected");
                 message.ruleItem = [];
-                for (var i = 0; i < object.ruleItem.length; ++i) {
+                for (let i = 0; i < object.ruleItem.length; ++i) {
                     if (typeof object.ruleItem[i] !== "object")
                         throw TypeError(".msg.SyncRoomDataResult.ruleItem: object expected");
                     message.ruleItem[i] = $root.msg.KeyAndVal.fromObject(object.ruleItem[i]);
@@ -5918,7 +5918,7 @@ $root.msg = (function() {
                 if (!Array.isArray(object.player))
                     throw TypeError(".msg.SyncRoomDataResult.player: array expected");
                 message.player = [];
-                for (var i = 0; i < object.player.length; ++i) {
+                for (let i = 0; i < object.player.length; ++i) {
                     if (typeof object.player[i] !== "object")
                         throw TypeError(".msg.SyncRoomDataResult.player: object expected");
                     message.player[i] = $root.msg.Player.fromObject(object.player[i]);
@@ -5939,7 +5939,7 @@ $root.msg = (function() {
         SyncRoomDataResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults) {
                 object.ruleItem = [];
                 object.player = [];
@@ -5949,7 +5949,7 @@ $root.msg = (function() {
                 object.gameType0 = 0;
                 object.gameType1 = 0;
                 if ($util.Long) {
-                    var long = new $util.Long(0, 0, false);
+                    let long = new $util.Long(0, 0, false);
                     object.roomCreateTime = options.longs === String ? long.toString() : options.longs === Number ? long.toNumber() : long;
                 } else
                     object.roomCreateTime = options.longs === String ? "0" : 0;
@@ -5974,7 +5974,7 @@ $root.msg = (function() {
                 object.roomOwnerId = message.roomOwnerId;
             if (message.ruleItem && message.ruleItem.length) {
                 object.ruleItem = [];
-                for (var j = 0; j < message.ruleItem.length; ++j)
+                for (let j = 0; j < message.ruleItem.length; ++j)
                     object.ruleItem[j] = $root.msg.KeyAndVal.toObject(message.ruleItem[j], options);
             }
             if (message.currRoundIndex != null && message.hasOwnProperty("currRoundIndex"))
@@ -5987,7 +5987,7 @@ $root.msg = (function() {
                 object.remainTime = message.remainTime;
             if (message.player && message.player.length) {
                 object.player = [];
-                for (var j = 0; j < message.player.length; ++j)
+                for (let j = 0; j < message.player.length; ++j)
                     object.player[j] = $root.msg.Player.toObject(message.player[j], options);
             }
             return object;
@@ -6044,7 +6044,7 @@ $root.msg = (function() {
          */
         function ReportGeoLocationCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -6143,9 +6143,9 @@ $root.msg = (function() {
         ReportGeoLocationCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.ReportGeoLocationCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.ReportGeoLocationCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -6226,7 +6226,7 @@ $root.msg = (function() {
         ReportGeoLocationCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.ReportGeoLocationCmd)
                 return object;
-            var message = new $root.msg.ReportGeoLocationCmd();
+            let message = new $root.msg.ReportGeoLocationCmd();
             if (object.latitude != null)
                 message.latitude = Number(object.latitude);
             if (object.longitude != null)
@@ -6250,7 +6250,7 @@ $root.msg = (function() {
         ReportGeoLocationCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.latitude = 0;
                 object.longitude = 0;
@@ -6316,7 +6316,7 @@ $root.msg = (function() {
          */
         function ReportGeoLocationResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -6385,9 +6385,9 @@ $root.msg = (function() {
         ReportGeoLocationResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.ReportGeoLocationResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.ReportGeoLocationResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -6447,7 +6447,7 @@ $root.msg = (function() {
         ReportGeoLocationResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.ReportGeoLocationResult)
                 return object;
-            var message = new $root.msg.ReportGeoLocationResult();
+            let message = new $root.msg.ReportGeoLocationResult();
             if (object.ok != null)
                 message.ok = Boolean(object.ok);
             return message;
@@ -6465,7 +6465,7 @@ $root.msg = (function() {
         ReportGeoLocationResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.ok = false;
             if (message.ok != null && message.hasOwnProperty("ok"))
@@ -6520,7 +6520,7 @@ $root.msg = (function() {
          */
         function MeasureGeoDistanceCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -6579,9 +6579,9 @@ $root.msg = (function() {
         MeasureGeoDistanceCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MeasureGeoDistanceCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MeasureGeoDistanceCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -6699,7 +6699,7 @@ $root.msg = (function() {
         function MeasureGeoDistanceResult(properties) {
             this.geoDistanceItem = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -6737,7 +6737,7 @@ $root.msg = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.geoDistanceItem != null && message.geoDistanceItem.length)
-                for (var i = 0; i < message.geoDistanceItem.length; ++i)
+                for (let i = 0; i < message.geoDistanceItem.length; ++i)
                     $root.msg.MeasureGeoDistanceResult.GeoDistanceItem.encode(message.geoDistanceItem[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
@@ -6769,9 +6769,9 @@ $root.msg = (function() {
         MeasureGeoDistanceResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MeasureGeoDistanceResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MeasureGeoDistanceResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -6819,8 +6819,8 @@ $root.msg = (function() {
             if (message.geoDistanceItem != null && message.hasOwnProperty("geoDistanceItem")) {
                 if (!Array.isArray(message.geoDistanceItem))
                     return "geoDistanceItem: array expected";
-                for (var i = 0; i < message.geoDistanceItem.length; ++i) {
-                    var error = $root.msg.MeasureGeoDistanceResult.GeoDistanceItem.verify(message.geoDistanceItem[i]);
+                for (let i = 0; i < message.geoDistanceItem.length; ++i) {
+                    let error = $root.msg.MeasureGeoDistanceResult.GeoDistanceItem.verify(message.geoDistanceItem[i]);
                     if (error)
                         return "geoDistanceItem." + error;
                 }
@@ -6839,12 +6839,12 @@ $root.msg = (function() {
         MeasureGeoDistanceResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MeasureGeoDistanceResult)
                 return object;
-            var message = new $root.msg.MeasureGeoDistanceResult();
+            let message = new $root.msg.MeasureGeoDistanceResult();
             if (object.geoDistanceItem) {
                 if (!Array.isArray(object.geoDistanceItem))
                     throw TypeError(".msg.MeasureGeoDistanceResult.geoDistanceItem: array expected");
                 message.geoDistanceItem = [];
-                for (var i = 0; i < object.geoDistanceItem.length; ++i) {
+                for (let i = 0; i < object.geoDistanceItem.length; ++i) {
                     if (typeof object.geoDistanceItem[i] !== "object")
                         throw TypeError(".msg.MeasureGeoDistanceResult.geoDistanceItem: object expected");
                     message.geoDistanceItem[i] = $root.msg.MeasureGeoDistanceResult.GeoDistanceItem.fromObject(object.geoDistanceItem[i]);
@@ -6865,12 +6865,12 @@ $root.msg = (function() {
         MeasureGeoDistanceResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.geoDistanceItem = [];
             if (message.geoDistanceItem && message.geoDistanceItem.length) {
                 object.geoDistanceItem = [];
-                for (var j = 0; j < message.geoDistanceItem.length; ++j)
+                for (let j = 0; j < message.geoDistanceItem.length; ++j)
                     object.geoDistanceItem[j] = $root.msg.MeasureGeoDistanceResult.GeoDistanceItem.toObject(message.geoDistanceItem[j], options);
             }
             return object;
@@ -6924,7 +6924,7 @@ $root.msg = (function() {
              */
             function GeoDistanceItem(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -7023,9 +7023,9 @@ $root.msg = (function() {
             GeoDistanceItem.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MeasureGeoDistanceResult.GeoDistanceItem();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MeasureGeoDistanceResult.GeoDistanceItem();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     if (tag === error)
                         break;
                     switch (tag >>> 3) {
@@ -7106,7 +7106,7 @@ $root.msg = (function() {
             GeoDistanceItem.fromObject = function fromObject(object) {
                 if (object instanceof $root.msg.MeasureGeoDistanceResult.GeoDistanceItem)
                     return object;
-                var message = new $root.msg.MeasureGeoDistanceResult.GeoDistanceItem();
+                let message = new $root.msg.MeasureGeoDistanceResult.GeoDistanceItem();
                 if (object.userIdA != null)
                     message.userIdA = object.userIdA | 0;
                 if (object.userIdB != null)
@@ -7130,7 +7130,7 @@ $root.msg = (function() {
             GeoDistanceItem.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.userIdA = 0;
                     object.userIdB = 0;
@@ -7199,7 +7199,7 @@ $root.msg = (function() {
          */
         function PrepareCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -7268,9 +7268,9 @@ $root.msg = (function() {
         PrepareCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.PrepareCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.PrepareCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -7330,7 +7330,7 @@ $root.msg = (function() {
         PrepareCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.PrepareCmd)
                 return object;
-            var message = new $root.msg.PrepareCmd();
+            let message = new $root.msg.PrepareCmd();
             if (object.yes != null)
                 message.yes = object.yes | 0;
             return message;
@@ -7348,7 +7348,7 @@ $root.msg = (function() {
         PrepareCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.yes = 0;
             if (message.yes != null && message.hasOwnProperty("yes"))
@@ -7405,7 +7405,7 @@ $root.msg = (function() {
          */
         function PrepareResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -7484,9 +7484,9 @@ $root.msg = (function() {
         PrepareResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.PrepareResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.PrepareResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -7553,7 +7553,7 @@ $root.msg = (function() {
         PrepareResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.PrepareResult)
                 return object;
-            var message = new $root.msg.PrepareResult();
+            let message = new $root.msg.PrepareResult();
             if (object.yes != null)
                 message.yes = object.yes | 0;
             if (object.ok != null)
@@ -7573,7 +7573,7 @@ $root.msg = (function() {
         PrepareResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.yes = 0;
                 object.ok = false;
@@ -7635,7 +7635,7 @@ $root.msg = (function() {
          */
         function PrepareBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -7724,9 +7724,9 @@ $root.msg = (function() {
         PrepareBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.PrepareBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.PrepareBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -7800,7 +7800,7 @@ $root.msg = (function() {
         PrepareBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.PrepareBroadcast)
                 return object;
-            var message = new $root.msg.PrepareBroadcast();
+            let message = new $root.msg.PrepareBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.yes != null)
@@ -7822,7 +7822,7 @@ $root.msg = (function() {
         PrepareBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.yes = 0;
@@ -7884,7 +7884,7 @@ $root.msg = (function() {
          */
         function OfficialStartCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -7943,9 +7943,9 @@ $root.msg = (function() {
         OfficialStartCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OfficialStartCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OfficialStartCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -8062,7 +8062,7 @@ $root.msg = (function() {
          */
         function OfficialStartResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -8131,9 +8131,9 @@ $root.msg = (function() {
         OfficialStartResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OfficialStartResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OfficialStartResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -8193,7 +8193,7 @@ $root.msg = (function() {
         OfficialStartResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.OfficialStartResult)
                 return object;
-            var message = new $root.msg.OfficialStartResult();
+            let message = new $root.msg.OfficialStartResult();
             if (object.ok != null)
                 message.ok = Boolean(object.ok);
             return message;
@@ -8211,7 +8211,7 @@ $root.msg = (function() {
         OfficialStartResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.ok = false;
             if (message.ok != null && message.hasOwnProperty("ok"))
@@ -8266,7 +8266,7 @@ $root.msg = (function() {
          */
         function OfficialStartBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -8325,9 +8325,9 @@ $root.msg = (function() {
         OfficialStartBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OfficialStartBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OfficialStartBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -8448,7 +8448,7 @@ $root.msg = (function() {
          */
         function SelectPiaoHintBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -8557,9 +8557,9 @@ $root.msg = (function() {
         SelectPiaoHintBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.SelectPiaoHintBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.SelectPiaoHintBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -8647,7 +8647,7 @@ $root.msg = (function() {
         SelectPiaoHintBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.SelectPiaoHintBroadcast)
                 return object;
-            var message = new $root.msg.SelectPiaoHintBroadcast();
+            let message = new $root.msg.SelectPiaoHintBroadcast();
             if (object.buPiao != null)
                 message.buPiao = Boolean(object.buPiao);
             if (object.piao1 != null)
@@ -8673,7 +8673,7 @@ $root.msg = (function() {
         SelectPiaoHintBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.buPiao = false;
                 object.piao1 = false;
@@ -8742,7 +8742,7 @@ $root.msg = (function() {
          */
         function DingPiaoCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -8811,9 +8811,9 @@ $root.msg = (function() {
         DingPiaoCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DingPiaoCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DingPiaoCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -8873,7 +8873,7 @@ $root.msg = (function() {
         DingPiaoCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DingPiaoCmd)
                 return object;
-            var message = new $root.msg.DingPiaoCmd();
+            let message = new $root.msg.DingPiaoCmd();
             if (object.piaoX != null)
                 message.piaoX = object.piaoX | 0;
             return message;
@@ -8891,7 +8891,7 @@ $root.msg = (function() {
         DingPiaoCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.piaoX = 0;
             if (message.piaoX != null && message.hasOwnProperty("piaoX"))
@@ -8948,7 +8948,7 @@ $root.msg = (function() {
          */
         function DingPiaoResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9027,9 +9027,9 @@ $root.msg = (function() {
         DingPiaoResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DingPiaoResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DingPiaoResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -9096,7 +9096,7 @@ $root.msg = (function() {
         DingPiaoResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DingPiaoResult)
                 return object;
-            var message = new $root.msg.DingPiaoResult();
+            let message = new $root.msg.DingPiaoResult();
             if (object.piaoX != null)
                 message.piaoX = object.piaoX | 0;
             if (object.ok != null)
@@ -9116,7 +9116,7 @@ $root.msg = (function() {
         DingPiaoResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.piaoX = 0;
                 object.ok = false;
@@ -9178,7 +9178,7 @@ $root.msg = (function() {
          */
         function DingPiaoBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9267,9 +9267,9 @@ $root.msg = (function() {
         DingPiaoBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DingPiaoBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.DingPiaoBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -9343,7 +9343,7 @@ $root.msg = (function() {
         DingPiaoBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.DingPiaoBroadcast)
                 return object;
-            var message = new $root.msg.DingPiaoBroadcast();
+            let message = new $root.msg.DingPiaoBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.piaoX != null)
@@ -9365,7 +9365,7 @@ $root.msg = (function() {
         DingPiaoBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.piaoX = 0;
@@ -9429,7 +9429,7 @@ $root.msg = (function() {
          */
         function RoundStartedBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9508,9 +9508,9 @@ $root.msg = (function() {
         RoundStartedBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoundStartedBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoundStartedBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -9577,7 +9577,7 @@ $root.msg = (function() {
         RoundStartedBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.RoundStartedBroadcast)
                 return object;
-            var message = new $root.msg.RoundStartedBroadcast();
+            let message = new $root.msg.RoundStartedBroadcast();
             if (object.currRoundIndex != null)
                 message.currRoundIndex = object.currRoundIndex | 0;
             if (object.zhuangJiaUserId != null)
@@ -9597,7 +9597,7 @@ $root.msg = (function() {
         RoundStartedBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.currRoundIndex = 0;
                 object.zhuangJiaUserId = 0;
@@ -9661,7 +9661,7 @@ $root.msg = (function() {
         function MahjongInHandChangedResult(properties) {
             this.mahjongInHand = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -9724,7 +9724,7 @@ $root.msg = (function() {
                 writer = $Writer.create();
             if (message.mahjongInHand != null && message.mahjongInHand.length) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork();
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     writer.sint32(message.mahjongInHand[i]);
                 writer.ldelim();
             }
@@ -9764,9 +9764,9 @@ $root.msg = (function() {
         MahjongInHandChangedResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongInHandChangedResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongInHandChangedResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -9774,7 +9774,7 @@ $root.msg = (function() {
                         if (!(message.mahjongInHand && message.mahjongInHand.length))
                             message.mahjongInHand = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.mahjongInHand.push(reader.sint32());
                         } else
@@ -9831,7 +9831,7 @@ $root.msg = (function() {
             if (message.mahjongInHand != null && message.hasOwnProperty("mahjongInHand")) {
                 if (!Array.isArray(message.mahjongInHand))
                     return "mahjongInHand: array expected";
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     if (!$util.isInteger(message.mahjongInHand[i]))
                         return "mahjongInHand: integer[] expected";
             }
@@ -9858,12 +9858,12 @@ $root.msg = (function() {
         MahjongInHandChangedResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongInHandChangedResult)
                 return object;
-            var message = new $root.msg.MahjongInHandChangedResult();
+            let message = new $root.msg.MahjongInHandChangedResult();
             if (object.mahjongInHand) {
                 if (!Array.isArray(object.mahjongInHand))
                     throw TypeError(".msg.MahjongInHandChangedResult.mahjongInHand: array expected");
                 message.mahjongInHand = [];
-                for (var i = 0; i < object.mahjongInHand.length; ++i)
+                for (let i = 0; i < object.mahjongInHand.length; ++i)
                     message.mahjongInHand[i] = object.mahjongInHand[i] | 0;
             }
             if (object.moPai != null)
@@ -9887,7 +9887,7 @@ $root.msg = (function() {
         MahjongInHandChangedResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.mahjongInHand = [];
             if (options.defaults) {
@@ -9897,7 +9897,7 @@ $root.msg = (function() {
             }
             if (message.mahjongInHand && message.mahjongInHand.length) {
                 object.mahjongInHand = [];
-                for (var j = 0; j < message.mahjongInHand.length; ++j)
+                for (let j = 0; j < message.mahjongInHand.length; ++j)
                     object.mahjongInHand[j] = message.mahjongInHand[j];
             }
             if (message.moPai != null && message.hasOwnProperty("moPai"))
@@ -9962,7 +9962,7 @@ $root.msg = (function() {
         function MahjongInHandChangedBroadcast(properties) {
             this.mahjongInHand = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -10035,7 +10035,7 @@ $root.msg = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).sint32(message.userId);
             if (message.mahjongInHand != null && message.mahjongInHand.length) {
                 writer.uint32(/* id 2, wireType 2 =*/18).fork();
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     writer.sint32(message.mahjongInHand[i]);
                 writer.ldelim();
             }
@@ -10075,9 +10075,9 @@ $root.msg = (function() {
         MahjongInHandChangedBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongInHandChangedBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongInHandChangedBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -10089,7 +10089,7 @@ $root.msg = (function() {
                         if (!(message.mahjongInHand && message.mahjongInHand.length))
                             message.mahjongInHand = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.mahjongInHand.push(reader.sint32());
                         } else
@@ -10149,7 +10149,7 @@ $root.msg = (function() {
             if (message.mahjongInHand != null && message.hasOwnProperty("mahjongInHand")) {
                 if (!Array.isArray(message.mahjongInHand))
                     return "mahjongInHand: array expected";
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     if (!$util.isInteger(message.mahjongInHand[i]))
                         return "mahjongInHand: integer[] expected";
             }
@@ -10176,14 +10176,14 @@ $root.msg = (function() {
         MahjongInHandChangedBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongInHandChangedBroadcast)
                 return object;
-            var message = new $root.msg.MahjongInHandChangedBroadcast();
+            let message = new $root.msg.MahjongInHandChangedBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongInHand) {
                 if (!Array.isArray(object.mahjongInHand))
                     throw TypeError(".msg.MahjongInHandChangedBroadcast.mahjongInHand: array expected");
                 message.mahjongInHand = [];
-                for (var i = 0; i < object.mahjongInHand.length; ++i)
+                for (let i = 0; i < object.mahjongInHand.length; ++i)
                     message.mahjongInHand[i] = object.mahjongInHand[i] | 0;
             }
             if (object.moPai != null)
@@ -10207,7 +10207,7 @@ $root.msg = (function() {
         MahjongInHandChangedBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.mahjongInHand = [];
             if (options.defaults) {
@@ -10220,7 +10220,7 @@ $root.msg = (function() {
                 object.userId = message.userId;
             if (message.mahjongInHand && message.mahjongInHand.length) {
                 object.mahjongInHand = [];
-                for (var j = 0; j < message.mahjongInHand.length; ++j)
+                for (let j = 0; j < message.mahjongInHand.length; ++j)
                     object.mahjongInHand[j] = message.mahjongInHand[j];
             }
             if (message.moPai != null && message.hasOwnProperty("moPai"))
@@ -10280,7 +10280,7 @@ $root.msg = (function() {
          */
         function MahjongMoPaiResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -10349,9 +10349,9 @@ $root.msg = (function() {
         MahjongMoPaiResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMoPaiResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMoPaiResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -10411,7 +10411,7 @@ $root.msg = (function() {
         MahjongMoPaiResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongMoPaiResult)
                 return object;
-            var message = new $root.msg.MahjongMoPaiResult();
+            let message = new $root.msg.MahjongMoPaiResult();
             if (object.t != null)
                 message.t = object.t | 0;
             return message;
@@ -10429,7 +10429,7 @@ $root.msg = (function() {
         MahjongMoPaiResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.t = 0;
             if (message.t != null && message.hasOwnProperty("t"))
@@ -10486,7 +10486,7 @@ $root.msg = (function() {
          */
         function MahjongMoPaiBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -10565,9 +10565,9 @@ $root.msg = (function() {
         MahjongMoPaiBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMoPaiBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMoPaiBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -10634,7 +10634,7 @@ $root.msg = (function() {
         MahjongMoPaiBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongMoPaiBroadcast)
                 return object;
-            var message = new $root.msg.MahjongMoPaiBroadcast();
+            let message = new $root.msg.MahjongMoPaiBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.t != null)
@@ -10654,7 +10654,7 @@ $root.msg = (function() {
         MahjongMoPaiBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.t = 0;
@@ -10718,7 +10718,7 @@ $root.msg = (function() {
          */
         function RedirectActUserIdBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -10827,9 +10827,9 @@ $root.msg = (function() {
         RedirectActUserIdBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RedirectActUserIdBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RedirectActUserIdBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -10917,7 +10917,7 @@ $root.msg = (function() {
         RedirectActUserIdBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.RedirectActUserIdBroadcast)
                 return object;
-            var message = new $root.msg.RedirectActUserIdBroadcast();
+            let message = new $root.msg.RedirectActUserIdBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.seatIndex != null)
@@ -10943,7 +10943,7 @@ $root.msg = (function() {
         RedirectActUserIdBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.seatIndex = 0;
@@ -11012,7 +11012,7 @@ $root.msg = (function() {
          */
         function OpRemainTimeBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11081,9 +11081,9 @@ $root.msg = (function() {
         OpRemainTimeBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OpRemainTimeBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.OpRemainTimeBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -11143,7 +11143,7 @@ $root.msg = (function() {
         OpRemainTimeBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.OpRemainTimeBroadcast)
                 return object;
-            var message = new $root.msg.OpRemainTimeBroadcast();
+            let message = new $root.msg.OpRemainTimeBroadcast();
             if (object.ms != null)
                 message.ms = object.ms | 0;
             return message;
@@ -11161,7 +11161,7 @@ $root.msg = (function() {
         OpRemainTimeBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.ms = 0;
             if (message.ms != null && message.hasOwnProperty("ms"))
@@ -11217,7 +11217,7 @@ $root.msg = (function() {
          */
         function MahjongChuPaiCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11286,9 +11286,9 @@ $root.msg = (function() {
         MahjongChuPaiCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChuPaiCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChuPaiCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -11348,7 +11348,7 @@ $root.msg = (function() {
         MahjongChuPaiCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChuPaiCmd)
                 return object;
-            var message = new $root.msg.MahjongChuPaiCmd();
+            let message = new $root.msg.MahjongChuPaiCmd();
             if (object.t != null)
                 message.t = object.t | 0;
             return message;
@@ -11366,7 +11366,7 @@ $root.msg = (function() {
         MahjongChuPaiCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.t = 0;
             if (message.t != null && message.hasOwnProperty("t"))
@@ -11422,7 +11422,7 @@ $root.msg = (function() {
          */
         function MahjongChuPaiResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11491,9 +11491,9 @@ $root.msg = (function() {
         MahjongChuPaiResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChuPaiResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChuPaiResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -11553,7 +11553,7 @@ $root.msg = (function() {
         MahjongChuPaiResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChuPaiResult)
                 return object;
-            var message = new $root.msg.MahjongChuPaiResult();
+            let message = new $root.msg.MahjongChuPaiResult();
             if (object.t != null)
                 message.t = object.t | 0;
             return message;
@@ -11571,7 +11571,7 @@ $root.msg = (function() {
         MahjongChuPaiResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.t = 0;
             if (message.t != null && message.hasOwnProperty("t"))
@@ -11628,7 +11628,7 @@ $root.msg = (function() {
          */
         function MahjongChuPaiBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11707,9 +11707,9 @@ $root.msg = (function() {
         MahjongChuPaiBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChuPaiBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChuPaiBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -11776,7 +11776,7 @@ $root.msg = (function() {
         MahjongChuPaiBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChuPaiBroadcast)
                 return object;
-            var message = new $root.msg.MahjongChuPaiBroadcast();
+            let message = new $root.msg.MahjongChuPaiBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.t != null)
@@ -11796,7 +11796,7 @@ $root.msg = (function() {
         MahjongChuPaiBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.t = 0;
@@ -11859,7 +11859,7 @@ $root.msg = (function() {
          */
         function ChiChoiceQuestion(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -11958,9 +11958,9 @@ $root.msg = (function() {
         ChiChoiceQuestion.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.ChiChoiceQuestion();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.ChiChoiceQuestion();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -12041,7 +12041,7 @@ $root.msg = (function() {
         ChiChoiceQuestion.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.ChiChoiceQuestion)
                 return object;
-            var message = new $root.msg.ChiChoiceQuestion();
+            let message = new $root.msg.ChiChoiceQuestion();
             if (object.chiT != null)
                 message.chiT = object.chiT | 0;
             if (object.displayOptionA != null)
@@ -12065,7 +12065,7 @@ $root.msg = (function() {
         ChiChoiceQuestion.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.chiT = 0;
                 object.displayOptionA = false;
@@ -12138,7 +12138,7 @@ $root.msg = (function() {
          */
         function LiangFengChoiceQuestion(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -12277,9 +12277,9 @@ $root.msg = (function() {
         LiangFengChoiceQuestion.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.LiangFengChoiceQuestion();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.LiangFengChoiceQuestion();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -12388,7 +12388,7 @@ $root.msg = (function() {
         LiangFengChoiceQuestion.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.LiangFengChoiceQuestion)
                 return object;
-            var message = new $root.msg.LiangFengChoiceQuestion();
+            let message = new $root.msg.LiangFengChoiceQuestion();
             if (object.luanMao != null)
                 message.luanMao = Boolean(object.luanMao);
             if (object.displayOptionDongFeng != null)
@@ -12420,7 +12420,7 @@ $root.msg = (function() {
         LiangFengChoiceQuestion.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.luanMao = false;
                 object.displayOptionDongFeng = false;
@@ -12509,7 +12509,7 @@ $root.msg = (function() {
         function MahjongChiPengGangHuOpHintResult(properties) {
             this.huTileArray = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -12648,7 +12648,7 @@ $root.msg = (function() {
                 writer.uint32(/* id 10, wireType 0 =*/80).bool(message.jianZiHuHint);
             if (message.huTileArray != null && message.huTileArray.length) {
                 writer.uint32(/* id 11, wireType 2 =*/90).fork();
-                for (var i = 0; i < message.huTileArray.length; ++i)
+                for (let i = 0; i < message.huTileArray.length; ++i)
                     writer.sint32(message.huTileArray[i]);
                 writer.ldelim();
             }
@@ -12682,9 +12682,9 @@ $root.msg = (function() {
         MahjongChiPengGangHuOpHintResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiPengGangHuOpHintResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiPengGangHuOpHintResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -12732,7 +12732,7 @@ $root.msg = (function() {
                         if (!(message.huTileArray && message.huTileArray.length))
                             message.huTileArray = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.huTileArray.push(reader.sint32());
                         } else
@@ -12778,7 +12778,7 @@ $root.msg = (function() {
                 if (typeof message.opHintChi !== "boolean")
                     return "opHintChi: boolean expected";
             if (message.chiChoiceQuestion != null && message.hasOwnProperty("chiChoiceQuestion")) {
-                var error = $root.msg.ChiChoiceQuestion.verify(message.chiChoiceQuestion);
+                let error = $root.msg.ChiChoiceQuestion.verify(message.chiChoiceQuestion);
                 if (error)
                     return "chiChoiceQuestion." + error;
             }
@@ -12795,7 +12795,7 @@ $root.msg = (function() {
                 if (typeof message.opHintLiangFeng !== "boolean")
                     return "opHintLiangFeng: boolean expected";
             if (message.liangFengChoiceQuestion != null && message.hasOwnProperty("liangFengChoiceQuestion")) {
-                var error = $root.msg.LiangFengChoiceQuestion.verify(message.liangFengChoiceQuestion);
+                let error = $root.msg.LiangFengChoiceQuestion.verify(message.liangFengChoiceQuestion);
                 if (error)
                     return "liangFengChoiceQuestion." + error;
             }
@@ -12811,7 +12811,7 @@ $root.msg = (function() {
             if (message.huTileArray != null && message.hasOwnProperty("huTileArray")) {
                 if (!Array.isArray(message.huTileArray))
                     return "huTileArray: array expected";
-                for (var i = 0; i < message.huTileArray.length; ++i)
+                for (let i = 0; i < message.huTileArray.length; ++i)
                     if (!$util.isInteger(message.huTileArray[i]))
                         return "huTileArray: integer[] expected";
             }
@@ -12829,7 +12829,7 @@ $root.msg = (function() {
         MahjongChiPengGangHuOpHintResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChiPengGangHuOpHintResult)
                 return object;
-            var message = new $root.msg.MahjongChiPengGangHuOpHintResult();
+            let message = new $root.msg.MahjongChiPengGangHuOpHintResult();
             if (object.opHintChi != null)
                 message.opHintChi = Boolean(object.opHintChi);
             if (object.chiChoiceQuestion != null) {
@@ -12860,7 +12860,7 @@ $root.msg = (function() {
                 if (!Array.isArray(object.huTileArray))
                     throw TypeError(".msg.MahjongChiPengGangHuOpHintResult.huTileArray: array expected");
                 message.huTileArray = [];
-                for (var i = 0; i < object.huTileArray.length; ++i)
+                for (let i = 0; i < object.huTileArray.length; ++i)
                     message.huTileArray[i] = object.huTileArray[i] | 0;
             }
             return message;
@@ -12878,7 +12878,7 @@ $root.msg = (function() {
         MahjongChiPengGangHuOpHintResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.huTileArray = [];
             if (options.defaults) {
@@ -12915,7 +12915,7 @@ $root.msg = (function() {
                 object.jianZiHuHint = message.jianZiHuHint;
             if (message.huTileArray && message.huTileArray.length) {
                 object.huTileArray = [];
-                for (var j = 0; j < message.huTileArray.length; ++j)
+                for (let j = 0; j < message.huTileArray.length; ++j)
                     object.huTileArray[j] = message.huTileArray[j];
             }
             return object;
@@ -12969,7 +12969,7 @@ $root.msg = (function() {
          */
         function MahjongChiCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -13038,9 +13038,9 @@ $root.msg = (function() {
         MahjongChiCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -13100,7 +13100,7 @@ $root.msg = (function() {
         MahjongChiCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChiCmd)
                 return object;
-            var message = new $root.msg.MahjongChiCmd();
+            let message = new $root.msg.MahjongChiCmd();
             if (object.selectedOption != null)
                 message.selectedOption = object.selectedOption | 0;
             return message;
@@ -13118,7 +13118,7 @@ $root.msg = (function() {
         MahjongChiCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.selectedOption = 0;
             if (message.selectedOption != null && message.hasOwnProperty("selectedOption"))
@@ -13174,7 +13174,7 @@ $root.msg = (function() {
          */
         function MahjongChiResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -13243,9 +13243,9 @@ $root.msg = (function() {
         MahjongChiResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -13289,7 +13289,7 @@ $root.msg = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.mahjongChi != null && message.hasOwnProperty("mahjongChi")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongChi);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongChi);
                 if (error)
                     return "mahjongChi." + error;
             }
@@ -13307,7 +13307,7 @@ $root.msg = (function() {
         MahjongChiResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChiResult)
                 return object;
-            var message = new $root.msg.MahjongChiResult();
+            let message = new $root.msg.MahjongChiResult();
             if (object.mahjongChi != null) {
                 if (typeof object.mahjongChi !== "object")
                     throw TypeError(".msg.MahjongChiResult.mahjongChi: object expected");
@@ -13328,7 +13328,7 @@ $root.msg = (function() {
         MahjongChiResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.mahjongChi = null;
             if (message.mahjongChi != null && message.hasOwnProperty("mahjongChi"))
@@ -13385,7 +13385,7 @@ $root.msg = (function() {
          */
         function MahjongChiBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -13464,9 +13464,9 @@ $root.msg = (function() {
         MahjongChiBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongChiBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -13517,7 +13517,7 @@ $root.msg = (function() {
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
             if (message.mahjongChi != null && message.hasOwnProperty("mahjongChi")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongChi);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongChi);
                 if (error)
                     return "mahjongChi." + error;
             }
@@ -13535,7 +13535,7 @@ $root.msg = (function() {
         MahjongChiBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongChiBroadcast)
                 return object;
-            var message = new $root.msg.MahjongChiBroadcast();
+            let message = new $root.msg.MahjongChiBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongChi != null) {
@@ -13558,7 +13558,7 @@ $root.msg = (function() {
         MahjongChiBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.mahjongChi = null;
@@ -13617,7 +13617,7 @@ $root.msg = (function() {
          */
         function MahjongPengCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -13676,9 +13676,9 @@ $root.msg = (function() {
         MahjongPengCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPengCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPengCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -13795,7 +13795,7 @@ $root.msg = (function() {
          */
         function MahjongPengResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -13864,9 +13864,9 @@ $root.msg = (function() {
         MahjongPengResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPengResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPengResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -13910,7 +13910,7 @@ $root.msg = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.mahjongPeng != null && message.hasOwnProperty("mahjongPeng")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongPeng);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongPeng);
                 if (error)
                     return "mahjongPeng." + error;
             }
@@ -13928,7 +13928,7 @@ $root.msg = (function() {
         MahjongPengResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongPengResult)
                 return object;
-            var message = new $root.msg.MahjongPengResult();
+            let message = new $root.msg.MahjongPengResult();
             if (object.mahjongPeng != null) {
                 if (typeof object.mahjongPeng !== "object")
                     throw TypeError(".msg.MahjongPengResult.mahjongPeng: object expected");
@@ -13949,7 +13949,7 @@ $root.msg = (function() {
         MahjongPengResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.mahjongPeng = null;
             if (message.mahjongPeng != null && message.hasOwnProperty("mahjongPeng"))
@@ -14006,7 +14006,7 @@ $root.msg = (function() {
          */
         function MahjongPengBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -14085,9 +14085,9 @@ $root.msg = (function() {
         MahjongPengBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPengBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPengBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -14138,7 +14138,7 @@ $root.msg = (function() {
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
             if (message.mahjongPeng != null && message.hasOwnProperty("mahjongPeng")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongPeng);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongPeng);
                 if (error)
                     return "mahjongPeng." + error;
             }
@@ -14156,7 +14156,7 @@ $root.msg = (function() {
         MahjongPengBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongPengBroadcast)
                 return object;
-            var message = new $root.msg.MahjongPengBroadcast();
+            let message = new $root.msg.MahjongPengBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongPeng != null) {
@@ -14179,7 +14179,7 @@ $root.msg = (function() {
         MahjongPengBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.mahjongPeng = null;
@@ -14238,7 +14238,7 @@ $root.msg = (function() {
          */
         function MahjongGangCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -14297,9 +14297,9 @@ $root.msg = (function() {
         MahjongGangCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongGangCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongGangCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -14416,7 +14416,7 @@ $root.msg = (function() {
          */
         function MahjongMingGangResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -14485,9 +14485,9 @@ $root.msg = (function() {
         MahjongMingGangResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMingGangResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMingGangResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -14531,7 +14531,7 @@ $root.msg = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.mahjongMingGang != null && message.hasOwnProperty("mahjongMingGang")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongMingGang);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongMingGang);
                 if (error)
                     return "mahjongMingGang." + error;
             }
@@ -14549,7 +14549,7 @@ $root.msg = (function() {
         MahjongMingGangResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongMingGangResult)
                 return object;
-            var message = new $root.msg.MahjongMingGangResult();
+            let message = new $root.msg.MahjongMingGangResult();
             if (object.mahjongMingGang != null) {
                 if (typeof object.mahjongMingGang !== "object")
                     throw TypeError(".msg.MahjongMingGangResult.mahjongMingGang: object expected");
@@ -14570,7 +14570,7 @@ $root.msg = (function() {
         MahjongMingGangResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.mahjongMingGang = null;
             if (message.mahjongMingGang != null && message.hasOwnProperty("mahjongMingGang"))
@@ -14626,7 +14626,7 @@ $root.msg = (function() {
          */
         function MahjongAnGangResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -14695,9 +14695,9 @@ $root.msg = (function() {
         MahjongAnGangResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongAnGangResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongAnGangResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -14741,7 +14741,7 @@ $root.msg = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.mahjongAnGang != null && message.hasOwnProperty("mahjongAnGang")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongAnGang);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongAnGang);
                 if (error)
                     return "mahjongAnGang." + error;
             }
@@ -14759,7 +14759,7 @@ $root.msg = (function() {
         MahjongAnGangResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongAnGangResult)
                 return object;
-            var message = new $root.msg.MahjongAnGangResult();
+            let message = new $root.msg.MahjongAnGangResult();
             if (object.mahjongAnGang != null) {
                 if (typeof object.mahjongAnGang !== "object")
                     throw TypeError(".msg.MahjongAnGangResult.mahjongAnGang: object expected");
@@ -14780,7 +14780,7 @@ $root.msg = (function() {
         MahjongAnGangResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.mahjongAnGang = null;
             if (message.mahjongAnGang != null && message.hasOwnProperty("mahjongAnGang"))
@@ -14836,7 +14836,7 @@ $root.msg = (function() {
          */
         function MahjongBuGangResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -14905,9 +14905,9 @@ $root.msg = (function() {
         MahjongBuGangResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuGangResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuGangResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -14951,7 +14951,7 @@ $root.msg = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.mahjongBuGang != null && message.hasOwnProperty("mahjongBuGang")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongBuGang);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongBuGang);
                 if (error)
                     return "mahjongBuGang." + error;
             }
@@ -14969,7 +14969,7 @@ $root.msg = (function() {
         MahjongBuGangResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongBuGangResult)
                 return object;
-            var message = new $root.msg.MahjongBuGangResult();
+            let message = new $root.msg.MahjongBuGangResult();
             if (object.mahjongBuGang != null) {
                 if (typeof object.mahjongBuGang !== "object")
                     throw TypeError(".msg.MahjongBuGangResult.mahjongBuGang: object expected");
@@ -14990,7 +14990,7 @@ $root.msg = (function() {
         MahjongBuGangResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.mahjongBuGang = null;
             if (message.mahjongBuGang != null && message.hasOwnProperty("mahjongBuGang"))
@@ -15047,7 +15047,7 @@ $root.msg = (function() {
          */
         function MahjongMingGangBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -15126,9 +15126,9 @@ $root.msg = (function() {
         MahjongMingGangBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMingGangBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongMingGangBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -15179,7 +15179,7 @@ $root.msg = (function() {
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
             if (message.mahjongMingGang != null && message.hasOwnProperty("mahjongMingGang")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongMingGang);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongMingGang);
                 if (error)
                     return "mahjongMingGang." + error;
             }
@@ -15197,7 +15197,7 @@ $root.msg = (function() {
         MahjongMingGangBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongMingGangBroadcast)
                 return object;
-            var message = new $root.msg.MahjongMingGangBroadcast();
+            let message = new $root.msg.MahjongMingGangBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongMingGang != null) {
@@ -15220,7 +15220,7 @@ $root.msg = (function() {
         MahjongMingGangBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.mahjongMingGang = null;
@@ -15281,7 +15281,7 @@ $root.msg = (function() {
          */
         function MahjongAnGangBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -15360,9 +15360,9 @@ $root.msg = (function() {
         MahjongAnGangBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongAnGangBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongAnGangBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -15413,7 +15413,7 @@ $root.msg = (function() {
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
             if (message.mahjongAnGang != null && message.hasOwnProperty("mahjongAnGang")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongAnGang);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongAnGang);
                 if (error)
                     return "mahjongAnGang." + error;
             }
@@ -15431,7 +15431,7 @@ $root.msg = (function() {
         MahjongAnGangBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongAnGangBroadcast)
                 return object;
-            var message = new $root.msg.MahjongAnGangBroadcast();
+            let message = new $root.msg.MahjongAnGangBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongAnGang != null) {
@@ -15454,7 +15454,7 @@ $root.msg = (function() {
         MahjongAnGangBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.mahjongAnGang = null;
@@ -15515,7 +15515,7 @@ $root.msg = (function() {
          */
         function MahjongBuGangBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -15594,9 +15594,9 @@ $root.msg = (function() {
         MahjongBuGangBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuGangBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuGangBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -15647,7 +15647,7 @@ $root.msg = (function() {
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
             if (message.mahjongBuGang != null && message.hasOwnProperty("mahjongBuGang")) {
-                var error = $root.msg.MahjongChiPengGang.verify(message.mahjongBuGang);
+                let error = $root.msg.MahjongChiPengGang.verify(message.mahjongBuGang);
                 if (error)
                     return "mahjongBuGang." + error;
             }
@@ -15665,7 +15665,7 @@ $root.msg = (function() {
         MahjongBuGangBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongBuGangBroadcast)
                 return object;
-            var message = new $root.msg.MahjongBuGangBroadcast();
+            let message = new $root.msg.MahjongBuGangBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongBuGang != null) {
@@ -15688,7 +15688,7 @@ $root.msg = (function() {
         MahjongBuGangBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.mahjongBuGang = null;
@@ -15747,7 +15747,7 @@ $root.msg = (function() {
          */
         function MahjongLiangDaoCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -15806,9 +15806,9 @@ $root.msg = (function() {
         MahjongLiangDaoCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangDaoCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangDaoCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -15927,7 +15927,7 @@ $root.msg = (function() {
         function MahjongLiangDaoResult(properties) {
             this.mahjongInHand = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -15974,7 +15974,7 @@ $root.msg = (function() {
                 writer = $Writer.create();
             if (message.mahjongInHand != null && message.mahjongInHand.length) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork();
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     writer.sint32(message.mahjongInHand[i]);
                 writer.ldelim();
             }
@@ -16010,9 +16010,9 @@ $root.msg = (function() {
         MahjongLiangDaoResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangDaoResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangDaoResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -16020,7 +16020,7 @@ $root.msg = (function() {
                         if (!(message.mahjongInHand && message.mahjongInHand.length))
                             message.mahjongInHand = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.mahjongInHand.push(reader.sint32());
                         } else
@@ -16069,7 +16069,7 @@ $root.msg = (function() {
             if (message.mahjongInHand != null && message.hasOwnProperty("mahjongInHand")) {
                 if (!Array.isArray(message.mahjongInHand))
                     return "mahjongInHand: array expected";
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     if (!$util.isInteger(message.mahjongInHand[i]))
                         return "mahjongInHand: integer[] expected";
             }
@@ -16090,12 +16090,12 @@ $root.msg = (function() {
         MahjongLiangDaoResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongLiangDaoResult)
                 return object;
-            var message = new $root.msg.MahjongLiangDaoResult();
+            let message = new $root.msg.MahjongLiangDaoResult();
             if (object.mahjongInHand) {
                 if (!Array.isArray(object.mahjongInHand))
                     throw TypeError(".msg.MahjongLiangDaoResult.mahjongInHand: array expected");
                 message.mahjongInHand = [];
-                for (var i = 0; i < object.mahjongInHand.length; ++i)
+                for (let i = 0; i < object.mahjongInHand.length; ++i)
                     message.mahjongInHand[i] = object.mahjongInHand[i] | 0;
             }
             if (object.moPai != null)
@@ -16115,14 +16115,14 @@ $root.msg = (function() {
         MahjongLiangDaoResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.mahjongInHand = [];
             if (options.defaults)
                 object.moPai = 0;
             if (message.mahjongInHand && message.mahjongInHand.length) {
                 object.mahjongInHand = [];
-                for (var j = 0; j < message.mahjongInHand.length; ++j)
+                for (let j = 0; j < message.mahjongInHand.length; ++j)
                     object.mahjongInHand[j] = message.mahjongInHand[j];
             }
             if (message.moPai != null && message.hasOwnProperty("moPai"))
@@ -16181,7 +16181,7 @@ $root.msg = (function() {
         function MahjongLiangDaoBroadcast(properties) {
             this.mahjongInHand = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -16238,7 +16238,7 @@ $root.msg = (function() {
                 writer.uint32(/* id 1, wireType 0 =*/8).sint32(message.userId);
             if (message.mahjongInHand != null && message.mahjongInHand.length) {
                 writer.uint32(/* id 2, wireType 2 =*/18).fork();
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     writer.sint32(message.mahjongInHand[i]);
                 writer.ldelim();
             }
@@ -16274,9 +16274,9 @@ $root.msg = (function() {
         MahjongLiangDaoBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangDaoBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangDaoBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -16288,7 +16288,7 @@ $root.msg = (function() {
                         if (!(message.mahjongInHand && message.mahjongInHand.length))
                             message.mahjongInHand = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.mahjongInHand.push(reader.sint32());
                         } else
@@ -16340,7 +16340,7 @@ $root.msg = (function() {
             if (message.mahjongInHand != null && message.hasOwnProperty("mahjongInHand")) {
                 if (!Array.isArray(message.mahjongInHand))
                     return "mahjongInHand: array expected";
-                for (var i = 0; i < message.mahjongInHand.length; ++i)
+                for (let i = 0; i < message.mahjongInHand.length; ++i)
                     if (!$util.isInteger(message.mahjongInHand[i]))
                         return "mahjongInHand: integer[] expected";
             }
@@ -16361,14 +16361,14 @@ $root.msg = (function() {
         MahjongLiangDaoBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongLiangDaoBroadcast)
                 return object;
-            var message = new $root.msg.MahjongLiangDaoBroadcast();
+            let message = new $root.msg.MahjongLiangDaoBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongInHand) {
                 if (!Array.isArray(object.mahjongInHand))
                     throw TypeError(".msg.MahjongLiangDaoBroadcast.mahjongInHand: array expected");
                 message.mahjongInHand = [];
-                for (var i = 0; i < object.mahjongInHand.length; ++i)
+                for (let i = 0; i < object.mahjongInHand.length; ++i)
                     message.mahjongInHand[i] = object.mahjongInHand[i] | 0;
             }
             if (object.moPai != null)
@@ -16388,7 +16388,7 @@ $root.msg = (function() {
         MahjongLiangDaoBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.mahjongInHand = [];
             if (options.defaults) {
@@ -16399,7 +16399,7 @@ $root.msg = (function() {
                 object.userId = message.userId;
             if (message.mahjongInHand && message.mahjongInHand.length) {
                 object.mahjongInHand = [];
-                for (var j = 0; j < message.mahjongInHand.length; ++j)
+                for (let j = 0; j < message.mahjongInHand.length; ++j)
                     object.mahjongInHand[j] = message.mahjongInHand[j];
             }
             if (message.moPai != null && message.hasOwnProperty("moPai"))
@@ -16454,7 +16454,7 @@ $root.msg = (function() {
          */
         function MahjongHuCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -16513,9 +16513,9 @@ $root.msg = (function() {
         MahjongHuCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -16637,7 +16637,7 @@ $root.msg = (function() {
         function MahjongHuOrZiMoResult(properties) {
             this.huPattern = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -16715,7 +16715,7 @@ $root.msg = (function() {
             if (message.dianPaoUserId != null && Object.hasOwnProperty.call(message, "dianPaoUserId"))
                 writer.uint32(/* id 4, wireType 0 =*/32).sint32(message.dianPaoUserId);
             if (message.huPattern != null && message.huPattern.length)
-                for (var i = 0; i < message.huPattern.length; ++i)
+                for (let i = 0; i < message.huPattern.length; ++i)
                     $root.msg.KeyAndVal.encode(message.huPattern[i], writer.uint32(/* id 5, wireType 2 =*/42).fork()).ldelim();
             return writer;
         };
@@ -16747,9 +16747,9 @@ $root.msg = (function() {
         MahjongHuOrZiMoResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuOrZiMoResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuOrZiMoResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -16825,8 +16825,8 @@ $root.msg = (function() {
             if (message.huPattern != null && message.hasOwnProperty("huPattern")) {
                 if (!Array.isArray(message.huPattern))
                     return "huPattern: array expected";
-                for (var i = 0; i < message.huPattern.length; ++i) {
-                    var error = $root.msg.KeyAndVal.verify(message.huPattern[i]);
+                for (let i = 0; i < message.huPattern.length; ++i) {
+                    let error = $root.msg.KeyAndVal.verify(message.huPattern[i]);
                     if (error)
                         return "huPattern." + error;
                 }
@@ -16845,7 +16845,7 @@ $root.msg = (function() {
         MahjongHuOrZiMoResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongHuOrZiMoResult)
                 return object;
-            var message = new $root.msg.MahjongHuOrZiMoResult();
+            let message = new $root.msg.MahjongHuOrZiMoResult();
             if (object.t != null)
                 message.t = object.t | 0;
             if (object.hu != null)
@@ -16858,7 +16858,7 @@ $root.msg = (function() {
                 if (!Array.isArray(object.huPattern))
                     throw TypeError(".msg.MahjongHuOrZiMoResult.huPattern: array expected");
                 message.huPattern = [];
-                for (var i = 0; i < object.huPattern.length; ++i) {
+                for (let i = 0; i < object.huPattern.length; ++i) {
                     if (typeof object.huPattern[i] !== "object")
                         throw TypeError(".msg.MahjongHuOrZiMoResult.huPattern: object expected");
                     message.huPattern[i] = $root.msg.KeyAndVal.fromObject(object.huPattern[i]);
@@ -16879,7 +16879,7 @@ $root.msg = (function() {
         MahjongHuOrZiMoResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.huPattern = [];
             if (options.defaults) {
@@ -16898,7 +16898,7 @@ $root.msg = (function() {
                 object.dianPaoUserId = message.dianPaoUserId;
             if (message.huPattern && message.huPattern.length) {
                 object.huPattern = [];
-                for (var j = 0; j < message.huPattern.length; ++j)
+                for (let j = 0; j < message.huPattern.length; ++j)
                     object.huPattern[j] = $root.msg.KeyAndVal.toObject(message.huPattern[j], options);
             }
             return object;
@@ -16958,7 +16958,7 @@ $root.msg = (function() {
         function MahjongHuOrZiMoBroadcast(properties) {
             this.huPattern = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -17046,7 +17046,7 @@ $root.msg = (function() {
             if (message.dianPaoUserId != null && Object.hasOwnProperty.call(message, "dianPaoUserId"))
                 writer.uint32(/* id 5, wireType 0 =*/40).sint32(message.dianPaoUserId);
             if (message.huPattern != null && message.huPattern.length)
-                for (var i = 0; i < message.huPattern.length; ++i)
+                for (let i = 0; i < message.huPattern.length; ++i)
                     $root.msg.KeyAndVal.encode(message.huPattern[i], writer.uint32(/* id 6, wireType 2 =*/50).fork()).ldelim();
             return writer;
         };
@@ -17078,9 +17078,9 @@ $root.msg = (function() {
         MahjongHuOrZiMoBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuOrZiMoBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuOrZiMoBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -17163,8 +17163,8 @@ $root.msg = (function() {
             if (message.huPattern != null && message.hasOwnProperty("huPattern")) {
                 if (!Array.isArray(message.huPattern))
                     return "huPattern: array expected";
-                for (var i = 0; i < message.huPattern.length; ++i) {
-                    var error = $root.msg.KeyAndVal.verify(message.huPattern[i]);
+                for (let i = 0; i < message.huPattern.length; ++i) {
+                    let error = $root.msg.KeyAndVal.verify(message.huPattern[i]);
                     if (error)
                         return "huPattern." + error;
                 }
@@ -17183,7 +17183,7 @@ $root.msg = (function() {
         MahjongHuOrZiMoBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongHuOrZiMoBroadcast)
                 return object;
-            var message = new $root.msg.MahjongHuOrZiMoBroadcast();
+            let message = new $root.msg.MahjongHuOrZiMoBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.t != null)
@@ -17198,7 +17198,7 @@ $root.msg = (function() {
                 if (!Array.isArray(object.huPattern))
                     throw TypeError(".msg.MahjongHuOrZiMoBroadcast.huPattern: array expected");
                 message.huPattern = [];
-                for (var i = 0; i < object.huPattern.length; ++i) {
+                for (let i = 0; i < object.huPattern.length; ++i) {
                     if (typeof object.huPattern[i] !== "object")
                         throw TypeError(".msg.MahjongHuOrZiMoBroadcast.huPattern: object expected");
                     message.huPattern[i] = $root.msg.KeyAndVal.fromObject(object.huPattern[i]);
@@ -17219,7 +17219,7 @@ $root.msg = (function() {
         MahjongHuOrZiMoBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.huPattern = [];
             if (options.defaults) {
@@ -17241,7 +17241,7 @@ $root.msg = (function() {
                 object.dianPaoUserId = message.dianPaoUserId;
             if (message.huPattern && message.huPattern.length) {
                 object.huPattern = [];
-                for (var j = 0; j < message.huPattern.length; ++j)
+                for (let j = 0; j < message.huPattern.length; ++j)
                     object.huPattern[j] = $root.msg.KeyAndVal.toObject(message.huPattern[j], options);
             }
             return object;
@@ -17294,7 +17294,7 @@ $root.msg = (function() {
          */
         function MahjongGuoCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -17353,9 +17353,9 @@ $root.msg = (function() {
         MahjongGuoCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongGuoCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongGuoCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -17472,7 +17472,7 @@ $root.msg = (function() {
          */
         function MahjongGuoResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -17541,9 +17541,9 @@ $root.msg = (function() {
         MahjongGuoResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongGuoResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongGuoResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -17603,7 +17603,7 @@ $root.msg = (function() {
         MahjongGuoResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongGuoResult)
                 return object;
-            var message = new $root.msg.MahjongGuoResult();
+            let message = new $root.msg.MahjongGuoResult();
             if (object.ok != null)
                 message.ok = Boolean(object.ok);
             return message;
@@ -17621,7 +17621,7 @@ $root.msg = (function() {
         MahjongGuoResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.ok = false;
             if (message.ok != null && message.hasOwnProperty("ok"))
@@ -17676,7 +17676,7 @@ $root.msg = (function() {
          */
         function MahjongHuangZhuangBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -17735,9 +17735,9 @@ $root.msg = (function() {
         MahjongHuangZhuangBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuangZhuangBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongHuangZhuangBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -17855,7 +17855,7 @@ $root.msg = (function() {
         function RoundSettlementBroadcast(properties) {
             this.settlementItem = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -17893,7 +17893,7 @@ $root.msg = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.settlementItem != null && message.settlementItem.length)
-                for (var i = 0; i < message.settlementItem.length; ++i)
+                for (let i = 0; i < message.settlementItem.length; ++i)
                     $root.msg.RoundSettlementBroadcast.SettlementItem.encode(message.settlementItem[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
@@ -17925,9 +17925,9 @@ $root.msg = (function() {
         RoundSettlementBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoundSettlementBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoundSettlementBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -17975,8 +17975,8 @@ $root.msg = (function() {
             if (message.settlementItem != null && message.hasOwnProperty("settlementItem")) {
                 if (!Array.isArray(message.settlementItem))
                     return "settlementItem: array expected";
-                for (var i = 0; i < message.settlementItem.length; ++i) {
-                    var error = $root.msg.RoundSettlementBroadcast.SettlementItem.verify(message.settlementItem[i]);
+                for (let i = 0; i < message.settlementItem.length; ++i) {
+                    let error = $root.msg.RoundSettlementBroadcast.SettlementItem.verify(message.settlementItem[i]);
                     if (error)
                         return "settlementItem." + error;
                 }
@@ -17995,12 +17995,12 @@ $root.msg = (function() {
         RoundSettlementBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.RoundSettlementBroadcast)
                 return object;
-            var message = new $root.msg.RoundSettlementBroadcast();
+            let message = new $root.msg.RoundSettlementBroadcast();
             if (object.settlementItem) {
                 if (!Array.isArray(object.settlementItem))
                     throw TypeError(".msg.RoundSettlementBroadcast.settlementItem: array expected");
                 message.settlementItem = [];
-                for (var i = 0; i < object.settlementItem.length; ++i) {
+                for (let i = 0; i < object.settlementItem.length; ++i) {
                     if (typeof object.settlementItem[i] !== "object")
                         throw TypeError(".msg.RoundSettlementBroadcast.settlementItem: object expected");
                     message.settlementItem[i] = $root.msg.RoundSettlementBroadcast.SettlementItem.fromObject(object.settlementItem[i]);
@@ -18021,12 +18021,12 @@ $root.msg = (function() {
         RoundSettlementBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.settlementItem = [];
             if (message.settlementItem && message.settlementItem.length) {
                 object.settlementItem = [];
-                for (var j = 0; j < message.settlementItem.length; ++j)
+                for (let j = 0; j < message.settlementItem.length; ++j)
                     object.settlementItem[j] = $root.msg.RoundSettlementBroadcast.SettlementItem.toObject(message.settlementItem[j], options);
             }
             return object;
@@ -18096,7 +18096,7 @@ $root.msg = (function() {
                 this.mahjongInHand = [];
                 this.mahjongChiPengGang = [];
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -18274,21 +18274,21 @@ $root.msg = (function() {
                 if (message.ziMo != null && Object.hasOwnProperty.call(message, "ziMo"))
                     writer.uint32(/* id 10, wireType 0 =*/80).bool(message.ziMo);
                 if (message.huPattern != null && message.huPattern.length)
-                    for (var i = 0; i < message.huPattern.length; ++i)
+                    for (let i = 0; i < message.huPattern.length; ++i)
                         $root.msg.KeyAndVal.encode(message.huPattern[i], writer.uint32(/* id 11, wireType 2 =*/90).fork()).ldelim();
                 if (message.gangPattern != null && message.gangPattern.length)
-                    for (var i = 0; i < message.gangPattern.length; ++i)
+                    for (let i = 0; i < message.gangPattern.length; ++i)
                         $root.msg.KeyAndVal.encode(message.gangPattern[i], writer.uint32(/* id 12, wireType 2 =*/98).fork()).ldelim();
                 if (message.mahjongInHand != null && message.mahjongInHand.length) {
                     writer.uint32(/* id 13, wireType 2 =*/106).fork();
-                    for (var i = 0; i < message.mahjongInHand.length; ++i)
+                    for (let i = 0; i < message.mahjongInHand.length; ++i)
                         writer.sint32(message.mahjongInHand[i]);
                     writer.ldelim();
                 }
                 if (message.mahjongHuOrZiMo != null && Object.hasOwnProperty.call(message, "mahjongHuOrZiMo"))
                     writer.uint32(/* id 14, wireType 0 =*/112).sint32(message.mahjongHuOrZiMo);
                 if (message.mahjongChiPengGang != null && message.mahjongChiPengGang.length)
-                    for (var i = 0; i < message.mahjongChiPengGang.length; ++i)
+                    for (let i = 0; i < message.mahjongChiPengGang.length; ++i)
                         $root.msg.MahjongChiPengGang.encode(message.mahjongChiPengGang[i], writer.uint32(/* id 15, wireType 2 =*/122).fork()).ldelim();
                 if (message.mahjongLiangFeng != null && Object.hasOwnProperty.call(message, "mahjongLiangFeng"))
                     $root.msg.MahjongLiangFeng.encode(message.mahjongLiangFeng, writer.uint32(/* id 16, wireType 2 =*/130).fork()).ldelim();
@@ -18322,9 +18322,9 @@ $root.msg = (function() {
             SettlementItem.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoundSettlementBroadcast.SettlementItem();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoundSettlementBroadcast.SettlementItem();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     if (tag === error)
                         break;
                     switch (tag >>> 3) {
@@ -18384,7 +18384,7 @@ $root.msg = (function() {
                             if (!(message.mahjongInHand && message.mahjongInHand.length))
                                 message.mahjongInHand = [];
                             if ((tag & 7) === 2) {
-                                var end2 = reader.uint32() + reader.pos;
+                                let end2 = reader.uint32() + reader.pos;
                                 while (reader.pos < end2)
                                     message.mahjongInHand.push(reader.sint32());
                             } else
@@ -18473,8 +18473,8 @@ $root.msg = (function() {
                 if (message.huPattern != null && message.hasOwnProperty("huPattern")) {
                     if (!Array.isArray(message.huPattern))
                         return "huPattern: array expected";
-                    for (var i = 0; i < message.huPattern.length; ++i) {
-                        var error = $root.msg.KeyAndVal.verify(message.huPattern[i]);
+                    for (let i = 0; i < message.huPattern.length; ++i) {
+                        let error = $root.msg.KeyAndVal.verify(message.huPattern[i]);
                         if (error)
                             return "huPattern." + error;
                     }
@@ -18482,8 +18482,8 @@ $root.msg = (function() {
                 if (message.gangPattern != null && message.hasOwnProperty("gangPattern")) {
                     if (!Array.isArray(message.gangPattern))
                         return "gangPattern: array expected";
-                    for (var i = 0; i < message.gangPattern.length; ++i) {
-                        var error = $root.msg.KeyAndVal.verify(message.gangPattern[i]);
+                    for (let i = 0; i < message.gangPattern.length; ++i) {
+                        let error = $root.msg.KeyAndVal.verify(message.gangPattern[i]);
                         if (error)
                             return "gangPattern." + error;
                     }
@@ -18491,7 +18491,7 @@ $root.msg = (function() {
                 if (message.mahjongInHand != null && message.hasOwnProperty("mahjongInHand")) {
                     if (!Array.isArray(message.mahjongInHand))
                         return "mahjongInHand: array expected";
-                    for (var i = 0; i < message.mahjongInHand.length; ++i)
+                    for (let i = 0; i < message.mahjongInHand.length; ++i)
                         if (!$util.isInteger(message.mahjongInHand[i]))
                             return "mahjongInHand: integer[] expected";
                 }
@@ -18501,14 +18501,14 @@ $root.msg = (function() {
                 if (message.mahjongChiPengGang != null && message.hasOwnProperty("mahjongChiPengGang")) {
                     if (!Array.isArray(message.mahjongChiPengGang))
                         return "mahjongChiPengGang: array expected";
-                    for (var i = 0; i < message.mahjongChiPengGang.length; ++i) {
-                        var error = $root.msg.MahjongChiPengGang.verify(message.mahjongChiPengGang[i]);
+                    for (let i = 0; i < message.mahjongChiPengGang.length; ++i) {
+                        let error = $root.msg.MahjongChiPengGang.verify(message.mahjongChiPengGang[i]);
                         if (error)
                             return "mahjongChiPengGang." + error;
                     }
                 }
                 if (message.mahjongLiangFeng != null && message.hasOwnProperty("mahjongLiangFeng")) {
-                    var error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
+                    let error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
                     if (error)
                         return "mahjongLiangFeng." + error;
                 }
@@ -18526,7 +18526,7 @@ $root.msg = (function() {
             SettlementItem.fromObject = function fromObject(object) {
                 if (object instanceof $root.msg.RoundSettlementBroadcast.SettlementItem)
                     return object;
-                var message = new $root.msg.RoundSettlementBroadcast.SettlementItem();
+                let message = new $root.msg.RoundSettlementBroadcast.SettlementItem();
                 if (object.userId != null)
                     message.userId = object.userId | 0;
                 if (object.currScore != null)
@@ -18551,7 +18551,7 @@ $root.msg = (function() {
                     if (!Array.isArray(object.huPattern))
                         throw TypeError(".msg.RoundSettlementBroadcast.SettlementItem.huPattern: array expected");
                     message.huPattern = [];
-                    for (var i = 0; i < object.huPattern.length; ++i) {
+                    for (let i = 0; i < object.huPattern.length; ++i) {
                         if (typeof object.huPattern[i] !== "object")
                             throw TypeError(".msg.RoundSettlementBroadcast.SettlementItem.huPattern: object expected");
                         message.huPattern[i] = $root.msg.KeyAndVal.fromObject(object.huPattern[i]);
@@ -18561,7 +18561,7 @@ $root.msg = (function() {
                     if (!Array.isArray(object.gangPattern))
                         throw TypeError(".msg.RoundSettlementBroadcast.SettlementItem.gangPattern: array expected");
                     message.gangPattern = [];
-                    for (var i = 0; i < object.gangPattern.length; ++i) {
+                    for (let i = 0; i < object.gangPattern.length; ++i) {
                         if (typeof object.gangPattern[i] !== "object")
                             throw TypeError(".msg.RoundSettlementBroadcast.SettlementItem.gangPattern: object expected");
                         message.gangPattern[i] = $root.msg.KeyAndVal.fromObject(object.gangPattern[i]);
@@ -18571,7 +18571,7 @@ $root.msg = (function() {
                     if (!Array.isArray(object.mahjongInHand))
                         throw TypeError(".msg.RoundSettlementBroadcast.SettlementItem.mahjongInHand: array expected");
                     message.mahjongInHand = [];
-                    for (var i = 0; i < object.mahjongInHand.length; ++i)
+                    for (let i = 0; i < object.mahjongInHand.length; ++i)
                         message.mahjongInHand[i] = object.mahjongInHand[i] | 0;
                 }
                 if (object.mahjongHuOrZiMo != null)
@@ -18580,7 +18580,7 @@ $root.msg = (function() {
                     if (!Array.isArray(object.mahjongChiPengGang))
                         throw TypeError(".msg.RoundSettlementBroadcast.SettlementItem.mahjongChiPengGang: array expected");
                     message.mahjongChiPengGang = [];
-                    for (var i = 0; i < object.mahjongChiPengGang.length; ++i) {
+                    for (let i = 0; i < object.mahjongChiPengGang.length; ++i) {
                         if (typeof object.mahjongChiPengGang[i] !== "object")
                             throw TypeError(".msg.RoundSettlementBroadcast.SettlementItem.mahjongChiPengGang: object expected");
                         message.mahjongChiPengGang[i] = $root.msg.MahjongChiPengGang.fromObject(object.mahjongChiPengGang[i]);
@@ -18606,7 +18606,7 @@ $root.msg = (function() {
             SettlementItem.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.arrays || options.defaults) {
                     object.huPattern = [];
                     object.gangPattern = [];
@@ -18649,24 +18649,24 @@ $root.msg = (function() {
                     object.ziMo = message.ziMo;
                 if (message.huPattern && message.huPattern.length) {
                     object.huPattern = [];
-                    for (var j = 0; j < message.huPattern.length; ++j)
+                    for (let j = 0; j < message.huPattern.length; ++j)
                         object.huPattern[j] = $root.msg.KeyAndVal.toObject(message.huPattern[j], options);
                 }
                 if (message.gangPattern && message.gangPattern.length) {
                     object.gangPattern = [];
-                    for (var j = 0; j < message.gangPattern.length; ++j)
+                    for (let j = 0; j < message.gangPattern.length; ++j)
                         object.gangPattern[j] = $root.msg.KeyAndVal.toObject(message.gangPattern[j], options);
                 }
                 if (message.mahjongInHand && message.mahjongInHand.length) {
                     object.mahjongInHand = [];
-                    for (var j = 0; j < message.mahjongInHand.length; ++j)
+                    for (let j = 0; j < message.mahjongInHand.length; ++j)
                         object.mahjongInHand[j] = message.mahjongInHand[j];
                 }
                 if (message.mahjongHuOrZiMo != null && message.hasOwnProperty("mahjongHuOrZiMo"))
                     object.mahjongHuOrZiMo = message.mahjongHuOrZiMo;
                 if (message.mahjongChiPengGang && message.mahjongChiPengGang.length) {
                     object.mahjongChiPengGang = [];
-                    for (var j = 0; j < message.mahjongChiPengGang.length; ++j)
+                    for (let j = 0; j < message.mahjongChiPengGang.length; ++j)
                         object.mahjongChiPengGang[j] = $root.msg.MahjongChiPengGang.toObject(message.mahjongChiPengGang[j], options);
                 }
                 if (message.mahjongLiangFeng != null && message.hasOwnProperty("mahjongLiangFeng"))
@@ -18726,7 +18726,7 @@ $root.msg = (function() {
         function RoomSettlementBroadcast(properties) {
             this.settlementItem = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -18764,7 +18764,7 @@ $root.msg = (function() {
             if (!writer)
                 writer = $Writer.create();
             if (message.settlementItem != null && message.settlementItem.length)
-                for (var i = 0; i < message.settlementItem.length; ++i)
+                for (let i = 0; i < message.settlementItem.length; ++i)
                     $root.msg.RoomSettlementBroadcast.SettlementItem.encode(message.settlementItem[i], writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
             return writer;
         };
@@ -18796,9 +18796,9 @@ $root.msg = (function() {
         RoomSettlementBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoomSettlementBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoomSettlementBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -18846,8 +18846,8 @@ $root.msg = (function() {
             if (message.settlementItem != null && message.hasOwnProperty("settlementItem")) {
                 if (!Array.isArray(message.settlementItem))
                     return "settlementItem: array expected";
-                for (var i = 0; i < message.settlementItem.length; ++i) {
-                    var error = $root.msg.RoomSettlementBroadcast.SettlementItem.verify(message.settlementItem[i]);
+                for (let i = 0; i < message.settlementItem.length; ++i) {
+                    let error = $root.msg.RoomSettlementBroadcast.SettlementItem.verify(message.settlementItem[i]);
                     if (error)
                         return "settlementItem." + error;
                 }
@@ -18866,12 +18866,12 @@ $root.msg = (function() {
         RoomSettlementBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.RoomSettlementBroadcast)
                 return object;
-            var message = new $root.msg.RoomSettlementBroadcast();
+            let message = new $root.msg.RoomSettlementBroadcast();
             if (object.settlementItem) {
                 if (!Array.isArray(object.settlementItem))
                     throw TypeError(".msg.RoomSettlementBroadcast.settlementItem: array expected");
                 message.settlementItem = [];
-                for (var i = 0; i < object.settlementItem.length; ++i) {
+                for (let i = 0; i < object.settlementItem.length; ++i) {
                     if (typeof object.settlementItem[i] !== "object")
                         throw TypeError(".msg.RoomSettlementBroadcast.settlementItem: object expected");
                     message.settlementItem[i] = $root.msg.RoomSettlementBroadcast.SettlementItem.fromObject(object.settlementItem[i]);
@@ -18892,12 +18892,12 @@ $root.msg = (function() {
         RoomSettlementBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.settlementItem = [];
             if (message.settlementItem && message.settlementItem.length) {
                 object.settlementItem = [];
-                for (var j = 0; j < message.settlementItem.length; ++j)
+                for (let j = 0; j < message.settlementItem.length; ++j)
                     object.settlementItem[j] = $root.msg.RoomSettlementBroadcast.SettlementItem.toObject(message.settlementItem[j], options);
             }
             return object;
@@ -18956,7 +18956,7 @@ $root.msg = (function() {
              */
             function SettlementItem(properties) {
                 if (properties)
-                    for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                    for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                         if (properties[keys[i]] != null)
                             this[keys[i]] = properties[keys[i]];
             }
@@ -19105,9 +19105,9 @@ $root.msg = (function() {
             SettlementItem.decode = function decode(reader, length, error) {
                 if (!(reader instanceof $Reader))
                     reader = $Reader.create(reader);
-                var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoomSettlementBroadcast.SettlementItem();
+                let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.RoomSettlementBroadcast.SettlementItem();
                 while (reader.pos < end) {
-                    var tag = reader.uint32();
+                    let tag = reader.uint32();
                     if (tag === error)
                         break;
                     switch (tag >>> 3) {
@@ -19223,7 +19223,7 @@ $root.msg = (function() {
             SettlementItem.fromObject = function fromObject(object) {
                 if (object instanceof $root.msg.RoomSettlementBroadcast.SettlementItem)
                     return object;
-                var message = new $root.msg.RoomSettlementBroadcast.SettlementItem();
+                let message = new $root.msg.RoomSettlementBroadcast.SettlementItem();
                 if (object.userId != null)
                     message.userId = object.userId | 0;
                 if (object.seatIndex != null)
@@ -19257,7 +19257,7 @@ $root.msg = (function() {
             SettlementItem.toObject = function toObject(message, options) {
                 if (!options)
                     options = {};
-                var object = {};
+                let object = {};
                 if (options.defaults) {
                     object.userId = 0;
                     object.seatIndex = 0;
@@ -19343,7 +19343,7 @@ $root.msg = (function() {
          */
         function MahjongLiangFengCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -19432,9 +19432,9 @@ $root.msg = (function() {
         MahjongLiangFengCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFengCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFengCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -19508,7 +19508,7 @@ $root.msg = (function() {
         MahjongLiangFengCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongLiangFengCmd)
                 return object;
-            var message = new $root.msg.MahjongLiangFengCmd();
+            let message = new $root.msg.MahjongLiangFengCmd();
             if (object.t0 != null)
                 message.t0 = object.t0 | 0;
             if (object.t1 != null)
@@ -19530,7 +19530,7 @@ $root.msg = (function() {
         MahjongLiangFengCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.t0 = 0;
                 object.t1 = 0;
@@ -19593,7 +19593,7 @@ $root.msg = (function() {
          */
         function MahjongLiangFengResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -19662,9 +19662,9 @@ $root.msg = (function() {
         MahjongLiangFengResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFengResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFengResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -19708,7 +19708,7 @@ $root.msg = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.mahjongLiangFeng != null && message.hasOwnProperty("mahjongLiangFeng")) {
-                var error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
+                let error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
                 if (error)
                     return "mahjongLiangFeng." + error;
             }
@@ -19726,7 +19726,7 @@ $root.msg = (function() {
         MahjongLiangFengResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongLiangFengResult)
                 return object;
-            var message = new $root.msg.MahjongLiangFengResult();
+            let message = new $root.msg.MahjongLiangFengResult();
             if (object.mahjongLiangFeng != null) {
                 if (typeof object.mahjongLiangFeng !== "object")
                     throw TypeError(".msg.MahjongLiangFengResult.mahjongLiangFeng: object expected");
@@ -19747,7 +19747,7 @@ $root.msg = (function() {
         MahjongLiangFengResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.mahjongLiangFeng = null;
             if (message.mahjongLiangFeng != null && message.hasOwnProperty("mahjongLiangFeng"))
@@ -19804,7 +19804,7 @@ $root.msg = (function() {
          */
         function MahjongLiangFengBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -19883,9 +19883,9 @@ $root.msg = (function() {
         MahjongLiangFengBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFengBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangFengBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -19936,7 +19936,7 @@ $root.msg = (function() {
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
             if (message.mahjongLiangFeng != null && message.hasOwnProperty("mahjongLiangFeng")) {
-                var error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
+                let error = $root.msg.MahjongLiangFeng.verify(message.mahjongLiangFeng);
                 if (error)
                     return "mahjongLiangFeng." + error;
             }
@@ -19954,7 +19954,7 @@ $root.msg = (function() {
         MahjongLiangFengBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongLiangFengBroadcast)
                 return object;
-            var message = new $root.msg.MahjongLiangFengBroadcast();
+            let message = new $root.msg.MahjongLiangFengBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongLiangFeng != null) {
@@ -19977,7 +19977,7 @@ $root.msg = (function() {
         MahjongLiangFengBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.mahjongLiangFeng = null;
@@ -20037,7 +20037,7 @@ $root.msg = (function() {
          */
         function MahjongBuFengCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -20106,9 +20106,9 @@ $root.msg = (function() {
         MahjongBuFengCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuFengCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuFengCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -20168,7 +20168,7 @@ $root.msg = (function() {
         MahjongBuFengCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongBuFengCmd)
                 return object;
-            var message = new $root.msg.MahjongBuFengCmd();
+            let message = new $root.msg.MahjongBuFengCmd();
             if (object.t0 != null)
                 message.t0 = object.t0 | 0;
             return message;
@@ -20186,7 +20186,7 @@ $root.msg = (function() {
         MahjongBuFengCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.t0 = 0;
             if (message.t0 != null && message.hasOwnProperty("t0"))
@@ -20242,7 +20242,7 @@ $root.msg = (function() {
          */
         function MahjongBuFengResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -20311,9 +20311,9 @@ $root.msg = (function() {
         MahjongBuFengResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuFengResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuFengResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -20357,7 +20357,7 @@ $root.msg = (function() {
             if (typeof message !== "object" || message === null)
                 return "object expected";
             if (message.mahjongBuFeng != null && message.hasOwnProperty("mahjongBuFeng")) {
-                var error = $root.msg.MahjongLiangFeng.verify(message.mahjongBuFeng);
+                let error = $root.msg.MahjongLiangFeng.verify(message.mahjongBuFeng);
                 if (error)
                     return "mahjongBuFeng." + error;
             }
@@ -20375,7 +20375,7 @@ $root.msg = (function() {
         MahjongBuFengResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongBuFengResult)
                 return object;
-            var message = new $root.msg.MahjongBuFengResult();
+            let message = new $root.msg.MahjongBuFengResult();
             if (object.mahjongBuFeng != null) {
                 if (typeof object.mahjongBuFeng !== "object")
                     throw TypeError(".msg.MahjongBuFengResult.mahjongBuFeng: object expected");
@@ -20396,7 +20396,7 @@ $root.msg = (function() {
         MahjongBuFengResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.mahjongBuFeng = null;
             if (message.mahjongBuFeng != null && message.hasOwnProperty("mahjongBuFeng"))
@@ -20453,7 +20453,7 @@ $root.msg = (function() {
          */
         function MahjongBuFengBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -20532,9 +20532,9 @@ $root.msg = (function() {
         MahjongBuFengBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuFengBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongBuFengBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -20585,7 +20585,7 @@ $root.msg = (function() {
                 if (!$util.isInteger(message.userId))
                     return "userId: integer expected";
             if (message.mahjongBuFeng != null && message.hasOwnProperty("mahjongBuFeng")) {
-                var error = $root.msg.MahjongLiangFeng.verify(message.mahjongBuFeng);
+                let error = $root.msg.MahjongLiangFeng.verify(message.mahjongBuFeng);
                 if (error)
                     return "mahjongBuFeng." + error;
             }
@@ -20603,7 +20603,7 @@ $root.msg = (function() {
         MahjongBuFengBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongBuFengBroadcast)
                 return object;
-            var message = new $root.msg.MahjongBuFengBroadcast();
+            let message = new $root.msg.MahjongBuFengBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.mahjongBuFeng != null) {
@@ -20626,7 +20626,7 @@ $root.msg = (function() {
         MahjongBuFengBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.mahjongBuFeng = null;
@@ -20686,7 +20686,7 @@ $root.msg = (function() {
          */
         function MahjongPiaoLaiCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -20755,9 +20755,9 @@ $root.msg = (function() {
         MahjongPiaoLaiCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPiaoLaiCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPiaoLaiCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -20817,7 +20817,7 @@ $root.msg = (function() {
         MahjongPiaoLaiCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongPiaoLaiCmd)
                 return object;
-            var message = new $root.msg.MahjongPiaoLaiCmd();
+            let message = new $root.msg.MahjongPiaoLaiCmd();
             if (object.laiZiTile != null)
                 message.laiZiTile = object.laiZiTile | 0;
             return message;
@@ -20835,7 +20835,7 @@ $root.msg = (function() {
         MahjongPiaoLaiCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.laiZiTile = 0;
             if (message.laiZiTile != null && message.hasOwnProperty("laiZiTile"))
@@ -20892,7 +20892,7 @@ $root.msg = (function() {
          */
         function MahjongPiaoLaiResult(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -20971,9 +20971,9 @@ $root.msg = (function() {
         MahjongPiaoLaiResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPiaoLaiResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPiaoLaiResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -21040,7 +21040,7 @@ $root.msg = (function() {
         MahjongPiaoLaiResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongPiaoLaiResult)
                 return object;
-            var message = new $root.msg.MahjongPiaoLaiResult();
+            let message = new $root.msg.MahjongPiaoLaiResult();
             if (object.laiZiTile != null)
                 message.laiZiTile = object.laiZiTile | 0;
             if (object.ok != null)
@@ -21060,7 +21060,7 @@ $root.msg = (function() {
         MahjongPiaoLaiResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.laiZiTile = 0;
                 object.ok = false;
@@ -21123,7 +21123,7 @@ $root.msg = (function() {
          */
         function MahjongPiaoLaiBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -21222,9 +21222,9 @@ $root.msg = (function() {
         MahjongPiaoLaiBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPiaoLaiBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongPiaoLaiBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -21305,7 +21305,7 @@ $root.msg = (function() {
         MahjongPiaoLaiBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongPiaoLaiBroadcast)
                 return object;
-            var message = new $root.msg.MahjongPiaoLaiBroadcast();
+            let message = new $root.msg.MahjongPiaoLaiBroadcast();
             if (object.userId != null)
                 message.userId = object.userId | 0;
             if (object.laiZiTile != null)
@@ -21329,7 +21329,7 @@ $root.msg = (function() {
         MahjongPiaoLaiBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.userId = 0;
                 object.laiZiTile = 0;
@@ -21396,7 +21396,7 @@ $root.msg = (function() {
          */
         function MahjongLiangGangDingBroadcast(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -21475,9 +21475,9 @@ $root.msg = (function() {
         MahjongLiangGangDingBroadcast.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangGangDingBroadcast();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongLiangGangDingBroadcast();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -21544,7 +21544,7 @@ $root.msg = (function() {
         MahjongLiangGangDingBroadcast.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongLiangGangDingBroadcast)
                 return object;
-            var message = new $root.msg.MahjongLiangGangDingBroadcast();
+            let message = new $root.msg.MahjongLiangGangDingBroadcast();
             if (object.t0 != null)
                 message.t0 = object.t0 | 0;
             if (object.t1 != null)
@@ -21564,7 +21564,7 @@ $root.msg = (function() {
         MahjongLiangGangDingBroadcast.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults) {
                 object.t0 = 0;
                 object.t1 = 0;
@@ -21624,7 +21624,7 @@ $root.msg = (function() {
          */
         function MahjongSelectTilePreviewCmd(properties) {
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -21693,9 +21693,9 @@ $root.msg = (function() {
         MahjongSelectTilePreviewCmd.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongSelectTilePreviewCmd();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongSelectTilePreviewCmd();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -21755,7 +21755,7 @@ $root.msg = (function() {
         MahjongSelectTilePreviewCmd.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongSelectTilePreviewCmd)
                 return object;
-            var message = new $root.msg.MahjongSelectTilePreviewCmd();
+            let message = new $root.msg.MahjongSelectTilePreviewCmd();
             if (object.selectTile != null)
                 message.selectTile = object.selectTile | 0;
             return message;
@@ -21773,7 +21773,7 @@ $root.msg = (function() {
         MahjongSelectTilePreviewCmd.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.defaults)
                 object.selectTile = 0;
             if (message.selectTile != null && message.hasOwnProperty("selectTile"))
@@ -21830,7 +21830,7 @@ $root.msg = (function() {
         function MahjongSelectTilePreviewResult(properties) {
             this.huTileArray = [];
             if (properties)
-                for (var keys = Object.keys(properties), i = 0; i < keys.length; ++i)
+                for (let keys = Object.keys(properties), i = 0; i < keys.length; ++i)
                     if (properties[keys[i]] != null)
                         this[keys[i]] = properties[keys[i]];
         }
@@ -21869,7 +21869,7 @@ $root.msg = (function() {
                 writer = $Writer.create();
             if (message.huTileArray != null && message.huTileArray.length) {
                 writer.uint32(/* id 1, wireType 2 =*/10).fork();
-                for (var i = 0; i < message.huTileArray.length; ++i)
+                for (let i = 0; i < message.huTileArray.length; ++i)
                     writer.sint32(message.huTileArray[i]);
                 writer.ldelim();
             }
@@ -21903,9 +21903,9 @@ $root.msg = (function() {
         MahjongSelectTilePreviewResult.decode = function decode(reader, length, error) {
             if (!(reader instanceof $Reader))
                 reader = $Reader.create(reader);
-            var end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongSelectTilePreviewResult();
+            let end = length === undefined ? reader.len : reader.pos + length, message = new $root.msg.MahjongSelectTilePreviewResult();
             while (reader.pos < end) {
-                var tag = reader.uint32();
+                let tag = reader.uint32();
                 if (tag === error)
                     break;
                 switch (tag >>> 3) {
@@ -21913,7 +21913,7 @@ $root.msg = (function() {
                         if (!(message.huTileArray && message.huTileArray.length))
                             message.huTileArray = [];
                         if ((tag & 7) === 2) {
-                            var end2 = reader.uint32() + reader.pos;
+                            let end2 = reader.uint32() + reader.pos;
                             while (reader.pos < end2)
                                 message.huTileArray.push(reader.sint32());
                         } else
@@ -21958,7 +21958,7 @@ $root.msg = (function() {
             if (message.huTileArray != null && message.hasOwnProperty("huTileArray")) {
                 if (!Array.isArray(message.huTileArray))
                     return "huTileArray: array expected";
-                for (var i = 0; i < message.huTileArray.length; ++i)
+                for (let i = 0; i < message.huTileArray.length; ++i)
                     if (!$util.isInteger(message.huTileArray[i]))
                         return "huTileArray: integer[] expected";
             }
@@ -21976,12 +21976,12 @@ $root.msg = (function() {
         MahjongSelectTilePreviewResult.fromObject = function fromObject(object) {
             if (object instanceof $root.msg.MahjongSelectTilePreviewResult)
                 return object;
-            var message = new $root.msg.MahjongSelectTilePreviewResult();
+            let message = new $root.msg.MahjongSelectTilePreviewResult();
             if (object.huTileArray) {
                 if (!Array.isArray(object.huTileArray))
                     throw TypeError(".msg.MahjongSelectTilePreviewResult.huTileArray: array expected");
                 message.huTileArray = [];
-                for (var i = 0; i < object.huTileArray.length; ++i)
+                for (let i = 0; i < object.huTileArray.length; ++i)
                     message.huTileArray[i] = object.huTileArray[i] | 0;
             }
             return message;
@@ -21999,12 +21999,12 @@ $root.msg = (function() {
         MahjongSelectTilePreviewResult.toObject = function toObject(message, options) {
             if (!options)
                 options = {};
-            var object = {};
+            let object = {};
             if (options.arrays || options.defaults)
                 object.huTileArray = [];
             if (message.huTileArray && message.huTileArray.length) {
                 object.huTileArray = [];
-                for (var j = 0; j < message.huTileArray.length; ++j)
+                for (let j = 0; j < message.huTileArray.length; ++j)
                     object.huTileArray[j] = message.huTileArray[j];
             }
             return object;

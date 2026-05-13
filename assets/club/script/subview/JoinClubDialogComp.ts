@@ -117,8 +117,23 @@ function __regUIEvent(SELF: JoinClubDialogComp): void {
     // "加入" 按钮点击事件
     cc.find("PrimeDialog/Center/ButtonArea/Button_JoinClub_", SELF.node)
         .on(cc.Node.EventType.TOUCH_END, (/*oEvent*/) => {
+            // 验证输入是否为空
+            if (null == SELF._strCurrNum || 
+                "" == SELF._strCurrNum) {
+                cc.warn("请输入亲友圈ID");
+                return;
+            }
+
+            let nClubId = Number.parseInt(SELF._strCurrNum);
+
+            // 验证解析结果是否有效
+            if (isNaN(nClubId) || nClubId <= 0) {
+                cc.warn("无效的亲友圈ID");
+                return;
+            }
+
             if (null != SELF.onJoinClub) {
-                SELF.onJoinClub(Number.parseInt(SELF._strCurrNum));
+                SELF.onJoinClub(nClubId);
             }
         }
     );

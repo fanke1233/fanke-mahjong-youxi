@@ -1,5 +1,5 @@
-import * as $protobuf from "protobufjs";
-import Long = require("long");
+// DO NOT EDIT! This is a generated file. Edit the JSDoc in src/*.js instead and run 'npm run build:types'.
+
 /** Namespace msg. */
 export namespace msg {
 

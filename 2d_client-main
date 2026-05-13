@@ -1,0 +1,29 @@
+[33mcommit 32e329f808b3e7ca5666c76c407e6b9ca8309508[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: fanke1233 <fanke1233@users.noreply.github.com>
+Date:   Wed May 13 23:18:56 2026 +0800
+
+    feat: 实现俱乐部审核结果广播机制(ApprovalResultBroadcast)
+    
+    - 添加ApprovalResultBroadcast协议定义（消息代码331）
+    - 创建ApprovalResultBroadcastHandler消息处理器
+    - 注册广播消息处理器到MsgBus
+    - 优化JoinClubResultHandler，移除废弃的轮询代码
+    - 实现审核通过后自动跳转俱乐部详情页功能
+    - 更新TypeScript类型定义和Java服务端代码
+    
+    改进：
+    - 从轮询方案升级为实时广播方案，提升响应速度
+    - 减少服务器负载，降低网络流量
+    - 优化用户体验，审核通过后自动进入俱乐部
+
+ assets/club/script/msg/mod_clubServerProtocol.d.ts | 116 [32m+++[m
+ assets/club/script/msg/mod_clubServerProtocol.js   | 277 [32m++++++[m
+ .../ApprovalResultBroadcastHandler.ts              | 111 [32m+++[m
+ .../ApprovalResultBroadcastHandler.ts.meta         |   9 [32m+[m
+ .../script/resulthandler/JoinClubResultHandler.ts  |  29 [32m+[m[31m-[m
+ .../resulthandler/__onMsgHandler.ver_Club.ts       |   2 [32m+[m
+ protocol/clubServerProtocol.proto                  |  19 [32m+[m
+ protocol/out/mod_clubServerProtocol.d.ts           | 116 [32m+++[m
+ protocol/out/mod_clubServerProtocol.js             | 277 [32m++++++[m
+ .../mj/bizserver/allmsg/ClubServerProtocol.java    | 958 [32m++++++++++++++++++++[m[31m-[m
+ 10 files changed, 1890 insertions(+), 24 deletions(-)
