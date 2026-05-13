@@ -527,10 +527,9 @@ export default class MJ_weihai_Scene extends cc.Component {
                 }
             }
             
-            cc.log("[见字胡] 显示警告：不能见字胡");
+            // 显示警告：不能见字胡
         } else {
             // 解除见字胡状态，不显示提示
-            cc.log("[见字胡] 警告已解除");
         }
     }
 

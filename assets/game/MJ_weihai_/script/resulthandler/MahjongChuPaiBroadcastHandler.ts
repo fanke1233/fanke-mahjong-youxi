@@ -54,10 +54,48 @@ export default class MahjongChuPaiBroadcastHandler {
         if (null != oUserData) {
             let nSex = oUserData.getSafeSex();
 
-            AudioMajordomo.getInstance().playVoice(
-                ModConfig.BUNDLE_NAME,
-                `res/1/audio/sex_${nSex}_/MahjongVal_${oBroadcast.t}_`
-            );
+            // 检查是否为赖子牌（飘赖）
+            const nLaiZiTile = this._getLaiZiTile(oBroadcast.userId);
+            const bIsPiaoLai = (nLaiZiTile > 0 && oBroadcast.t === nLaiZiTile);
+
+            if (bIsPiaoLai) {
+                // 飘赖出牌：播放特殊音效
+                AudioMajordomo.getInstance().playVoice(
+                    ModConfig.BUNDLE_NAME,
+                    `res/1/audio/sex_${nSex}_/Round_PiaoLai_`
+                );
+            } else {
+                // 普通出牌：播报牌名
+                AudioMajordomo.getInstance().playVoice(
+                    ModConfig.BUNDLE_NAME,
+                    `res/1/audio/sex_${nSex}_/MahjongVal_${oBroadcast.t}_`
+                );
+            }
+        }
+    }
+
+    /**
+     * 获取指定玩家的赖子牌
+     * 
+     * @param nUserId 用户ID
+     * @return 赖子牌值，-1表示未找到
+     */
+    private static _getLaiZiTile(nUserId: number): number {
+        try {
+            const oTableComp = cc.find("Canvas/MahjongTableArea")?.getComponentInChildren(MahjongTableComp);
+            if (!oTableComp || !oTableComp._oPlayerDataMap) {
+                return -1;
+            }
+
+            const oPlayerData = oTableComp._oPlayerDataMap[nUserId];
+            if (!oPlayerData) {
+                return -1;
+            }
+
+            return oPlayerData.laiZiTile || -1;
+        } catch (e) {
+            cc.error(`[飘赖] 获取赖子牌失败: ${e}`);
+            return -1;
         }
     }
 }

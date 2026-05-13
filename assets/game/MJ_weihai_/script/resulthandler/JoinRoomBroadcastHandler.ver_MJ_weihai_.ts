@@ -43,7 +43,8 @@ export default class JoinRoomBroadcastHandler {
                 totalScore:         oBroadcast.totalScore,
             };
 
-            UserData.checkIn(oBroadcast.userId, oBroadcast.userName, oBroadcast.headImg, 0, oBroadcast.clientIpAddr);
+            // 【修复】使用服务端传来的真实性别，而不是硬编码为0
+            UserData.checkIn(oBroadcast.userId, oBroadcast.userName, oBroadcast.headImg, oBroadcast.sex ?? 0, oBroadcast.clientIpAddr);
             oTableComp.addPlayer(oX);
         }
     }
