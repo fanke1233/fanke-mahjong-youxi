@@ -386,12 +386,13 @@ function __hintMahjongCanHu(SELF: MJ_weihai_Scene, oTableComp: MahjongTableComp,
         oCachedRoom.ruleSetting.getRuleValue(RuleKeyDef.KEY_PLAY_METHOD_YI_LAI_DAO_DI) == 1;
     
     let oCanHuMahjongArray: number[] = [];
+    let nLaiZiTile: number = -1;  // 提升赖子牌变量到函数作用域
     
     if (bYiLaiDaoDi) {
         // 一赖到底模式：带赖子牌计算（完全依赖服务端下发）
         const oMyPlayer = oTableComp._oPlayerDataMap[nMyUserId];
         if (oMyPlayer) {
-            const nLaiZiTile = oMyPlayer.laiZiTile ?? -1;
+            nLaiZiTile = oMyPlayer.laiZiTile ?? -1;
             
             if (nLaiZiTile > 0) {
                 oCanHuMahjongArray = HuCalculator.calcCanHuTilesWithLaiZi(oTestMahjongValArray, nLaiZiTile);
@@ -422,18 +423,28 @@ function __hintMahjongCanHu(SELF: MJ_weihai_Scene, oTableComp: MahjongTableComp,
         // 获取可以胡牌的麻将牌数值
         let nMahjongVal = oCanHuMahjongArray[nI];
 
-        const oValNode = cc.find(`Pattern_${nI}_/MahjongTile/Val`, oHintAreaNode);
-        if (oValNode) {
-            const oSprite = oValNode.getComponent(cc.Sprite);
-            if (oSprite) {
-                const oFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
-                if (oFrame) {
-                    oSprite.spriteFrame = oFrame;
+        const oPatternNode = cc.find(`Pattern_${nI}_`, oHintAreaNode);
+        if (oPatternNode) {
+            const oValNode = cc.find(`MahjongTile/Val`, oPatternNode);
+            if (oValNode) {
+                const oSprite = oValNode.getComponent(cc.Sprite);
+                if (oSprite) {
+                    const oFrame = AllMahjongValImg.getSpriteFrame(nMahjongVal);
+                    if (oFrame) {
+                        oSprite.spriteFrame = oFrame;
+                    }
                 }
+            }
+            
+            // 检查这张可胡的牌是否是赖子牌，如果是则添加赖子标记
+            if (bYiLaiDaoDi && nLaiZiTile > 0 && nMahjongVal === nLaiZiTile) {
+                __updateLaiZiMarkForHuHint(oPatternNode, true);
+            } else {
+                __updateLaiZiMarkForHuHint(oPatternNode, false);
             }
         }
 
-        cc.find(`Pattern_${nI}_`, oHintAreaNode).active = true;
+        oPatternNode.active = true;
     }
 
     for (; nI < MAX_COUNT; nI++) {
@@ -442,4 +453,54 @@ function __hintMahjongCanHu(SELF: MJ_weihai_Scene, oTableComp: MahjongTableComp,
     }
 
     oHintAreaNode.active = true;
+}
+
+/**
+ * 更新胡牌提示中赖子牌标记
+ * 
+ * @param oRootNode 根节点（麻将牌节点）
+ * @param bIsLaiZi 是否是赖子牌
+ */
+function __updateLaiZiMarkForHuHint(oRootNode: cc.Node, bIsLaiZi: boolean): void {
+    if (null == oRootNode) {
+        return;
+    }
+
+    let oLaiZiMark = cc.find("LaiZiMark", oRootNode);
+
+    // 如果节点不存在，动态创建
+    if (null == oLaiZiMark) {
+        // 创建 LaiZiMark 节点
+        oLaiZiMark = new cc.Node("LaiZiMark");
+        oRootNode.addChild(oLaiZiMark);
+        
+        // 添加 Label 组件显示"赖"字
+        let oLabel = oLaiZiMark.addComponent(cc.Label);
+        oLabel.string = "赖";
+        oLabel.fontSize = 24;
+        oLabel.lineHeight = 24;
+        oLabel.horizontalAlign = cc.Label.HorizontalAlign.CENTER;
+        oLabel.verticalAlign = cc.Label.VerticalAlign.CENTER;
+        oLabel.overflow = cc.Label.Overflow.NONE;
+        
+        // 设置金色
+        oLabel.node.color = new cc.Color(255, 215, 0); // 金色 RGB(255, 215, 0)
+        
+        // 设置节点位置（右上角）
+        oLaiZiMark.setPosition(30, 30); // 根据麻将牌大小调整
+        
+        // 设置节点大小
+        oLaiZiMark.width = 50;
+        oLaiZiMark.height = 50;
+        
+        // 添加 Widget 组件保持相对位置
+        let oWidget = oLaiZiMark.addComponent(cc.Widget);
+        oWidget.isAlignRight = true;
+        oWidget.isAlignTop = true;
+        oWidget.right = 5;
+        oWidget.top = 5;
+    }
+
+    // 控制显示/隐藏
+    oLaiZiMark.active = bIsLaiZi;
 }
