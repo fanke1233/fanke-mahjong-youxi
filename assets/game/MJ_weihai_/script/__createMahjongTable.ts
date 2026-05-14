@@ -442,14 +442,17 @@ function __hintMahjongCanHu(SELF: MJ_weihai_Scene, oTableComp: MahjongTableComp,
             } else {
                 __updateLaiZiMarkForHuHint(oPatternNode, false);
             }
+            
+            oPatternNode.active = true;
         }
-
-        oPatternNode.active = true;
     }
 
     for (; nI < MAX_COUNT; nI++) {
         // 隐藏剩余的
-        cc.find(`Pattern_${nI}_`, oHintAreaNode).active = false;
+        const oNode = cc.find(`Pattern_${nI}_`, oHintAreaNode);
+        if (oNode) {
+            oNode.active = false;
+        }
     }
 
     oHintAreaNode.active = true;
@@ -476,15 +479,17 @@ function __updateLaiZiMarkForHuHint(oRootNode: cc.Node, bIsLaiZi: boolean): void
         
         // 添加 Label 组件显示"赖"字
         let oLabel = oLaiZiMark.addComponent(cc.Label);
-        oLabel.string = "赖";
-        oLabel.fontSize = 24;
-        oLabel.lineHeight = 24;
-        oLabel.horizontalAlign = cc.Label.HorizontalAlign.CENTER;
-        oLabel.verticalAlign = cc.Label.VerticalAlign.CENTER;
-        oLabel.overflow = cc.Label.Overflow.NONE;
-        
-        // 设置金色
-        oLabel.node.color = new cc.Color(255, 215, 0); // 金色 RGB(255, 215, 0)
+        if (oLabel) {
+            oLabel.string = "赖";
+            oLabel.fontSize = 24;
+            oLabel.lineHeight = 24;
+            oLabel.horizontalAlign = cc.Label.HorizontalAlign.CENTER;
+            oLabel.verticalAlign = cc.Label.VerticalAlign.CENTER;
+            oLabel.overflow = cc.Label.Overflow.NONE;
+            
+            // 设置金色
+            oLabel.node.color = new cc.Color(255, 215, 0); // 金色 RGB(255, 215, 0)
+        }
         
         // 设置节点位置（右上角）
         oLaiZiMark.setPosition(30, 30); // 根据麻将牌大小调整
@@ -493,14 +498,21 @@ function __updateLaiZiMarkForHuHint(oRootNode: cc.Node, bIsLaiZi: boolean): void
         oLaiZiMark.width = 50;
         oLaiZiMark.height = 50;
         
-        // 添加 Widget 组件保持相对位置
-        let oWidget = oLaiZiMark.addComponent(cc.Widget);
-        oWidget.isAlignRight = true;
-        oWidget.isAlignTop = true;
-        oWidget.right = 5;
-        oWidget.top = 5;
+        // 添加 Widget 组件保持相对位置（先检查是否已存在）
+        let oWidget = oLaiZiMark.getComponent(cc.Widget);
+        if (!oWidget) {
+            oWidget = oLaiZiMark.addComponent(cc.Widget);
+        }
+        if (oWidget) {
+            oWidget.isAlignRight = true;
+            oWidget.isAlignTop = true;
+            oWidget.right = 5;
+            oWidget.top = 5;
+        }
     }
 
     // 控制显示/隐藏
-    oLaiZiMark.active = bIsLaiZi;
+    if (oLaiZiMark) {
+        oLaiZiMark.active = bIsLaiZi;
+    }
 }
